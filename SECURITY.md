@@ -22,7 +22,7 @@ The NS BOS (NGARi Sovereign Business Operating System) Kernel is designed for so
 
 **DO NOT** file a public GitHub issue for security vulnerabilities.
 
-Contact the security team at `security@ngari.ai` (PGP key available at `https://ngari.ai/.well-known/security.txt`).
+Contact the security team at `support@ngari.xyz`.
 
 Reports are acknowledged within 48 hours. Fixes are coordinated and disclosed after a 90-day remediation window for critical issues, 30 days for medium/high.
 
