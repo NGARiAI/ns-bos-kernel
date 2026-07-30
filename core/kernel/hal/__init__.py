@@ -1,6 +1,6 @@
 """
 NS BOS Kernel - Hardware Abstraction Layer
-Device-agnostic hardware interface for NGARI Sovereign Business Operating System.
+Device-agnostic hardware interface for NGARi Sovereign Business Operating System.
 
 Supports:
 - NVIDIA Jetson (Nano, AGX Orin, Thor)

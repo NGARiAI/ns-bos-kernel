@@ -1,6 +1,6 @@
 # NS BOS Kernel
 
-**NGARI Sovereign Business Operating System — Kernel**
+**NGARi Sovereign Business Operating System — Kernel**
 
 The NS BOS Kernel is the minimal, auditable, sovereign runtime for autonomous edge AI agents. It orchestrates inference, agent lifecycle, data encryption, hardware monitoring, and inter-agent communication — all on user-owned hardware with zero cloud dependency.
 

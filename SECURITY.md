@@ -1,7 +1,7 @@
 # NS BOS Kernel Security
 
 ## Security Posture
-The NS BOS (NGARI Sovereign Business Operating System) Kernel is designed for sovereign edge deployment. It runs on user-owned hardware with verified zero cloud dependency.
+The NS BOS (NGARi Sovereign Business Operating System) Kernel is designed for sovereign edge deployment. It runs on user-owned hardware with verified zero cloud dependency.
 
 ### Supported Configurations
 - **Platform**: aarch64 (Jetson Orin, Raspberry Pi 5), x86_64

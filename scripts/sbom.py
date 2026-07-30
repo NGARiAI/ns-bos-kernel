@@ -25,7 +25,7 @@ def generate_sbom(output_path: str = "sbom/ns-bos-kernel.spdx.json"):
             ).stdout.strip(),
             "creators": [
                 "Tool: sbom.py",
-                "Organization: NGARI Corporation"
+                "Organization: Bison Venture Partners LLC dba NGARI"
             ]
         },
         "packages": []

@@ -188,7 +188,7 @@ class GenerativeUIEngine:
         else:
             components = [
                 UIComponent("text", "welcome", "Welcome", "welcome_message",
-                           {"content": "NGARI Sovereign Business Operating System"}, order=0),
+                           {"content": "NGARi Sovereign Business Operating System"}, order=0),
             ]
 
         return UILayout(

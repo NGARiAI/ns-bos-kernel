@@ -1,6 +1,6 @@
 """
 NS BOS Kernel - Main Entry Point
-NGARI Sovereign Business Operating System
+NGARi Sovereign Business Operating System
 
 This is the core kernel that provides:
 - Hardware Abstraction Layer (HAL)
@@ -32,7 +32,7 @@ logger = logging.getLogger("ns_bos_kernel")
 
 VERSION = "0.1.0"
 KERNEL_NAME = "NS BOS"
-KERNEL_FULL_NAME = "NGARI Sovereign Business Operating System"
+KERNEL_FULL_NAME = "NGARi Sovereign Business Operating System"
 
 
 class NSBOSKernel:

@@ -1,6 +1,6 @@
 # Contributing to NS BOS Kernel
 
-Thank you for your interest in contributing to the NGARI Sovereign Business Operating System Kernel.
+Thank you for your interest in contributing to the NGARi Sovereign Business Operating System Kernel.
 
 ## Code of Conduct
 - Be respectful and inclusive

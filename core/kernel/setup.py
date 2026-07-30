@@ -6,16 +6,16 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name="ns-bos",
     version="0.1.0",
-    author="NGARI Corporation",
-    author_email="contact@ngari.com",
-    description="NGARI Sovereign Business Operating System - Open Source Kernel",
+    author="Bison Venture Partners LLC dba NGARI",
+    author_email="support@ngari.xyz",
+    description="NGARi Sovereign Business Operating System - Open Source Kernel",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ngariglobal/ns-bos",
+    url="https://github.com/ngarixyz/ns-bos",
     project_urls={
-        "Bug Tracker": "https://github.com/ngariglobal/ns-bos/issues",
-        "Documentation": "https://ngari.com/docs",
-        "Source Code": "https://github.com/ngariglobal/ns-bos",
+        "Bug Tracker": "https://github.com/ngarixyz/ns-bos/issues",
+        "Documentation": "https://ngari.xyz/docs",
+        "Source Code": "https://github.com/ngarixyz/ns-bos",
     },
     classifiers=[
         "Development Status :: 3 - Alpha",

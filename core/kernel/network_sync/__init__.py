@@ -54,7 +54,7 @@ class DigitalTwinState:
 
 @dataclass
 class FleetNode:
-    """Represents a node in the NGARI fleet"""
+    """Represents a node in the NGARi fleet"""
     node_id: str
     hostname: str
     platform: str
