@@ -1,4 +1,4 @@
-name: NS BOS CI
+name: NS-BOS CI
 
 on:
   push:

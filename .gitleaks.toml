@@ -1,10 +1,10 @@
-title = "NS BOS Kernel Gitleaks Configuration"
+title = "NS-BOS Kernel Gitleaks Configuration"
 
 [extend]
 useDefault = true
 
 [allowlist]
-description = "Known-safe patterns for the NS BOS Kernel"
+description = "Known-safe patterns for the NS-BOS Kernel"
 paths = [
     ".git/",
     "__pycache__/",
