@@ -1,7 +1,7 @@
-# NS BOS Kernel Threat Model
+# NS-BOS Kernel Threat Model
 
 ## Overview
-This threat model covers the NS BOS Kernel and its agent runtime. The kernel operates on sovereign edge hardware with no cloud dependency. The primary trust boundary is between the kernel process and the external environment (network, user input, filesystem).
+This threat model covers the NS-BOS Kernel and its agent runtime. The kernel operates on sovereign edge hardware with no cloud dependency. The primary trust boundary is between the kernel process and the external environment (network, user input, filesystem).
 
 ## Assets
 | Asset | Sensitivity | Location |

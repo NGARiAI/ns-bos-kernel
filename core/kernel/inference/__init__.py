@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Local Inference Engine Interface
+NS-BOS Kernel - Local Inference Engine Interface
 Supports Ollama, llama.cpp, and vLLM interfaces.
 Model registry and management.
 """
@@ -759,7 +759,7 @@ if __name__ == "__main__":
         try:
             response = manager.generate(
                 "qwen3:32b",
-                "What is the NS BOS kernel?",
+                "What is the NS-BOS kernel?",
                 engine=InferenceEngine.OLLAMA
             )
             print(f"Response: {response[:200]}...")

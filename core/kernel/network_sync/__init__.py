@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Network Synchronization
+NS-BOS Kernel - Network Synchronization
 Fleet communication protocol, digital twin sync, encrypted peer-to-peer mesh,
 and optional zero-knowledge cloud sync.
 """
@@ -256,7 +256,7 @@ if __name__ == "__main__":
     # Update twin state
     sync.update_twin("agent.ceo", {"status": "running", "revenue_target": 1000})
     sync.update_twin("pref.theme", "kemet")
-    sync.update_twin("memory.last_query", "What is NS BOS?")
+    sync.update_twin("memory.last_query", "What is NS-BOS?")
 
     # Get values
     print(f"CEO Agent: {sync.get_twin_value('agent.ceo')}")

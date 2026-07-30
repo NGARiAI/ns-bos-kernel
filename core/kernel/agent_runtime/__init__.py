@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Agent Runtime Framework
+NS-BOS Kernel - Agent Runtime Framework
 Agent lifecycle management, inter-agent communication, task scheduling,
 and memory/state management.
 """
@@ -366,7 +366,7 @@ if __name__ == "__main__":
     config = AgentConfig(
         name="TestAgent",
         agent_type="test",
-        description="Test agent for NS BOS kernel"
+        description="Test agent for NS-BOS kernel"
     )
     agent_id = runtime.register_agent(config)
 

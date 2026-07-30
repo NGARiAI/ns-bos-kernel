@@ -1,8 +1,8 @@
-# NS BOS Kernel
+# NS-BOS Kernel
 
 **NGARi Sovereign Business Operating System — Kernel**
 
-The NS BOS Kernel is the minimal, auditable, sovereign runtime for autonomous edge AI agents. It orchestrates inference, agent lifecycle, data encryption, hardware monitoring, and inter-agent communication — all on user-owned hardware with zero cloud dependency.
+The NS-BOS Kernel is the minimal, auditable, sovereign runtime for autonomous edge AI agents. It orchestrates inference, agent lifecycle, data encryption, hardware monitoring, and inter-agent communication — all on user-owned hardware with zero cloud dependency.
 
 License: Apache 2.0
 
@@ -12,7 +12,7 @@ License: Apache 2.0
 ┌──────────────────────────────────────┐
 │  Application Layer (Agents, UI, API) │
 ├──────────────────────────────────────┤
-│  NS BOS Kernel                       │
+│  NS-BOS Kernel                       │
 │  ├── Inference Engine   (Ollama,     │
 │  │                      llama.cpp,   │
 │  │                      vLLM)        │

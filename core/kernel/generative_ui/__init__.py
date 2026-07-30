@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Generative UI Engine
+NS-BOS Kernel - Generative UI Engine
 Adaptive interface generation, user behavior learning,
 cross-platform consistency, and accessibility-first design.
 """

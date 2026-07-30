@@ -1,4 +1,4 @@
-# NS BOS Kernel — Module Interface Reference
+# NS-BOS Kernel — Module Interface Reference
 
 ## Architecture
 

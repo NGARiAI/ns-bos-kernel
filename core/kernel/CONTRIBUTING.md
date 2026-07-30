@@ -1,4 +1,4 @@
-# Contributing to NS BOS Kernel
+# Contributing to NS-BOS Kernel
 
 Thank you for your interest in contributing to the NGARi Sovereign Business Operating System Kernel.
 
@@ -21,7 +21,7 @@ Thank you for your interest in contributing to the NGARi Sovereign Business Oper
 ### Suggesting Features
 1. Open an issue with the "enhancement" label
 2. Describe the feature and its use case
-3. Explain how it aligns with NS BOS kernel design principles:
+3. Explain how it aligns with NS-BOS kernel design principles:
    - Sovereign by default (zero cloud dependency)
    - Minimal kernel surface area
    - Fully auditable

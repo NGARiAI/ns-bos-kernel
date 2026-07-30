@@ -4,7 +4,7 @@
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "ns-bos-kernel",
   "creationInfo": {
-    "created": "2026-07-30T19:00:22Z",
+    "created": "2026-07-30T19:21:49Z",
     "creators": [
       "Tool: sbom.py",
       "Organization: Bison Venture Partners LLC dba NGARI"

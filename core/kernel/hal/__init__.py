@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Hardware Abstraction Layer
+NS-BOS Kernel - Hardware Abstraction Layer
 Device-agnostic hardware interface for NGARi Sovereign Business Operating System.
 
 Supports:

@@ -1,4 +1,4 @@
-"""SPDX 2.3 SBOM generator for NS BOS Kernel"""
+"""SPDX 2.3 SBOM generator for NS-BOS Kernel"""
 
 import json
 import subprocess

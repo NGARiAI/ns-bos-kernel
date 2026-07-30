@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Sovereign Data Plane
+NS-BOS Kernel - Sovereign Data Plane
 Encrypted local storage, audit logging, and data sovereignty enforcement.
 Zero external telemetry.
 """

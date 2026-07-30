@@ -1,5 +1,5 @@
 """
-NS BOS Kernel - Main Entry Point
+NS-BOS Kernel - Main Entry Point
 NGARi Sovereign Business Operating System
 
 This is the core kernel that provides:
@@ -31,13 +31,13 @@ from network_sync import NetworkSynchronization, SyncMode
 logger = logging.getLogger("ns_bos_kernel")
 
 VERSION = "0.1.0"
-KERNEL_NAME = "NS BOS"
+KERNEL_NAME = "NS-BOS"
 KERNEL_FULL_NAME = "NGARi Sovereign Business Operating System"
 
 
 class NSBOSKernel:
     """
-    Main NS BOS Kernel class.
+    Main NS-BOS Kernel class.
     Initializes and coordinates all kernel subsystems.
     """
 
@@ -168,7 +168,7 @@ class NSBOSKernel:
 
 
 def main():
-    """Main entry point for NS BOS Kernel"""
+    """Main entry point for NS-BOS Kernel"""
     logging.basicConfig(
         level=logging.INFO,
         format='%(asctime)s [NSBOS] %(message)s',

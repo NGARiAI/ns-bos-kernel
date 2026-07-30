@@ -1,4 +1,4 @@
-# NS BOS Kernel Architecture
+# NS-BOS Kernel Architecture
 
 ## Design Principles
 1. **Sovereign by default** — zero cloud dependency; all operations work in air-gap
