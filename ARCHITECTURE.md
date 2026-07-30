@@ -119,19 +119,32 @@ Key variables:
 | `NGARI_AIR_GAP` | `true` | Block all external network calls |
 | `NGARI_AUTH_ENABLED` | `false` | Enable RBAC middleware |
 
-## Sandbox Architecture (Phase 2)
+## Sandbox Architecture (Phase 2 Complete)
 ```
-Agent Tool Execution
-  ┌─────────────────────────────────┐
-  │   gVisor sandbox (runsc)        │
-  │  ┌───────────────────────────┐  │
-  │  │  Python subprocess        │  │
-  │  │  ALLOWED_MODULES only     │  │
-  │  │  60s timeout              │  │
-  │  │  32KB output cap          │  │
-  │  │  No network access        │  │
-  │  └───────────────────────────┘  │
-  └─────────────────────────────────┘
+Agent {code, tool} → BwrapSandbox.execute_python()
+  ┌───────────────────────────────────────────────┐
+  │  BwrapSandbox (bubblewrap + namespace isolation) │
+  │  ┌─────────────────────────────────────────┐   │
+  │  │  Linux namespaces:                      │   │
+  │  │  ├── User: nobody (uid 65534)           │   │
+  │  │  ├── Mount: /usr /lib /bin ro, /tmp rw  │   │
+  │  │  ├── Net: no interfaces (AF_UNIX only)  │   │
+  │  │  ├── PID: isolated process tree         │   │
+  │  │  ├── IPC: no shared memory/semaphores   │   │
+  │  │  └── UTS: hostname 'sandbox'            │   │
+  │  │                                          │   │
+  │  │  Python-level:                          │   │
+  │  │  ├── Module blocklist (subprocess,      │   │
+  │  │  │   ctypes, multiprocessing, fcntl,    │   │
+  │  │  │   pickle, shelve, crypt, cffi)       │   │
+  │  │  ├── Function neutralization            │   │
+  │  │  │   (eval/exec/open/compile → no-ops)  │   │
+  │  │  ├── 30s timeout (configurable)         │   │
+  │  │  └── 10KB output cap                    │   │
+  │  └─────────────────────────────────────────┘   │
+  │                                                 │
+  │  Fallback: subprocess (when bwrap unavailable)  │
+  └─────────────────────────────────────────────────┘
 ```
 
 ## Related Documents

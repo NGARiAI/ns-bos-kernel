@@ -35,7 +35,7 @@ This threat model covers the NS BOS Kernel and its agent runtime. The kernel ope
 - **Risk**: An agent executes a shell command that compromises the system.
 - **Existing Controls**: Tool allow-list, subprocess with ALLOWED_MODULES, 60s timeout, 32KB output cap.
 - **Gap**: No container-level isolation for agent code execution.
-- **Mitigation Plan**: Replace subprocess with gVisor sandbox (Phase 2).
+- **Mitigation Plan**: Implemented BwrapSandbox — bubblewrap with user/PID/net/mount/IPC namespace isolation. `core/sandbox/bwrap.py`. ✅ Complete (Phase 2).
 
 ### T2: Unauthorized API Access
 - **Risk**: A compromised token or brute-force attack gains API access.
