@@ -4,10 +4,10 @@
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "ns-bos-kernel",
   "creationInfo": {
-    "created": "2026-07-30T00:00:00Z",
+    "created": "2026-07-30T19:00:22Z",
     "creators": [
       "Tool: sbom.py",
-      "Organization: NGARI Corporation"
+      "Organization: Bison Venture Partners LLC dba NGARI"
     ]
   },
   "packages": [
