@@ -4,16 +4,16 @@ Encrypted local storage, audit logging, and data sovereignty enforcement.
 Zero external telemetry.
 """
 
-import os
-import json
-import time
 import hashlib
+import json
 import logging
-from datetime import datetime
-from typing import Optional, Any
-from dataclasses import dataclass, asdict
-from cryptography.fernet import Fernet
+import os
+from dataclasses import asdict, dataclass
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
+
+from cryptography.fernet import Fernet, InvalidToken
 
 logger = logging.getLogger(__name__)
 
@@ -34,7 +34,7 @@ class SovereignDataPlane:
     and data sovereignty enforcement.
     """
 
-    def __init__(self, data_dir: str = None):
+    def __init__(self, data_dir: str | None = None):
         base = data_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
         self.data_dir = Path(base)
         self.data_dir.mkdir(parents=True, exist_ok=True)
@@ -89,7 +89,7 @@ class SovereignDataPlane:
         self._audit("store_encrypted", "system", key, {"size": len(encrypted)})
         return str(file_path)
 
-    def retrieve_decrypted(self, key: str) -> Optional[Any]:
+    def retrieve_decrypted(self, key: str) -> Any | None:
         """Retrieve and decrypt data"""
         file_path = self.encrypted_dir / f"{key}.enc"
         if not file_path.exists():
@@ -103,7 +103,7 @@ class SovereignDataPlane:
             data = json.loads(decrypted)
             self._audit("retrieve_decrypted", "system", key, {})
             return data
-        except Exception as e:
+        except (InvalidToken, ValueError, TypeError) as e:
             logger.error(f"Decryption failed for {key}: {e}")
             return None
 
@@ -122,7 +122,7 @@ class SovereignDataPlane:
     def _audit(self, action: str, actor: str, resource: str, details: dict):
         """Write audit log entry"""
         entry = AuditEntry(
-            timestamp=datetime.utcnow().isoformat(),
+            timestamp=datetime.now(timezone.utc).isoformat(),
             action=action,
             actor=actor,
             resource=resource,
@@ -175,7 +175,7 @@ class SovereignDataPlane:
     def export_compliance_report(self) -> dict:
         """Export compliance report for audit purposes"""
         return {
-            "generated_at": datetime.utcnow().isoformat(),
+            "generated_at": datetime.now(timezone.utc).isoformat(),
             "data_sovereignty": "enforced",
             "external_telemetry": False,
             "encryption": "AES-256-Fernet",
@@ -192,7 +192,7 @@ if __name__ == "__main__":
     dp = SovereignDataPlane()
 
     # Test store and retrieve
-    test_data = {"user": "test", "secret": "sovereign_data", "timestamp": datetime.utcnow().isoformat()}
+    test_data = {"user": "test", "secret": "sovereign_data", "timestamp": datetime.now(timezone.utc).isoformat()}
     dp.store_encrypted("test_key", test_data)
 
     retrieved = dp.retrieve_decrypted("test_key")

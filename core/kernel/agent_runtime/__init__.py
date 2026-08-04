@@ -4,17 +4,17 @@ Agent lifecycle management, inter-agent communication, task scheduling,
 and memory/state management.
 """
 
-import os
-import json
-import time
-import uuid
 import asyncio
+import json
 import logging
-from datetime import datetime
-from typing import Optional, Any, Callable, Dict, List
-from dataclasses import dataclass, asdict, field
+import os
+import uuid
+from collections.abc import Callable
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -55,11 +55,11 @@ class Task:
     payload: dict
     priority: TaskPriority = TaskPriority.NORMAL
     status: str = "pending"
-    created_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
-    started_at: Optional[str] = None
-    completed_at: Optional[str] = None
-    result: Optional[Any] = None
-    error: Optional[str] = None
+    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    started_at: str | None = None
+    completed_at: str | None = None
+    result: Any | None = None
+    error: str | None = None
 
 
 @dataclass
@@ -71,19 +71,19 @@ class AgentState:
     tasks_completed: int = 0
     tasks_failed: int = 0
     uptime_seconds: float = 0
-    last_heartbeat: str = field(default_factory=lambda: datetime.utcnow().isoformat())
-    started_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    last_heartbeat: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    started_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     error_count: int = 0
 
 
 class AgentRegistry:
     """Registry for managing agent configurations and state"""
 
-    def __init__(self, registry_dir: str = None):
+    def __init__(self, registry_dir: str | None = None):
         registry_dir = registry_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "agents" / "registry"))
         self.registry_dir = Path(registry_dir)
         self.registry_dir.mkdir(parents=True, exist_ok=True)
-        self.agents: Dict[str, AgentState] = {}
+        self.agents: dict[str, AgentState] = {}
         self._load_registry()
 
     def _load_registry(self):
@@ -102,8 +102,8 @@ class AgentRegistry:
                         tasks_completed=agent_data.get("tasks_completed", 0),
                         tasks_failed=agent_data.get("tasks_failed", 0),
                         uptime_seconds=agent_data.get("uptime_seconds", 0),
-                        last_heartbeat=agent_data.get("last_heartbeat", datetime.utcnow().isoformat()),
-                        started_at=agent_data.get("started_at", datetime.utcnow().isoformat()),
+                        last_heartbeat=agent_data.get("last_heartbeat", datetime.now(timezone.utc).isoformat()),
+                        started_at=agent_data.get("started_at", datetime.now(timezone.utc).isoformat()),
                         error_count=agent_data.get("error_count", 0)
                     )
 
@@ -136,11 +136,11 @@ class AgentRegistry:
         logger.info(f"Agent registered: {config.name} ({agent_id})")
         return agent_id
 
-    def get_agent(self, agent_id: str) -> Optional[AgentState]:
+    def get_agent(self, agent_id: str) -> AgentState | None:
         """Get agent state by ID"""
         return self.agents.get(agent_id)
 
-    def list_agents(self) -> List[AgentState]:
+    def list_agents(self) -> list[AgentState]:
         """List all registered agents"""
         return list(self.agents.values())
 
@@ -148,19 +148,19 @@ class AgentRegistry:
         """Update agent state"""
         if agent_id in self.agents:
             self.agents[agent_id].state = state
-            self.agents[agent_id].last_heartbeat = datetime.utcnow().isoformat()
+            self.agents[agent_id].last_heartbeat = datetime.now(timezone.utc).isoformat()
             self.save_registry()
 
 
 class TaskScheduler:
     """Task scheduler with priority queue"""
 
-    def __init__(self, scheduler_dir: str = None):
+    def __init__(self, scheduler_dir: str | None = None):
         scheduler_dir = scheduler_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "tasks"))
         self.scheduler_dir = Path(scheduler_dir)
         self.scheduler_dir.mkdir(parents=True, exist_ok=True)
-        self.tasks: Dict[str, Task] = {}
-        self.handlers: Dict[str, Callable] = {}
+        self.tasks: dict[str, Task] = {}
+        self.handlers: dict[str, Callable] = {}
         self._load_tasks()
 
     def _load_tasks(self):
@@ -202,7 +202,7 @@ class TaskScheduler:
         logger.info(f"Task created: {task_id} - {action} (priority: {priority.name})")
         return task_id
 
-    def get_pending_tasks(self) -> List[Task]:
+    def get_pending_tasks(self) -> list[Task]:
         """Get pending tasks sorted by priority"""
         pending = [t for t in self.tasks.values() if t.status == "pending"]
         return sorted(pending, key=lambda t: t.priority.value, reverse=True)
@@ -216,7 +216,7 @@ class TaskScheduler:
             return None
 
         task.status = "running"
-        task.started_at = datetime.utcnow().isoformat()
+        task.started_at = datetime.now(timezone.utc).isoformat()
         self.save_tasks()
 
         try:
@@ -226,14 +226,14 @@ class TaskScheduler:
                 result = await result
 
             task.status = "completed"
-            task.completed_at = datetime.utcnow().isoformat()
+            task.completed_at = datetime.now(timezone.utc).isoformat()
             task.result = result
             self.save_tasks()
             return result
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - task boundary, recorded as task error
             task.status = "error"
             task.error = str(e)
-            task.completed_at = datetime.utcnow().isoformat()
+            task.completed_at = datetime.now(timezone.utc).isoformat()
             self.save_tasks()
             logger.error(f"Task {task.task_id} failed: {e}")
             return None
@@ -251,19 +251,19 @@ class TaskScheduler:
 class InterAgentCommunication:
     """Inter-agent message bus"""
 
-    def __init__(self, comm_dir: str = None):
+    def __init__(self, comm_dir: str | None = None):
         comm_dir = comm_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "comm"))
         self.comm_dir = Path(comm_dir)
         self.comm_dir.mkdir(parents=True, exist_ok=True)
-        self.subscribers: Dict[str, List[Callable]] = {}
+        self.subscribers: dict[str, list[Callable]] = {}
 
     def publish(self, topic: str, message: dict):
         """Publish a message to a topic"""
-        message_file = self.comm_dir / f"{topic}_{datetime.utcnow().strftime('%Y%m%d_%H%M%S')}.json"
+        message_file = self.comm_dir / f"{topic}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.json"
         message_data = {
             "topic": topic,
             "message": message,
-            "timestamp": datetime.utcnow().isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat()
         }
         with open(message_file, "w") as f:
             json.dump(message_data, f, indent=2)
@@ -273,7 +273,7 @@ class InterAgentCommunication:
             for callback in self.subscribers[topic]:
                 try:
                     callback(message)
-                except Exception as e:
+                except Exception as e:  # noqa: BLE001 - isolate subscriber callback failures
                     logger.error(f"Subscriber callback failed: {e}")
 
     def subscribe(self, topic: str, callback: Callable):
@@ -282,7 +282,7 @@ class InterAgentCommunication:
             self.subscribers[topic] = []
         self.subscribers[topic].append(callback)
 
-    def get_messages(self, topic: str, limit: int = 10) -> List[dict]:
+    def get_messages(self, topic: str, limit: int = 10) -> list[dict]:
         """Get recent messages for a topic"""
         messages = []
         for file in sorted(self.comm_dir.glob(f"{topic}_*.json"), reverse=True)[:limit]:
@@ -297,7 +297,7 @@ class AgentRuntime:
     and inter-agent communication.
     """
 
-    def __init__(self, data_dir: str = None):
+    def __init__(self, data_dir: str | None = None):
         data_dir = data_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
         self.registry = AgentRegistry(os.path.join(data_dir, "registry"))
         self.scheduler = TaskScheduler(os.path.join(data_dir, "tasks"))

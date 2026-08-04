@@ -4,16 +4,17 @@ Supports Ollama, llama.cpp, and vLLM interfaces.
 Model registry and management.
 """
 
+import json
+import logging
 import os
 import re
-import json
 import time
-import logging
-import requests
-from typing import Optional, List, Dict, Any
-from dataclasses import dataclass, asdict
+from dataclasses import asdict, dataclass
 from enum import Enum
 from pathlib import Path
+from typing import Any
+
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -48,10 +49,10 @@ class OllamaInterface:
         try:
             response = requests.get(f"{self.base_url}/api/tags", timeout=5)
             return response.status_code == 200
-        except Exception:
+        except requests.exceptions.RequestException:
             return False
 
-    def list_models(self) -> List[ModelInfo]:
+    def list_models(self) -> list[ModelInfo]:
         """List available Ollama models"""
         if not self.available:
             return []
@@ -73,7 +74,7 @@ class OllamaInterface:
                         last_used=model.get("modified_at", "")
                     ))
                 return models
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"Failed to list Ollama models: {e}")
 
         return []
@@ -105,16 +106,16 @@ class OllamaInterface:
                     return full_response
                 else:
                     return response.json().get("response", "")
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"Ollama generation failed: {e}")
 
         return ""
 
-    def chat(self, model: str, messages: List[dict], stream: bool = False,
-             images: Optional[List[str]] = None,
-             tools: Optional[List[dict]] = None,
-             format: Optional[str] = None,
-             temperature: Optional[float] = None) -> str:
+    def chat(self, model: str, messages: list[dict], stream: bool = False,
+             images: list[str] | None = None,
+             tools: list[dict] | None = None,
+             format: str | None = None,
+             temperature: float | None = None) -> str:
         """Chat with Ollama using chat format"""
         if not self.available:
             raise RuntimeError("Ollama is not available")
@@ -124,7 +125,7 @@ class OllamaInterface:
             msgs = list(messages)
             if msgs and msgs[-1]["role"] == "user":
                 msgs[-1] = {**msgs[-1], "images": images}
-        body: Dict[str, Any] = {
+        body: dict[str, Any] = {
             "model": model,
             "messages": msgs,
             "stream": stream
@@ -154,16 +155,16 @@ class OllamaInterface:
                     return full_response
                 else:
                     return response.json().get("message", {}).get("content", "")
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"Ollama chat failed: {e}")
 
         return ""
 
-    def chat_stream(self, model: str, messages: List[dict],
-                    images: Optional[List[str]] = None,
-                    tools: Optional[List[dict]] = None,
-                    format: Optional[str] = None,
-                    temperature: Optional[float] = None):
+    def chat_stream(self, model: str, messages: list[dict],
+                    images: list[str] | None = None,
+                    tools: list[dict] | None = None,
+                    format: str | None = None,
+                    temperature: float | None = None):
         """Stream chat tokens from Ollama. Yields (token, done) tuples."""
         if not self.available:
             raise RuntimeError("Ollama is not available")
@@ -174,7 +175,7 @@ class OllamaInterface:
             if msgs and msgs[-1]["role"] == "user":
                 msgs[-1] = {**msgs[-1], "images": images}
 
-        body: Dict[str, Any] = {
+        body: dict[str, Any] = {
             "model": model,
             "messages": msgs,
             "stream": True,
@@ -210,12 +211,12 @@ class OllamaInterface:
                 yield (token, done)
                 if done:
                     return
-        except Exception as e:
+        except requests.exceptions.RequestException as e:
             logger.error(f"Ollama chat_stream failed: {e}")
             yield ("", True)
 
     @staticmethod
-    def _extract_tool_calls_from_content(content: str) -> Optional[List[dict]]:
+    def _extract_tool_calls_from_content(content: str) -> list[dict] | None:
         """Parse JSON tool calls from model text content.
 
         Models may return tool calls as pure JSON or embedded in markdown:
@@ -305,10 +306,10 @@ class OllamaInterface:
 
         return None
 
-    def chat_with_tools(self, model: str, messages: List[dict],
-                        tools: List[dict],
+    def chat_with_tools(self, model: str, messages: list[dict],
+                        tools: list[dict],
                         max_iterations: int = 4,
-                        images: Optional[List[str]] = None) -> Dict[str, Any]:
+                        images: list[str] | None = None) -> dict[str, Any]:
         """Chat with tool-calling loop: call → dispatch → re-call until done.
 
         Handles both native Ollama tool_calls and JSON text-format tool calls.
@@ -325,15 +326,14 @@ class OllamaInterface:
         while iteration < max_iterations:
             iteration += 1
 
-            body: Dict[str, Any] = {
+            body: dict[str, Any] = {
                 "model": model,
                 "messages": msgs,
                 "tools": tools,
                 "stream": False,
             }
-            if images:
-                if msgs and msgs[-1].get("role") == "user":
-                    msgs[-1] = {**msgs[-1], "images": images}
+            if images and msgs and msgs[-1].get("role") == "user":
+                msgs[-1] = {**msgs[-1], "images": images}
 
             try:
                 resp = requests.post(
@@ -345,7 +345,7 @@ class OllamaInterface:
                     logger.error(f"Ollama chat_with_tools HTTP {resp.status_code}: {resp.text[:200]}")
                     return {"content": "", "tool_calls": []}
                 data = resp.json()
-            except Exception as e:
+            except (requests.exceptions.RequestException, ValueError) as e:
                 logger.error(f"Ollama chat_with_tools failed: {e}")
                 return {"content": "", "tool_calls": []}
 
@@ -405,7 +405,7 @@ class OllamaInterface:
                 timeout=3600
             )
             return response.status_code == 200
-        except Exception as e:
+        except requests.exceptions.RequestException as e:
             logger.error(f"Failed to pull model {model}: {e}")
             return False
 
@@ -421,11 +421,11 @@ class OllamaInterface:
                 timeout=30
             )
             return response.status_code == 200
-        except Exception as e:
+        except requests.exceptions.RequestException as e:
             logger.error(f"Failed to delete model {model}: {e}")
             return False
 
-    def get_model_info(self, model: str) -> Optional[ModelInfo]:
+    def get_model_info(self, model: str) -> ModelInfo | None:
         """Get detailed model information"""
         models = self.list_models()
         for m in models:
@@ -446,7 +446,7 @@ class LlamaCppInterface:
         try:
             response = requests.get(f"{self.server_url}/health", timeout=5)
             return response.status_code == 200
-        except Exception:
+        except requests.exceptions.RequestException:
             return False
 
     def generate(self, prompt: str, max_tokens: int = 256,
@@ -467,7 +467,7 @@ class LlamaCppInterface:
             )
             if response.status_code == 200:
                 return response.json().get("content", "")
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"llama.cpp generation failed: {e}")
 
         return ""
@@ -485,10 +485,10 @@ class VLLMInterface:
         try:
             response = requests.get(f"{self.base_url}/v1/models", timeout=5)
             return response.status_code == 200
-        except Exception:
+        except requests.exceptions.RequestException:
             return False
 
-    def list_models(self) -> List[str]:
+    def list_models(self) -> list[str]:
         """List available vLLM models"""
         if not self.available:
             return []
@@ -498,7 +498,7 @@ class VLLMInterface:
             if response.status_code == 200:
                 data = response.json()
                 return [m["id"] for m in data.get("data", [])]
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"Failed to list vLLM models: {e}")
 
         return []
@@ -523,12 +523,12 @@ class VLLMInterface:
             if response.status_code == 200:
                 data = response.json()
                 return data.get("choices", [{}])[0].get("text", "")
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"vLLM generation failed: {e}")
 
         return ""
 
-    def chat(self, model: str, messages: List[dict],
+    def chat(self, model: str, messages: list[dict],
              max_tokens: int = 256, temperature: float = 0.7) -> str:
         """Chat using vLLM OpenAI-compatible chat API"""
         if not self.available:
@@ -548,7 +548,7 @@ class VLLMInterface:
             if response.status_code == 200:
                 data = response.json()
                 return data.get("choices", [{}])[0].get("message", {}).get("content", "")
-        except Exception as e:
+        except (requests.exceptions.RequestException, ValueError) as e:
             logger.error(f"vLLM chat failed: {e}")
 
         return ""
@@ -557,12 +557,12 @@ class VLLMInterface:
 class ModelRegistry:
     """Central model registry for all inference engines"""
 
-    def __init__(self, registry_dir: str = None):
+    def __init__(self, registry_dir: str | None = None):
         registry_dir = registry_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "models"))
         self.registry_dir = Path(registry_dir)
         self.registry_dir.mkdir(parents=True, exist_ok=True)
         self.registry_file = self.registry_dir / "registry.json"
-        self.models: Dict[str, ModelInfo] = {}
+        self.models: dict[str, ModelInfo] = {}
         self._load_registry()
 
     def _load_registry(self):
@@ -590,11 +590,11 @@ class ModelRegistry:
         self.models[model.name] = model
         self.save_registry()
 
-    def get_model(self, name: str) -> Optional[ModelInfo]:
+    def get_model(self, name: str) -> ModelInfo | None:
         """Get model by name"""
         return self.models.get(name)
 
-    def list_models(self) -> List[ModelInfo]:
+    def list_models(self) -> list[ModelInfo]:
         """List all registered models"""
         return list(self.models.values())
 
@@ -614,7 +614,7 @@ class InferenceEngineManager:
     """
 
     def __init__(self):
-        self.engines: Dict[InferenceEngine, Any] = {}
+        self.engines: dict[InferenceEngine, Any] = {}
         self.registry = ModelRegistry()
 
         # Initialize available engines
@@ -646,12 +646,12 @@ class InferenceEngineManager:
 
         logger.info(f"Initialized {len(self.engines)} inference engines")
 
-    def get_available_engines(self) -> List[InferenceEngine]:
+    def get_available_engines(self) -> list[InferenceEngine]:
         """Get list of available engines"""
         return list(self.engines.keys())
 
     def generate(self, model: str, prompt: str,
-                 engine: Optional[InferenceEngine] = None) -> str:
+                 engine: InferenceEngine | None = None) -> str:
         """Generate text using the specified or best available engine"""
         if engine and engine in self.engines:
             eng = self.engines[engine]
@@ -665,18 +665,18 @@ class InferenceEngineManager:
                 if hasattr(eng, 'generate'):
                     try:
                         return eng.generate(model, prompt)
-                    except Exception as e:
+                    except Exception as e:  # noqa: BLE001 - last-resort engine boundary, fall through to next
                         logger.warning(f"Engine {eng_type.value} failed: {e}")
                         continue
 
         raise RuntimeError("No available inference engine")
 
-    def chat(self, model: str, messages: List[dict],
-             engine: Optional[InferenceEngine] = None,
-             images: Optional[List[str]] = None,
-             tools: Optional[List[dict]] = None,
-             format: Optional[str] = None,
-             temperature: Optional[float] = None) -> str:
+    def chat(self, model: str, messages: list[dict],
+             engine: InferenceEngine | None = None,
+             images: list[str] | None = None,
+             tools: list[dict] | None = None,
+             format: str | None = None,
+             temperature: float | None = None) -> str:
         """Chat using the specified or best available engine"""
         kwargs = {}
         if images is not None:
@@ -699,17 +699,17 @@ class InferenceEngineManager:
                 if hasattr(eng, 'chat'):
                     try:
                         return eng.chat(model, messages, **kwargs)
-                    except Exception as e:
+                    except Exception as e:  # noqa: BLE001 - last-resort engine boundary, fall through to next
                         logger.warning(f"Engine {eng_type.value} failed: {e}")
                         continue
 
         raise RuntimeError("No available inference engine with chat support")
 
-    def chat_with_tools(self, model: str, messages: List[dict],
-                        tools: List[dict],
+    def chat_with_tools(self, model: str, messages: list[dict],
+                        tools: list[dict],
                         max_iterations: int = 4,
-                        engine: Optional[InferenceEngine] = None,
-                        images: Optional[List[str]] = None) -> Dict[str, Any]:
+                        engine: InferenceEngine | None = None,
+                        images: list[str] | None = None) -> dict[str, Any]:
         """Chat with tool-calling loop through the best available engine."""
         if engine and engine in self.engines:
             eng = self.engines[engine]
@@ -728,7 +728,7 @@ class InferenceEngineManager:
                             model, messages, tools,
                             max_iterations=max_iterations, images=images
                         )
-                    except Exception as e:
+                    except Exception as e:  # noqa: BLE001 - last-resort engine boundary, fall through to next
                         logger.warning(f"Engine {eng_type.value} chat_with_tools failed: {e}")
                         continue
 
@@ -737,7 +737,7 @@ class InferenceEngineManager:
     def get_status(self) -> dict:
         """Get inference engine status"""
         return {
-            "available_engines": [e.value for e in self.engines.keys()],
+            "available_engines": [e.value for e in self.engines],
             "registered_models": len(self.registry.models),
             "models": [asdict(m) for m in self.registry.list_models()]
         }
@@ -763,5 +763,5 @@ if __name__ == "__main__":
                 engine=InferenceEngine.OLLAMA
             )
             print(f"Response: {response[:200]}...")
-        except Exception as e:
+        except Exception as e:  # noqa: BLE001 - CLI smoke test
             print(f"Generation test failed: {e}")

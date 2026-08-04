@@ -13,20 +13,33 @@ This is the core kernel that provides:
 License: Apache 2.0
 """
 
+import logging
 import os
 import sys
-import json
-import logging
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 
 # Add kernel to path
 sys.path.insert(0, str(Path(__file__).parent))
 
-from hal import create_hal, HardwareAbstractionLayer, PlatformType
+from agent_runtime import AgentConfig, AgentRuntime, TaskPriority
 from data_plane import SovereignDataPlane
-from agent_runtime import AgentRuntime, AgentConfig, TaskPriority
+from hal import HardwareAbstractionLayer, PlatformType, create_hal
 from network_sync import NetworkSynchronization, SyncMode
+
+__all__ = [
+    "VERSION",
+    "AgentConfig",
+    "AgentRuntime",
+    "HardwareAbstractionLayer",
+    "NSBOSKernel",
+    "NetworkSynchronization",
+    "PlatformType",
+    "SovereignDataPlane",
+    "SyncMode",
+    "TaskPriority",
+    "create_hal",
+]
 
 logger = logging.getLogger("ns_bos_kernel")
 
@@ -41,13 +54,13 @@ class NSBOSKernel:
     Initializes and coordinates all kernel subsystems.
     """
 
-    def __init__(self, data_dir: str = None):
+    def __init__(self, data_dir: str | None = None):
         data_dir = data_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
         self.data_dir = Path(data_dir)
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
         self.version = VERSION
-        self.start_time = datetime.utcnow()
+        self.start_time = datetime.now(timezone.utc)
         self.running = False
 
         # Initialize subsystems
@@ -113,7 +126,7 @@ class NSBOSKernel:
                 "name": KERNEL_FULL_NAME,
                 "version": VERSION,
                 "status": "running" if self.running else "stopped",
-                "uptime_seconds": (datetime.utcnow() - self.start_time).total_seconds()
+                "uptime_seconds": (datetime.now(timezone.utc) - self.start_time).total_seconds()
             },
             "hardware": {
                 "platform": hw_info.platform.value,

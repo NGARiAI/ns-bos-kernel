@@ -4,14 +4,13 @@ Adaptive interface generation, user behavior learning,
 cross-platform consistency, and accessibility-first design.
 """
 
-import os
 import json
-import time
 import logging
-from datetime import datetime
-from typing import Optional, Any, Dict, List
-from dataclasses import dataclass, asdict, field
+import os
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -34,22 +33,22 @@ class UILayout:
     layout_id: str
     context: str  # dashboard, agent-monitor, settings, etc.
     platform: str  # web, desktop, mobile
-    components: List[UIComponent] = field(default_factory=list)
+    components: list[UIComponent] = field(default_factory=list)
     theme: str = "kemet"
-    created_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
-    updated_at: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    updated_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
 
 
 @dataclass
 class UserBehavior:
     """Tracks user interaction patterns for adaptive UI"""
     user_id: str
-    most_used_components: Dict[str, int] = field(default_factory=dict)
-    least_used_components: Dict[str, int] = field(default_factory=dict)
+    most_used_components: dict[str, int] = field(default_factory=dict)
+    least_used_components: dict[str, int] = field(default_factory=dict)
     preferred_layout: str = "default"
     session_count: int = 0
-    last_active: str = field(default_factory=lambda: datetime.utcnow().isoformat())
-    interaction_patterns: Dict[str, Any] = field(default_factory=dict)
+    last_active: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    interaction_patterns: dict[str, Any] = field(default_factory=dict)
 
 
 class GenerativeUIEngine:
@@ -58,7 +57,7 @@ class GenerativeUIEngine:
     context, and platform.
     """
 
-    def __init__(self, ui_dir: str = None):
+    def __init__(self, ui_dir: str | None = None):
         base = ui_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
         self.ui_dir = Path(base) / "ui"
         self.ui_dir.mkdir(parents=True, exist_ok=True)
@@ -69,8 +68,8 @@ class GenerativeUIEngine:
         self.behavior_dir = self.ui_dir / "behavior"
         self.behavior_dir.mkdir(exist_ok=True)
 
-        self.layouts: Dict[str, UILayout] = {}
-        self.user_behaviors: Dict[str, UserBehavior] = {}
+        self.layouts: dict[str, UILayout] = {}
+        self.user_behaviors: dict[str, UserBehavior] = {}
 
         self._load_layouts()
         self._load_behaviors()
@@ -87,14 +86,14 @@ class GenerativeUIEngine:
                     platform=data["platform"],
                     components=components,
                     theme=data.get("theme", "kemet"),
-                    created_at=data.get("created_at", datetime.utcnow().isoformat()),
-                    updated_at=data.get("updated_at", datetime.utcnow().isoformat())
+                    created_at=data.get("created_at", datetime.now(timezone.utc).isoformat()),
+                    updated_at=data.get("updated_at", datetime.now(timezone.utc).isoformat())
                 )
                 self.layouts[layout.layout_id] = layout
 
     def _save_layout(self, layout: UILayout):
         """Save a UI layout to disk"""
-        layout.updated_at = datetime.utcnow().isoformat()
+        layout.updated_at = datetime.now(timezone.utc).isoformat()
         layout_file = self.layouts_dir / f"{layout.layout_id}.json"
         data = asdict(layout)
         with open(layout_file, "w") as f:
@@ -110,7 +109,7 @@ class GenerativeUIEngine:
 
     def _save_behavior(self, behavior: UserBehavior):
         """Save user behavior data"""
-        behavior.last_active = datetime.utcnow().isoformat()
+        behavior.last_active = datetime.now(timezone.utc).isoformat()
         behavior_file = self.behavior_dir / f"{behavior.user_id}.json"
         with open(behavior_file, "w") as f:
             json.dump(asdict(behavior), f, indent=2)
@@ -131,7 +130,7 @@ class GenerativeUIEngine:
         self._save_behavior(behavior)
 
     def generate_layout(self, context: str, platform: str,
-                        user_id: Optional[str] = None) -> UILayout:
+                        user_id: str | None = None) -> UILayout:
         """Generate an adaptive UI layout"""
         layout_id = f"{context}_{platform}"
 
@@ -237,12 +236,12 @@ class GenerativeUIEngine:
             html += f'id="{component.id}" data-source="{component.data_source}">\n'
             html += f'    <h3>{component.label}</h3>\n'
             html += f'    <div class="component-content" data-properties=\'{json.dumps(component.properties)}\'></div>\n'
-            html += f'  </div>\n'
+            html += '  </div>\n'
 
         html += '</div>'
         return html
 
-    def get_available_layouts(self) -> List[dict]:
+    def get_available_layouts(self) -> list[dict]:
         """Get list of available layouts"""
         return [
             {
@@ -255,7 +254,7 @@ class GenerativeUIEngine:
             for layout in self.layouts.values()
         ]
 
-    def export_layout(self, layout_id: str) -> Optional[dict]:
+    def export_layout(self, layout_id: str) -> dict | None:
         """Export a layout for sharing or backup"""
         if layout_id in self.layouts:
             return asdict(self.layouts[layout_id])
@@ -271,13 +270,13 @@ class GenerativeUIEngine:
                 platform=data["platform"],
                 components=components,
                 theme=data.get("theme", "kemet"),
-                created_at=data.get("created_at", datetime.utcnow().isoformat()),
-                updated_at=data.get("updated_at", datetime.utcnow().isoformat())
+                created_at=data.get("created_at", datetime.now(timezone.utc).isoformat()),
+                updated_at=data.get("updated_at", datetime.now(timezone.utc).isoformat())
             )
             self.layouts[layout.layout_id] = layout
             self._save_layout(layout)
             return True
-        except Exception as e:
+        except (ValueError, TypeError) as e:
             logger.error(f"Failed to import layout: {e}")
             return False
 

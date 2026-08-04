@@ -4,16 +4,15 @@ Fleet communication protocol, digital twin sync, encrypted peer-to-peer mesh,
 and optional zero-knowledge cloud sync.
 """
 
-import os
-import json
-import time
 import hashlib
+import json
 import logging
-from datetime import datetime
-from typing import Optional, Any, Dict, List
-from dataclasses import dataclass, asdict, field
-from pathlib import Path
+import os
+from dataclasses import asdict, dataclass, field
+from datetime import datetime, timezone
 from enum import Enum
+from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -32,7 +31,7 @@ class DigitalTwinState:
     agent_states: dict
     preferences: dict
     memory_index: dict
-    last_sync: str = field(default_factory=lambda: datetime.utcnow().isoformat())
+    last_sync: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
     version: int = 0
     checksum: str = ""
 
@@ -72,7 +71,7 @@ class NetworkSynchronization:
     and optional cloud sync.
     """
 
-    def __init__(self, sync_dir: str = None):
+    def __init__(self, sync_dir: str | None = None):
         sync_dir = sync_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "sync"))
         self.sync_dir = Path(sync_dir)
         self.sync_dir.mkdir(parents=True, exist_ok=True)
@@ -106,12 +105,12 @@ class NetworkSynchronization:
         """Save digital twin state"""
         self.local_state.version += 1
         self.local_state.checksum = self.local_state.compute_checksum()
-        self.local_state.last_sync = datetime.utcnow().isoformat()
+        self.local_state.last_sync = datetime.now(timezone.utc).isoformat()
 
         with open(self.twin_file, "w") as f:
             json.dump(asdict(self.local_state), f, indent=2)
 
-    def _load_fleet(self) -> Dict[str, FleetNode]:
+    def _load_fleet(self) -> dict[str, FleetNode]:
         """Load fleet configuration"""
         if self.fleet_file.exists():
             with open(self.fleet_file, "r") as f:
@@ -149,7 +148,7 @@ class NetworkSynchronization:
         self._save_twin()
         self._log_sync("update", key)
 
-    def get_twin_value(self, key: str) -> Optional[Any]:
+    def get_twin_value(self, key: str) -> Any | None:
         """Get value from digital twin state"""
         if key.startswith("agent."):
             agent_name = key.split(".", 1)[1]
@@ -177,7 +176,7 @@ class NetworkSynchronization:
         """Update fleet node status"""
         if node_id in self.fleet_nodes:
             self.fleet_nodes[node_id].status = status
-            self.fleet_nodes[node_id].last_seen = datetime.utcnow().isoformat()
+            self.fleet_nodes[node_id].last_seen = datetime.now(timezone.utc).isoformat()
             self._save_fleet()
 
     def get_fleet_status(self) -> dict:
@@ -217,14 +216,14 @@ class NetworkSynchronization:
             else:
                 logger.error("Imported twin checksum mismatch")
                 return False
-        except Exception as e:
+        except (ValueError, TypeError) as e:
             logger.error(f"Failed to import twin: {e}")
             return False
 
     def _log_sync(self, action: str, key: str):
         """Log synchronization event"""
         entry = {
-            "timestamp": datetime.utcnow().isoformat(),
+            "timestamp": datetime.now(timezone.utc).isoformat(),
             "action": action,
             "key": key,
             "version": self.local_state.version,
