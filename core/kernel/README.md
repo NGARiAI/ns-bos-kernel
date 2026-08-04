@@ -3,77 +3,66 @@
 ## Architecture
 
 ```
-                    +-----------------------------------+
-                    |        Production Agents           |
-                    |  (CEO, CRO, CMO, Engineer,        |
-                    |   Worker, Comms)                   |
-                    +---------+-------------------------+
-                              |
-                    +---------v-------------------------+
-                    |        KernelBridge               |
-                    |  core/kernel_bridge.py            |
-                    |  - bootstrap()                     |
-                    |  - infer() / chat()               |
-                    |  - audit() / compliance_report()  |
-                    |  - register_agent()               |
-                    |  - publish() / subscribe()        |
-                    +----+----+----+----+----+----------+
-                         |    |    |    |    |
-              +----------+    |    |    |    +-----------+
-              v               v    v    v                v
-    +---------+-----+  +------+----+----+------+  +------+----------+
-    | AgentRuntime  |  | InferenceEngineManager |  | SovereignDP    |
-    | - registry    |  | - OllamaInterface      |  | - encrypt/store|
-    | - scheduler   |  | - LlamaCppInterface    |  | - audit log    |
-    | - comm bus    |  | - VLLMInterface        |  | - compliance   |
-    +-------+-------+  | - ModelRegistry        |  +------+----------+
-            |          +------------------------+         |
-            v                                             v
-    +-------+----------+                      +----------+-----------+
-    | Network Sync     |                      | HardwareAbstraction |
-    | - DigitalTwin    |                      | - JetsonHAL         |
-    | - FleetNode      |                      | - X86HAL            |
-    | - P2P mesh       |                      | - detect_platform() |
-    +------------------+                      +---------------------+
++--------------------------------------+
+|  Production Agents (application layer)|
++------------------+-------------------+
+                   |
+        +----------v-----------+
+        | KernelBridge         |   <- application facade (app repo)
+        +----+----+----+----+--+
+             |    |    |    |
+   +---------+    |    |    +----------+
+   v              v    v               v
++------+   +------------+   +----------------+
+| Agent|   | Inference  |   | Sovereign DP   |
+| Runtime|  | Manager    |   | - encrypt/store|
+| - registry| - Ollama   |   | - audit log    |
+| - scheduler| - llama.cpp|   | - compliance   |
+| - comm bus | - vLLM     |   +-------+--------+
++---+---+   | - registry |            |
+    |       +-----+------+            |
+    v             v                   v
++--------+   +----------+   +------------------+
+| Network|   | Sandbox   |   | HAL              |
+| Sync   |   | - bwrap   |   | - JetsonHAL      |
+| - twin |   | - seccomp |   | - X86HAL         |
+| - mesh |   +----------+   | - detect_platform|
++--------+                  +------------------+
 ```
+
+The kernel is a library: applications (agents, dashboards) import it and register
+their own tool dispatcher via `set_tool_dispatcher()`.
 
 ## Module Contracts
-
-### `core/kernel_bridge.py` — Entry Point
-```python
-from core.kernel_bridge import bootstrap, get_kernel_bridge
-
-kb = bootstrap()           # Initialize on app startup
-kb.infer(prompt, model)    # Route prompt through best inference engine
-kb.chat(messages, model)   # Chat through best inference engine
-kb.audit(action, agent_id) # Record auditable action
-kb.register_agent(...)     # Register with kernel runtime
-kb.compliance_report()     # Export compliance report
-```
 
 ### `core/kernel/hal/` — Hardware Abstraction Layer
 ```python
 from core.kernel.hal import detect_platform, create_hal
 
-platform = detect_platform()   # → PlatformType enum
-hal = create_hal()             # Factory: JetsonHAL | X86HAL
-info = hal.get_hardware_info() # → HardwareInfo dataclass
-hal.get_gpu_utilization()      # → float 0-100
-hal.get_memory_utilization()   # → float 0-100
-hal.get_temperature()          # → dict {zone: celsius}
+platform = detect_platform()  # → PlatformType enum
+hal = create_hal()  # Factory: JetsonHAL | X86HAL
+info = hal.get_hardware_info()  # → HardwareInfo dataclass
+hal.get_gpu_utilization()  # → float 0-100
+hal.get_memory_utilization()  # → float 0-100
+hal.get_temperature()  # → dict {zone: celsius}
 ```
 **Supported platforms:** Jetson Nano/AGX Orin/Thor, x86_64, ARM64, Raspberry Pi, Cloud VMs
 
 ### `core/kernel/inference/` — Inference Engine
 ```python
-from core.kernel.inference import InferenceEngineManager
+from core.kernel.inference import InferenceEngineManager, set_tool_dispatcher
 
 mgr = InferenceEngineManager()
-mgr.generate(model, prompt)    # Generate text (auto-select engine)
-mgr.chat(model, messages)      # Chat format (auto-select engine)
-mgr.get_status()               # → {engines: [...], models: [...]}
+mgr.generate(model, prompt)  # Generate text (auto-select engine)
+mgr.chat(model, messages)  # Chat format (auto-select engine)
+mgr.get_status()  # → {engines: [...], models: [...]}
+
+# Wire application tool dispatch into chat_with_tools:
+set_tool_dispatcher(lambda tool_calls: [...])
 ```
-**Engines:** Ollama, llama.cpp, vLLM (auto-failover)
+**Engines:** Ollama, llama.cpp, vLLM (auto-failover). `chat_with_tools`
+falls back to `core.tools.dispatch` when present (app repo) and otherwise
+returns the call history without dispatch.
 
 ### `core/kernel/agent_runtime/` — Agent Runtime
 ```python
@@ -94,8 +83,8 @@ from core.kernel.data_plane import SovereignDataPlane
 
 dp = SovereignDataPlane()
 dp.store_encrypted(key, data)  # AES-256-Fernet
-dp.retrieve_decrypted(key)     # Returns decrypted data or None
-dp.verify_audit_integrity()    # SHA-256 chain verification
+dp.retrieve_decrypted(key)  # Returns decrypted data or None
+dp.verify_audit_integrity()  # SHA-256 chain verification
 dp.export_compliance_report()  # → {encryption, audit_entries, ...}
 ```
 
@@ -104,79 +93,67 @@ dp.export_compliance_report()  # → {encryption, audit_entries, ...}
 from core.kernel.network_sync import NetworkSynchronization, FleetNode
 
 sync = NetworkSynchronization()
-sync.register_node(node)           # Add fleet node
-sync.update_twin(key, value)       # Update digital twin
-sync.get_twin_value(key)           # Read from twin
-sync.get_fleet_status()            # Fleet overview
-sync.export_twin() / import_twin() # Migration/backup
+sync.register_node(node)  # Add fleet node
+sync.update_twin(key, value)  # Update digital twin
+sync.get_twin_value(key)  # Read from twin
+sync.get_fleet_status()  # Fleet overview
+sync.export_twin() / import_twin()  # Migration/backup
 ```
 **Modes:** LOCAL_ONLY | PEER_TO_PEER | CLOUD_SYNC | HYBRID
 
-### `core/provisioning/device_identity.py` — Device Identity
+### `core/kernel/generative_ui/` — Generative UI
 ```python
-from core.provisioning.device_identity import provision_device, onboard_device
+from core.kernel.generative_ui import GenerativeUIEngine
 
-identity = provision_device()  # Generate keys + cert (run once)
-onboard_device()               # Register with kernel bridge + fleet
-```
-**Key format:** Ed25519, stored in `$NGARI_DATA_DIR/identity/`
-
-### `core/provisioning/zero_touch.py` — Zero-Touch Onboarding
-```python
-from core.provisioning.zero_touch import bootstrap_device
-
-bootstrap_device()  # Provision + onboard + discover + register
+ui = GenerativeUIEngine()
+layout = ui.generate_layout(context, platform, user_id)  # → UILayout
+html = ui.render_layout(layout, format="html")  # or "json"
+ui.track_interaction(user_id, component_id)  # adaptive learning
 ```
 
-## Agent Integration Pattern
+### `core/kernel/sandbox/` — Agent Code Sandbox
+```python
+from core.kernel.sandbox import BwrapSandbox, get_sandbox
+
+sandbox = get_sandbox()
+result = sandbox.execute_python("print(2+2)")
+# SandboxResult: exit_code, stdout, stderr, duration_s, error
+```
+**Isolation:** bubblewrap namespaces (user/PID/net/mount/IPC/UTS), runs as
+`nobody`, read-only system, tmpfs `/tmp`, seccomp-bpf profiles
+(`restricted` 23 syscalls / `strict` 39), Python import blocklist +
+eval/exec/open neutralization, 30s timeout, 10KB output cap. Falls back to
+gated subprocess when bubblewrap is unavailable (`get_capabilities()`).
+
+## Tool-Calling Integration
+
+`chat_with_tools()` requires a tool dispatcher. Applications register one:
 
 ```python
-from core.agents.ngari_agent import NGARiAgent
+from core.kernel.inference import OllamaInterface, set_tool_dispatcher
 
-class MyAgent(NGARiAgent):
-    def think(self, prompt):
-        # Option 1: Use kernel inference (LLM)
-        return self._kernel_infer(prompt, model="qwen3:8b")
 
-        # Option 2: Use kernel chat (multi-message)
-        return self._kernel_chat([{"role":"user","content":prompt}])
+def my_dispatcher(tool_calls):
+    return [{"content": "handled", "name": tc["function"]["name"]} for tc in tool_calls]
 
-    def act(self, action, params):
-        self._kernel_audit(action, params)  # Encrypted audit
-        self._kernel_publish("agent.action", {"action": action})
-        return {"success": True}
 
-    def health_check(self):
-        return {"status": "ok"}
-
-    def _do_some_action(self, params):
-        self._kernel_audit("do_some_action", params)
-        compliance = self._kernel_compliance()  # Current compliance state
-        return {"success": True}
+set_tool_dispatcher(my_dispatcher)
+ollama = OllamaInterface()
+out = ollama.chat_with_tools(
+    model="qwen3:8b", messages=[{"role": "user", "content": "hi"}], tools=[...]
+)
 ```
 
 ## Deployment
 
 ```bash
-# One-click flash (on Jetson AGX Orin):
-sudo bash scripts/orin-flash.sh
-
-# Build redistributable image:
-sudo bash scripts/orin-iso-builder.sh
-
-# Output: ngari-orin-rootfs.tar.gz
-# Deploy: tar xzf ngari-orin-rootfs.tar.gz -C /opt/ngari/ && sudo bash orin-flash.sh
+pip install -r core/kernel/requirements.txt
+export NGARI_DATA_DIR=/var/lib/ngari/kernel   # default ~/.ngari/kernel
+python -c "from core.kernel.inference import InferenceEngineManager; print(InferenceEngineManager().get_status())"
 ```
 
-## Quick Reference
-
-| Port | Service | Module |
-|------|---------|--------|
-| 8888 | Control Tower | `core/agents/sovereign_dashboard.py` |
-| 8889 | Stripe Webhook | `core/webhooks/stripe_listener.py` |
-| 8893 | Lead Capture | `core/lead_capture/lead_capture_agent.py` |
-| 8894 | Fleet Manager | `core/fleet/fleet_manager.py` |
-| 11434 | Ollama | `ollama.service` |
+- Air-gapped: no cloud dependency; inference talks to local Ollama/llama.cpp/vLLM sockets.
+- SBOM: `python scripts/sbom.py --verify-requirements` (fails on unpinned deps).
 
 ## Platform Status
 

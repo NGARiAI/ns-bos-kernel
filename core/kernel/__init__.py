@@ -55,7 +55,9 @@ class NSBOSKernel:
     """
 
     def __init__(self, data_dir: str | None = None):
-        data_dir = data_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
+        data_dir = data_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")
+        )
         self.data_dir = Path(data_dir)
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -75,30 +77,27 @@ class NSBOSKernel:
         logger.info(f"GPU: {hw_info.gpu_model} ({hw_info.gpu_memory_gb} GB)")
 
         # 2. Sovereign Data Plane
-        self.data_plane = SovereignDataPlane(
-            os.path.join(data_dir, "sovereign")
-        )
+        self.data_plane = SovereignDataPlane(os.path.join(data_dir, "sovereign"))
         logger.info("Sovereign Data Plane initialized")
 
         # 3. Agent Runtime
-        self.agent_runtime = AgentRuntime(
-            os.path.join(data_dir, "agents")
-        )
+        self.agent_runtime = AgentRuntime(os.path.join(data_dir, "agents"))
         logger.info("Agent Runtime initialized")
 
         # 4. Network Synchronization
-        self.network_sync = NetworkSynchronization(
-            os.path.join(data_dir, "sync")
-        )
+        self.network_sync = NetworkSynchronization(os.path.join(data_dir, "sync"))
         logger.info("Network Synchronization initialized")
 
         # Store kernel state
-        self.data_plane.store_encrypted("kernel_state", {
-            "version": VERSION,
-            "platform": hw_info.platform.value,
-            "started_at": self.start_time.isoformat(),
-            "data_dir": str(self.data_dir)
-        })
+        self.data_plane.store_encrypted(
+            "kernel_state",
+            {
+                "version": VERSION,
+                "platform": hw_info.platform.value,
+                "started_at": self.start_time.isoformat(),
+                "data_dir": str(self.data_dir),
+            },
+        )
 
     def start(self):
         """Start the kernel"""
@@ -126,7 +125,9 @@ class NSBOSKernel:
                 "name": KERNEL_FULL_NAME,
                 "version": VERSION,
                 "status": "running" if self.running else "stopped",
-                "uptime_seconds": (datetime.now(timezone.utc) - self.start_time).total_seconds()
+                "uptime_seconds": (
+                    datetime.now(timezone.utc) - self.start_time
+                ).total_seconds(),
             },
             "hardware": {
                 "platform": hw_info.platform.value,
@@ -141,33 +142,33 @@ class NSBOSKernel:
                 "memory_utilization": self.hal.get_memory_utilization(),
                 "cpu_utilization": self.hal.get_cpu_utilization(),
                 "temperature": self.hal.get_temperature(),
-                "power_watts": self.hal.get_power_consumption()
+                "power_watts": self.hal.get_power_consumption(),
             },
             "agents": self.agent_runtime.get_status(),
             "fleet": self.network_sync.get_fleet_status(),
-            "data_sovereignty": self.data_plane.export_compliance_report()
+            "data_sovereignty": self.data_plane.export_compliance_report(),
         }
 
     def register_agent(self, name: str, agent_type: str, description: str = "") -> str:
         """Register a new agent with the kernel"""
-        config = AgentConfig(
-            name=name,
-            agent_type=agent_type,
-            description=description
-        )
+        config = AgentConfig(name=name, agent_type=agent_type, description=description)
         agent_id = self.agent_runtime.register_agent(config)
 
         # Update digital twin
-        self.network_sync.update_twin(f"agent.{name}", {
-            "agent_id": agent_id,
-            "type": agent_type,
-            "status": "registered"
-        })
+        self.network_sync.update_twin(
+            f"agent.{name}",
+            {"agent_id": agent_id, "type": agent_type, "status": "registered"},
+        )
 
         return agent_id
 
-    def create_task(self, agent_id: str, action: str, payload: dict,
-                    priority: TaskPriority = TaskPriority.NORMAL) -> str:
+    def create_task(
+        self,
+        agent_id: str,
+        action: str,
+        payload: dict,
+        priority: TaskPriority = TaskPriority.NORMAL,
+    ) -> str:
         """Create a task for an agent"""
         return self.agent_runtime.create_task(agent_id, action, payload, priority)
 
@@ -184,11 +185,19 @@ def main():
     """Main entry point for NS-BOS Kernel"""
     logging.basicConfig(
         level=logging.INFO,
-        format='%(asctime)s [NSBOS] %(message)s',
+        format="%(asctime)s [NSBOS] %(message)s",
         handlers=[
-            logging.FileHandler(os.path.join(os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")), "logs", "kernel.log")),
-            logging.StreamHandler()
-        ]
+            logging.FileHandler(
+                os.path.join(
+                    os.environ.get(
+                        "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")
+                    ),
+                    "logs",
+                    "kernel.log",
+                )
+            ),
+            logging.StreamHandler(),
+        ],
     )
 
     logger.info(f"Starting {KERNEL_FULL_NAME} v{VERSION}")
@@ -203,7 +212,7 @@ def main():
         ("Engineer", "system", "System health monitoring and diagnostics"),
         ("Worker", "execution", "Task execution and order queue monitoring"),
         ("Email", "communication", "Automated order confirmations and provisioning"),
-        ("Communications", "messaging", "Matrix-based customer messaging and support")
+        ("Communications", "messaging", "Matrix-based customer messaging and support"),
     ]
 
     agent_ids = {}
@@ -214,22 +223,27 @@ def main():
 
     # Get and display status
     status = kernel.get_status()
-    print(f"\n{'='*60}")
+    print(f"\n{'=' * 60}")
     print(f"  {KERNEL_FULL_NAME} v{VERSION}")
-    print(f"{'='*60}")
+    print(f"{'=' * 60}")
     print(f"  Platform: {status['hardware']['platform']}")
-    print(f"  CPU: {status['hardware']['cpu']} ({status['hardware']['cpu_cores']} cores)")
+    print(
+        f"  CPU: {status['hardware']['cpu']} ({status['hardware']['cpu_cores']} cores)"
+    )
     print(f"  Memory: {status['hardware']['memory_gb']} GB")
-    print(f"  GPU: {status['hardware']['gpu']} ({status['hardware']['gpu_memory_gb']} GB)")
+    print(
+        f"  GPU: {status['hardware']['gpu']} ({status['hardware']['gpu_memory_gb']} GB)"
+    )
     print(f"  Storage: {status['hardware']['storage_available_gb']:.1f} GB available")
     print(f"  Agents: {status['agents']['agents']} registered")
     print(f"  Fleet: {status['fleet']['total_nodes']} nodes")
     print(f"  Data Sovereignty: {status['data_sovereignty']['data_sovereignty']}")
-    print(f"{'='*60}\n")
+    print(f"{'=' * 60}\n")
 
     try:
         # Keep running
         import time
+
         while kernel.running:
             time.sleep(60)
     except KeyboardInterrupt:

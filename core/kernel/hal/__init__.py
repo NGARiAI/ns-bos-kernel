@@ -92,7 +92,7 @@ class JetsonHAL(HardwareAbstractionLayer):
                 capture_output=True,
                 text=True,
                 timeout=5,
-                check=False
+                check=False,
             )
             return result.returncode == 0
         except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -118,7 +118,7 @@ class JetsonHAL(HardwareAbstractionLayer):
             os_name=platform.system(),
             os_version=platform.release(),
             kernel_version=platform.version(),
-            hostname=platform.node()
+            hostname=platform.node(),
         )
 
     def get_gpu_utilization(self) -> float:
@@ -130,22 +130,17 @@ class JetsonHAL(HardwareAbstractionLayer):
                     capture_output=True,
                     text=True,
                     timeout=5,
-                    check=False
+                    check=False,
                 )
                 data = json.loads(result.stdout)
                 return data.get("gpu", {}).get("status", 0)
             except (OSError, ValueError, subprocess.SubprocessError):
                 logger.debug("HAL: GPU util via jtop failed")
 
-
         # Fallback to tegrastats
         try:
             result = subprocess.run(
-                ["tegrastats"],
-                capture_output=True,
-                text=True,
-                timeout=2,
-                check=False
+                ["tegrastats"], capture_output=True, text=True, timeout=2, check=False
             )
             # Parse GPU utilization from tegrastats output
             output = result.stdout
@@ -154,7 +149,6 @@ class JetsonHAL(HardwareAbstractionLayer):
                 return float(freq)
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: GPU util via tegrastats failed")
-
 
         return 0.0
 
@@ -176,18 +170,13 @@ class JetsonHAL(HardwareAbstractionLayer):
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading /proc/meminfo")
 
-
         return 0.0
 
     def get_cpu_utilization(self) -> float:
         """Get CPU utilization percentage"""
         try:
             result = subprocess.run(
-                ["top", "-bn1"],
-                capture_output=True,
-                text=True,
-                timeout=5,
-                check=False
+                ["top", "-bn1"], capture_output=True, text=True, timeout=5, check=False
             )
             for line in result.stdout.split("\n"):
                 if "%Cpu" in line or "cpu" in line.lower():
@@ -198,7 +187,6 @@ class JetsonHAL(HardwareAbstractionLayer):
                             return 100.0 - idle
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed parsing CPU from top")
-
 
         return 0.0
 
@@ -221,18 +209,13 @@ class JetsonHAL(HardwareAbstractionLayer):
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed listing thermal zones")
 
-
         return temps
 
     def get_power_consumption(self) -> float:
         """Get power consumption in watts (Jetson specific)"""
         try:
             result = subprocess.run(
-                ["tegrastats"],
-                capture_output=True,
-                text=True,
-                timeout=2,
-                check=False
+                ["tegrastats"], capture_output=True, text=True, timeout=2, check=False
             )
             output = result.stdout
             if "VDD_IN" in output:
@@ -243,7 +226,6 @@ class JetsonHAL(HardwareAbstractionLayer):
                     return float(power_str) / 1000.0
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading power from tegrastats")
-
 
         return 0.0
 
@@ -263,7 +245,6 @@ class JetsonHAL(HardwareAbstractionLayer):
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading /proc/cpuinfo")
 
-
         return info
 
     def _get_memory_info(self) -> dict:
@@ -278,7 +259,6 @@ class JetsonHAL(HardwareAbstractionLayer):
                         break
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed parsing /proc/meminfo")
-
 
         return info
 
@@ -302,14 +282,13 @@ class JetsonHAL(HardwareAbstractionLayer):
         try:
             statvfs = os.statvfs("/")
             info["total_gb"] = round(
-                (statvfs.f_frsize * statvfs.f_blocks) / (1024 ** 3), 2
+                (statvfs.f_frsize * statvfs.f_blocks) / (1024**3), 2
             )
             info["available_gb"] = round(
-                (statvfs.f_frsize * statvfs.f_bavail) / (1024 ** 3), 2
+                (statvfs.f_frsize * statvfs.f_bavail) / (1024**3), 2
             )
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading filesystem stats")
-
 
         return info
 
@@ -322,7 +301,6 @@ class JetsonHAL(HardwareAbstractionLayer):
                     interfaces.append(iface)
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed listing network interfaces")
-
 
         return interfaces
 
@@ -345,7 +323,7 @@ class X86HAL(HardwareAbstractionLayer):
             os_name=platform.system(),
             os_version=platform.release(),
             kernel_version=platform.version(),
-            hostname=platform.node()
+            hostname=platform.node(),
         )
 
     def get_gpu_utilization(self) -> float:
@@ -370,18 +348,13 @@ class X86HAL(HardwareAbstractionLayer):
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading /proc/meminfo")
 
-
         return 0.0
 
     def get_cpu_utilization(self) -> float:
         """Get CPU utilization percentage"""
         try:
             result = subprocess.run(
-                ["top", "-bn1"],
-                capture_output=True,
-                text=True,
-                timeout=5,
-                check=False
+                ["top", "-bn1"], capture_output=True, text=True, timeout=5, check=False
             )
             for line in result.stdout.split("\n"):
                 if "%Cpu" in line or "cpu" in line.lower():
@@ -392,7 +365,6 @@ class X86HAL(HardwareAbstractionLayer):
                             return 100.0 - idle
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed parsing CPU from top")
-
 
         return 0.0
 
@@ -414,7 +386,6 @@ class X86HAL(HardwareAbstractionLayer):
 
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed listing thermal zones")
-
 
         return temps
 
@@ -451,11 +422,7 @@ class X86HAL(HardwareAbstractionLayer):
         """Get GPU model"""
         try:
             result = subprocess.run(
-                ["lspci"],
-                capture_output=True,
-                text=True,
-                timeout=5,
-                check=False
+                ["lspci"], capture_output=True, text=True, timeout=5, check=False
             )
             for line in result.stdout.split("\n"):
                 if "VGA" in line or "3D" in line:
@@ -469,7 +436,7 @@ class X86HAL(HardwareAbstractionLayer):
         """Get total storage in GB"""
         try:
             statvfs = os.statvfs("/")
-            return round((statvfs.f_frsize * statvfs.f_blocks) / (1024 ** 3), 2)
+            return round((statvfs.f_frsize * statvfs.f_blocks) / (1024**3), 2)
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading filesystem stats")
 
@@ -479,7 +446,7 @@ class X86HAL(HardwareAbstractionLayer):
         """Get available storage in GB"""
         try:
             statvfs = os.statvfs("/")
-            return round((statvfs.f_frsize * statvfs.f_bavail) / (1024 ** 3), 2)
+            return round((statvfs.f_frsize * statvfs.f_bavail) / (1024**3), 2)
         except (OSError, ValueError, subprocess.SubprocessError):
             logger.debug("HAL: failed reading filesystem stats")
 
@@ -511,15 +478,19 @@ def detect_platform() -> PlatformType:
     except (OSError, ValueError, subprocess.SubprocessError):
         logger.debug("HAL: failed reading /proc/cpuinfo for platform detection")
 
-
     try:
         with open("/proc/device-tree/model", "r") as f:
             device_model = f.read().strip().rstrip("\x00")
     except (OSError, ValueError, subprocess.SubprocessError):
         logger.debug("HAL: failed reading device-tree model")
 
-
-    if "tegra" in device_model or "tegra" in kernel_release or "tegra" in cpu_info or "nvidia" in cpu_info or "nvidia" in device_model:
+    if (
+        "tegra" in device_model
+        or "tegra" in kernel_release
+        or "tegra" in cpu_info
+        or "nvidia" in cpu_info
+        or "nvidia" in device_model
+    ):
         model_lower = (device_model + cpu_info).lower()
         if "agx" in model_lower or "orin" in model_lower:
             return PlatformType.JETSON_AGX_ORIN
@@ -570,7 +541,9 @@ if __name__ == "__main__":
     print(f"CPU: {info.cpu_model} ({info.cpu_cores} cores)")
     print(f"Memory: {info.total_memory_gb} GB")
     print(f"GPU: {info.gpu_model} ({info.gpu_memory_gb} GB)")
-    print(f"Storage: {info.storage_available_gb:.1f} GB available of {info.storage_total_gb:.1f} GB")
+    print(
+        f"Storage: {info.storage_available_gb:.1f} GB available of {info.storage_total_gb:.1f} GB"
+    )
     print(f"OS: {info.os_name} {info.os_version}")
     print(f"Hostname: {info.hostname}")
     print(f"Network: {', '.join(info.network_interfaces)}")

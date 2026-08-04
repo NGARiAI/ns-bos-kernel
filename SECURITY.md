@@ -28,9 +28,9 @@ Reports are acknowledged within 48 hours. Fixes are coordinated and disclosed af
 
 ### Scope
 - `core/kernel/*` — In-scope (kernel code)
-- `core/tools/*` — In-scope (agent tool implementations)
-- `core/enterprise/*` — In-scope (governance, RBAC, audit)
-- `apps/chat/*` — Out-of-scope (frontend applications)
+- `core/kernel/sandbox/*` — In-scope (agent code execution sandbox)
+- `core/kernel/sbom/` and `scripts/sbom.py` — In-scope (supply chain)
+- Application layer (`core/tools`, `core/agents`, apps) — Out-of-scope here; maintained in the application repository
 - Third-party dependencies — reported to upstream maintainers
 
 ### Bug Bounty
@@ -39,10 +39,32 @@ This project does not currently offer a bug bounty. Security researchers are cre
 ## Security Controls
 
 ### Code Level
-- All Python dependencies pinned in `requirements.txt`
+- All Python dependencies pinned to exact versions with sha256 hashes (`requirements.txt`,
+  `pip-compile --generate-hashes`; enforced by `scripts/sbom.py --verify-requirements`)
 - `subprocess` calls use allow-listed commands only
-- No eval/exec of user-provided code
+- No eval/exec of user-provided code outside the sandbox; the sandbox neutralizes
+  `eval`/`exec`/`open` inside the sandboxed interpreter
 - Shell injection prevented via `shlex.quote()` where applicable
+
+### Sandbox Level
+- Agent code executes only inside `core/kernel/sandbox` — bubblewrap namespace isolation
+  (user/PID/net/mount/IPC/UTS), running as `nobody` (uid 65534), read-only system mounts,
+  tmpfs `/tmp`, zero network interfaces
+- Seccomp-bpf filters block 23 dangerous syscalls (`restricted`) or 39 including network
+  and process creation (`strict`) — profile metadata exposed via `get_capabilities()`
+- Python import blocklist (`subprocess`, `multiprocessing`, `ctypes`, `pickle`, `fcntl`,
+  `shelve`, `crypt`, `cffi`), 30s execution timeout, 10KB output cap
+- If bubblewrap is absent, sandbox degrades to a gated subprocess (documented in
+  `get_capabilities()`); verified by `tests/test_sandbox.py`
+
+### Inference Endpoint Security
+- Inference engines (Ollama, llama.cpp, vLLM) are bound to localhost-only sockets; the
+  kernel never calls remote inference endpoints
+- The kernel talks to engines over HTTP without additional auth — do not expose engine
+  ports beyond loopback; firewalling is the boundary of record (documented deployment
+  contract; enforcement at the application layer via auth middleware)
+- `InferenceEngineManager` never auto-loads models; registry tracks provenance only,
+  explicit model loading required
 
 ### Data Level
 - Encryption at rest using `cryptography.fernet.Fernet` (AES-256-CBC + HMAC-SHA256)

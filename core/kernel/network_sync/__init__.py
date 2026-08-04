@@ -27,11 +27,14 @@ class SyncMode(Enum):
 @dataclass
 class DigitalTwinState:
     """State that is synced across all devices in the fleet"""
+
     user_id: str
     agent_states: dict
     preferences: dict
     memory_index: dict
-    last_sync: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    last_sync: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
     version: int = 0
     checksum: str = ""
 
@@ -42,7 +45,7 @@ class DigitalTwinState:
             "agent_states": self.agent_states,
             "preferences": self.preferences,
             "memory_index": self.memory_index,
-            "version": self.version
+            "version": self.version,
         }
         return hashlib.sha256(json.dumps(data, sort_keys=True).encode()).hexdigest()
 
@@ -54,6 +57,7 @@ class DigitalTwinState:
 @dataclass
 class FleetNode:
     """Represents a node in the NGARi fleet"""
+
     node_id: str
     hostname: str
     platform: str
@@ -72,7 +76,9 @@ class NetworkSynchronization:
     """
 
     def __init__(self, sync_dir: str | None = None):
-        sync_dir = sync_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "sync"))
+        sync_dir = sync_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "sync")
+        )
         self.sync_dir = Path(sync_dir)
         self.sync_dir.mkdir(parents=True, exist_ok=True)
 
@@ -95,10 +101,7 @@ class NetworkSynchronization:
                 return state
 
         return DigitalTwinState(
-            user_id="ngari-default",
-            agent_states={},
-            preferences={},
-            memory_index={}
+            user_id="ngari-default", agent_states={}, preferences={}, memory_index={}
         )
 
     def _save_twin(self):
@@ -123,10 +126,7 @@ class NetworkSynchronization:
 
     def _save_fleet(self):
         """Save fleet configuration"""
-        data = {
-            node_id: asdict(node)
-            for node_id, node in self.fleet_nodes.items()
-        }
+        data = {node_id: asdict(node) for node_id, node in self.fleet_nodes.items()}
         with open(self.fleet_file, "w") as f:
             json.dump(data, f, indent=2)
 
@@ -183,17 +183,21 @@ class NetworkSynchronization:
         """Get fleet status overview"""
         return {
             "total_nodes": len(self.fleet_nodes),
-            "online_nodes": len([n for n in self.fleet_nodes.values() if n.status == "online"]),
-            "offline_nodes": len([n for n in self.fleet_nodes.values() if n.status == "offline"]),
+            "online_nodes": len(
+                [n for n in self.fleet_nodes.values() if n.status == "online"]
+            ),
+            "offline_nodes": len(
+                [n for n in self.fleet_nodes.values() if n.status == "offline"]
+            ),
             "nodes": {
                 node_id: {
                     "hostname": node.hostname,
                     "platform": node.platform,
                     "status": node.status,
-                    "last_seen": node.last_seen
+                    "last_seen": node.last_seen,
                 }
                 for node_id, node in self.fleet_nodes.items()
-            }
+            },
         }
 
     def set_sync_mode(self, mode: SyncMode):
@@ -227,7 +231,7 @@ class NetworkSynchronization:
             "action": action,
             "key": key,
             "version": self.local_state.version,
-            "checksum": self.local_state.checksum
+            "checksum": self.local_state.checksum,
         }
         with open(self.sync_log, "a") as f:
             f.write(json.dumps(entry) + "\n")
@@ -268,7 +272,7 @@ if __name__ == "__main__":
         platform="jetson_agx_orin",
         ip_address="203.0.113.1",
         status="online",
-        capabilities={"gpu": True, "memory_gb": 64}
+        capabilities={"gpu": True, "memory_gb": 64},
     )
     sync.register_node(node)
 

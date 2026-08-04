@@ -55,7 +55,9 @@ class Task:
     payload: dict
     priority: TaskPriority = TaskPriority.NORMAL
     status: str = "pending"
-    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    created_at: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
     started_at: str | None = None
     completed_at: str | None = None
     result: Any | None = None
@@ -71,8 +73,12 @@ class AgentState:
     tasks_completed: int = 0
     tasks_failed: int = 0
     uptime_seconds: float = 0
-    last_heartbeat: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
-    started_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    last_heartbeat: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
+    started_at: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
     error_count: int = 0
 
 
@@ -80,7 +86,10 @@ class AgentRegistry:
     """Registry for managing agent configurations and state"""
 
     def __init__(self, registry_dir: str | None = None):
-        registry_dir = registry_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "agents" / "registry"))
+        registry_dir = registry_dir or os.environ.get(
+            "NGARI_DATA_DIR",
+            str(Path.home() / ".ngari" / "kernel" / "agents" / "registry"),
+        )
         self.registry_dir = Path(registry_dir)
         self.registry_dir.mkdir(parents=True, exist_ok=True)
         self.agents: dict[str, AgentState] = {}
@@ -102,9 +111,13 @@ class AgentRegistry:
                         tasks_completed=agent_data.get("tasks_completed", 0),
                         tasks_failed=agent_data.get("tasks_failed", 0),
                         uptime_seconds=agent_data.get("uptime_seconds", 0),
-                        last_heartbeat=agent_data.get("last_heartbeat", datetime.now(timezone.utc).isoformat()),
-                        started_at=agent_data.get("started_at", datetime.now(timezone.utc).isoformat()),
-                        error_count=agent_data.get("error_count", 0)
+                        last_heartbeat=agent_data.get(
+                            "last_heartbeat", datetime.now(timezone.utc).isoformat()
+                        ),
+                        started_at=agent_data.get(
+                            "started_at", datetime.now(timezone.utc).isoformat()
+                        ),
+                        error_count=agent_data.get("error_count", 0),
                     )
 
     def save_registry(self):
@@ -120,7 +133,7 @@ class AgentRegistry:
                 "uptime_seconds": state.uptime_seconds,
                 "last_heartbeat": state.last_heartbeat,
                 "started_at": state.started_at,
-                "error_count": state.error_count
+                "error_count": state.error_count,
             }
 
         registry_file = self.registry_dir / "registry.json"
@@ -148,7 +161,9 @@ class AgentRegistry:
         """Update agent state"""
         if agent_id in self.agents:
             self.agents[agent_id].state = state
-            self.agents[agent_id].last_heartbeat = datetime.now(timezone.utc).isoformat()
+            self.agents[agent_id].last_heartbeat = datetime.now(
+                timezone.utc
+            ).isoformat()
             self.save_registry()
 
 
@@ -156,7 +171,9 @@ class TaskScheduler:
     """Task scheduler with priority queue"""
 
     def __init__(self, scheduler_dir: str | None = None):
-        scheduler_dir = scheduler_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "tasks"))
+        scheduler_dir = scheduler_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "tasks")
+        )
         self.scheduler_dir = Path(scheduler_dir)
         self.scheduler_dir.mkdir(parents=True, exist_ok=True)
         self.tasks: dict[str, Task] = {}
@@ -186,8 +203,13 @@ class TaskScheduler:
         """Register a task handler"""
         self.handlers[action] = handler
 
-    def create_task(self, agent_id: str, action: str, payload: dict,
-                    priority: TaskPriority = TaskPriority.NORMAL) -> str:
+    def create_task(
+        self,
+        agent_id: str,
+        action: str,
+        payload: dict,
+        priority: TaskPriority = TaskPriority.NORMAL,
+    ) -> str:
         """Create a new task"""
         task_id = str(uuid.uuid4())
         task = Task(
@@ -195,7 +217,7 @@ class TaskScheduler:
             agent_id=agent_id,
             action=action,
             payload=payload,
-            priority=priority
+            priority=priority,
         )
         self.tasks[task_id] = task
         self.save_tasks()
@@ -252,18 +274,23 @@ class InterAgentCommunication:
     """Inter-agent message bus"""
 
     def __init__(self, comm_dir: str | None = None):
-        comm_dir = comm_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "comm"))
+        comm_dir = comm_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel" / "comm")
+        )
         self.comm_dir = Path(comm_dir)
         self.comm_dir.mkdir(parents=True, exist_ok=True)
         self.subscribers: dict[str, list[Callable]] = {}
 
     def publish(self, topic: str, message: dict):
         """Publish a message to a topic"""
-        message_file = self.comm_dir / f"{topic}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.json"
+        message_file = (
+            self.comm_dir
+            / f"{topic}_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.json"
+        )
         message_data = {
             "topic": topic,
             "message": message,
-            "timestamp": datetime.now(timezone.utc).isoformat()
+            "timestamp": datetime.now(timezone.utc).isoformat(),
         }
         with open(message_file, "w") as f:
             json.dump(message_data, f, indent=2)
@@ -298,7 +325,9 @@ class AgentRuntime:
     """
 
     def __init__(self, data_dir: str | None = None):
-        data_dir = data_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
+        data_dir = data_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")
+        )
         self.registry = AgentRegistry(os.path.join(data_dir, "registry"))
         self.scheduler = TaskScheduler(os.path.join(data_dir, "tasks"))
         self.comm = InterAgentCommunication(os.path.join(data_dir, "comm"))
@@ -324,8 +353,13 @@ class AgentRuntime:
         """Register a new agent"""
         return self.registry.register_agent(config)
 
-    def create_task(self, agent_id: str, action: str, payload: dict,
-                    priority: TaskPriority = TaskPriority.NORMAL) -> str:
+    def create_task(
+        self,
+        agent_id: str,
+        action: str,
+        payload: dict,
+        priority: TaskPriority = TaskPriority.NORMAL,
+    ) -> str:
         """Create a new task for an agent"""
         return self.scheduler.create_task(agent_id, action, payload, priority)
 
@@ -341,18 +375,19 @@ class AgentRuntime:
         """Get runtime status"""
         agents = self.registry.list_agents()
         from . import AgentStateEnum
+
         states = {}
         for s in AgentStateEnum:
             states[s.value] = 0
         for a in agents:
-            key = a.state.value if hasattr(a.state, 'value') else str(a.state)
+            key = a.state.value if hasattr(a.state, "value") else str(a.state)
             states[key] = states.get(key, 0) + 1
         return {
             "running": self.running,
             "agents": len(agents),
             "agents_by_state": states,
             "pending_tasks": len(self.scheduler.get_pending_tasks()),
-            "total_tasks": len(self.scheduler.tasks)
+            "total_tasks": len(self.scheduler.tasks),
         }
 
 
@@ -364,9 +399,7 @@ if __name__ == "__main__":
 
     # Register a test agent
     config = AgentConfig(
-        name="TestAgent",
-        agent_type="test",
-        description="Test agent for NS-BOS kernel"
+        name="TestAgent", agent_type="test", description="Test agent for NS-BOS kernel"
     )
     agent_id = runtime.register_agent(config)
 

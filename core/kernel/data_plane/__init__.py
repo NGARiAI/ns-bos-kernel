@@ -35,7 +35,9 @@ class SovereignDataPlane:
     """
 
     def __init__(self, data_dir: str | None = None):
-        base = data_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
+        base = data_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")
+        )
         self.data_dir = Path(base)
         self.data_dir.mkdir(parents=True, exist_ok=True)
 
@@ -127,7 +129,7 @@ class SovereignDataPlane:
             actor=actor,
             resource=resource,
             details=details,
-            hash=""
+            hash="",
         )
 
         entry_dict = asdict(entry)
@@ -182,7 +184,7 @@ class SovereignDataPlane:
             "audit_entries": len(self.get_audit_log()),
             "audit_integrity": self.verify_audit_integrity(),
             "data_directory": str(self.data_dir),
-            "encrypted_files": len(list(self.encrypted_dir.glob("*.enc")))
+            "encrypted_files": len(list(self.encrypted_dir.glob("*.enc"))),
         }
 
 
@@ -192,7 +194,11 @@ if __name__ == "__main__":
     dp = SovereignDataPlane()
 
     # Test store and retrieve
-    test_data = {"user": "test", "secret": "sovereign_data", "timestamp": datetime.now(timezone.utc).isoformat()}
+    test_data = {
+        "user": "test",
+        "secret": "sovereign_data",
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+    }
     dp.store_encrypted("test_key", test_data)
 
     retrieved = dp.retrieve_decrypted("test_key")

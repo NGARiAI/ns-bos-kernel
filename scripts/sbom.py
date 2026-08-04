@@ -24,12 +24,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 REQ_DEFAULT = REPO_ROOT / "core" / "kernel" / "requirements.txt"
 OUT_DEFAULT = REPO_ROOT / "sbom" / "ns-bos-kernel.spdx.json"
 
-REQ_LINE = re.compile(
-    r"^(?P<name>[A-Za-z0-9_.-]+)==(?P<version>[^ \t]+)"
-)
-HASH_LINE = re.compile(
-    r"--hash=sha256:(?P<hex>[0-9a-f]{64})\b"
-)
+REQ_LINE = re.compile(r"^(?P<name>[A-Za-z0-9_.-]+)==(?P<version>[^ \t]+)")
+HASH_LINE = re.compile(r"--hash=sha256:(?P<hex>[0-9a-f]{64})\b")
 
 
 def parse_requirements(path: Path) -> list[dict]:
@@ -82,26 +78,30 @@ def generate_sbom(requirements_path: Path, output_path: Path) -> int:
     spdx_packages = []
     for pkg in sorted(pkgs, key=lambda p: p["name"].lower()):
         purl = f"pkg:pypi/{pkg['name']}@{pkg['version']}"
-        spdx_packages.append({
-            "SPDXID": f"SPDXRef-PACKAGE-{pkg['name']}",
-            "name": pkg["name"],
-            "versionInfo": pkg["version"],
-            "supplier": "NOASSERTION",
-            "downloadLocation": "NOASSERTION",
-            "filesAnalyzed": False,
-            "licenseConcluded": "NOASSERTION",
-            "licenseDeclared": "NOASSERTION",
-            "copyrightText": "NOASSERTION",
-            "checksums": [
-                {"algorithm": "SHA256", "checksumValue": h}
-                for h in sorted(pkg["sha256"])
-            ],
-            "externalRefs": [{
-                "referenceCategory": "PACKAGE-MANAGER",
-                "referenceType": "purl",
-                "referenceLocator": purl,
-            }],
-        })
+        spdx_packages.append(
+            {
+                "SPDXID": f"SPDXRef-PACKAGE-{pkg['name']}",
+                "name": pkg["name"],
+                "versionInfo": pkg["version"],
+                "supplier": "NOASSERTION",
+                "downloadLocation": "NOASSERTION",
+                "filesAnalyzed": False,
+                "licenseConcluded": "NOASSERTION",
+                "licenseDeclared": "NOASSERTION",
+                "copyrightText": "NOASSERTION",
+                "checksums": [
+                    {"algorithm": "SHA256", "checksumValue": h}
+                    for h in sorted(pkg["sha256"])
+                ],
+                "externalRefs": [
+                    {
+                        "referenceCategory": "PACKAGE-MANAGER",
+                        "referenceType": "purl",
+                        "referenceLocator": purl,
+                    }
+                ],
+            }
+        )
 
     sbom = {
         "spdxVersion": "SPDX-2.3",

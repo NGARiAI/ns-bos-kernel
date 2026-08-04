@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class UIComponent:
     """A single UI component that can be generated"""
+
     component_type: str  # card, table, chart, form, button, text, etc.
     id: str
     label: str
@@ -30,24 +31,32 @@ class UIComponent:
 @dataclass
 class UILayout:
     """A complete UI layout for a specific context"""
+
     layout_id: str
     context: str  # dashboard, agent-monitor, settings, etc.
     platform: str  # web, desktop, mobile
     components: list[UIComponent] = field(default_factory=list)
     theme: str = "kemet"
-    created_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
-    updated_at: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    created_at: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
+    updated_at: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
 
 
 @dataclass
 class UserBehavior:
     """Tracks user interaction patterns for adaptive UI"""
+
     user_id: str
     most_used_components: dict[str, int] = field(default_factory=dict)
     least_used_components: dict[str, int] = field(default_factory=dict)
     preferred_layout: str = "default"
     session_count: int = 0
-    last_active: str = field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+    last_active: str = field(
+        default_factory=lambda: datetime.now(timezone.utc).isoformat()
+    )
     interaction_patterns: dict[str, Any] = field(default_factory=dict)
 
 
@@ -58,7 +67,9 @@ class GenerativeUIEngine:
     """
 
     def __init__(self, ui_dir: str | None = None):
-        base = ui_dir or os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
+        base = ui_dir or os.environ.get(
+            "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")
+        )
         self.ui_dir = Path(base) / "ui"
         self.ui_dir.mkdir(parents=True, exist_ok=True)
 
@@ -86,8 +97,12 @@ class GenerativeUIEngine:
                     platform=data["platform"],
                     components=components,
                     theme=data.get("theme", "kemet"),
-                    created_at=data.get("created_at", datetime.now(timezone.utc).isoformat()),
-                    updated_at=data.get("updated_at", datetime.now(timezone.utc).isoformat())
+                    created_at=data.get(
+                        "created_at", datetime.now(timezone.utc).isoformat()
+                    ),
+                    updated_at=data.get(
+                        "updated_at", datetime.now(timezone.utc).isoformat()
+                    ),
                 )
                 self.layouts[layout.layout_id] = layout
 
@@ -124,13 +139,15 @@ class GenerativeUIEngine:
     def track_interaction(self, user_id: str, component_id: str):
         """Track user interaction with a component"""
         behavior = self.get_or_create_behavior(user_id)
-        behavior.most_used_components[component_id] = \
+        behavior.most_used_components[component_id] = (
             behavior.most_used_components.get(component_id, 0) + 1
+        )
         behavior.session_count += 1
         self._save_behavior(behavior)
 
-    def generate_layout(self, context: str, platform: str,
-                        user_id: str | None = None) -> UILayout:
+    def generate_layout(
+        self, context: str, platform: str, user_id: str | None = None
+    ) -> UILayout:
         """Generate an adaptive UI layout"""
         layout_id = f"{context}_{platform}"
 
@@ -155,39 +172,111 @@ class GenerativeUIEngine:
 
         if context == "dashboard":
             components = [
-                UIComponent("card", "revenue-card", "Revenue", "revenue_data",
-                           {"metric": "daily_revenue", "format": "currency"}, order=0),
-                UIComponent("card", "agents-card", "Active Agents", "agent_status",
-                           {"metric": "active_count"}, order=1),
-                UIComponent("table", "orders-table", "Recent Orders", "orders",
-                           {"columns": ["id", "product", "amount", "status"], "limit": 10}, order=2),
-                UIComponent("chart", "revenue-chart", "Revenue Trend", "revenue_history",
-                           {"type": "line", "period": "7d"}, order=3),
-                UIComponent("card", "system-card", "System Health", "system_health",
-                           {"metrics": ["cpu", "memory", "gpu", "storage"]}, order=4),
+                UIComponent(
+                    "card",
+                    "revenue-card",
+                    "Revenue",
+                    "revenue_data",
+                    {"metric": "daily_revenue", "format": "currency"},
+                    order=0,
+                ),
+                UIComponent(
+                    "card",
+                    "agents-card",
+                    "Active Agents",
+                    "agent_status",
+                    {"metric": "active_count"},
+                    order=1,
+                ),
+                UIComponent(
+                    "table",
+                    "orders-table",
+                    "Recent Orders",
+                    "orders",
+                    {"columns": ["id", "product", "amount", "status"], "limit": 10},
+                    order=2,
+                ),
+                UIComponent(
+                    "chart",
+                    "revenue-chart",
+                    "Revenue Trend",
+                    "revenue_history",
+                    {"type": "line", "period": "7d"},
+                    order=3,
+                ),
+                UIComponent(
+                    "card",
+                    "system-card",
+                    "System Health",
+                    "system_health",
+                    {"metrics": ["cpu", "memory", "gpu", "storage"]},
+                    order=4,
+                ),
             ]
         elif context == "agent-monitor":
             components = [
-                UIComponent("card", "agent-status", "Agent Status", "agent_states",
-                           {"show_details": True}, order=0),
-                UIComponent("table", "agent-tasks", "Active Tasks", "agent_tasks",
-                           {"columns": ["task_id", "agent", "action", "status"], "limit": 20}, order=1),
-                UIComponent("text", "agent-log", "Agent Log", "agent_log",
-                           {"lines": 50, "filter": "error"}, order=2),
+                UIComponent(
+                    "card",
+                    "agent-status",
+                    "Agent Status",
+                    "agent_states",
+                    {"show_details": True},
+                    order=0,
+                ),
+                UIComponent(
+                    "table",
+                    "agent-tasks",
+                    "Active Tasks",
+                    "agent_tasks",
+                    {"columns": ["task_id", "agent", "action", "status"], "limit": 20},
+                    order=1,
+                ),
+                UIComponent(
+                    "text",
+                    "agent-log",
+                    "Agent Log",
+                    "agent_log",
+                    {"lines": 50, "filter": "error"},
+                    order=2,
+                ),
             ]
         elif context == "settings":
             components = [
-                UIComponent("form", "general-settings", "General Settings", "settings_general",
-                           {"fields": ["theme", "language", "timezone"]}, order=0),
-                UIComponent("form", "agent-settings", "Agent Configuration", "settings_agents",
-                           {"fields": ["poll_interval", "max_retries", "log_level"]}, order=1),
-                UIComponent("form", "notification-settings", "Notifications", "settings_notifications",
-                           {"fields": ["email", "matrix", "push"]}, order=2),
+                UIComponent(
+                    "form",
+                    "general-settings",
+                    "General Settings",
+                    "settings_general",
+                    {"fields": ["theme", "language", "timezone"]},
+                    order=0,
+                ),
+                UIComponent(
+                    "form",
+                    "agent-settings",
+                    "Agent Configuration",
+                    "settings_agents",
+                    {"fields": ["poll_interval", "max_retries", "log_level"]},
+                    order=1,
+                ),
+                UIComponent(
+                    "form",
+                    "notification-settings",
+                    "Notifications",
+                    "settings_notifications",
+                    {"fields": ["email", "matrix", "push"]},
+                    order=2,
+                ),
             ]
         else:
             components = [
-                UIComponent("text", "welcome", "Welcome", "welcome_message",
-                           {"content": "NGARi Sovereign Business Operating System"}, order=0),
+                UIComponent(
+                    "text",
+                    "welcome",
+                    "Welcome",
+                    "welcome_message",
+                    {"content": "NGARi Sovereign Business Operating System"},
+                    order=0,
+                ),
             ]
 
         return UILayout(
@@ -195,22 +284,18 @@ class GenerativeUIEngine:
             context=context,
             platform=platform,
             components=components,
-            theme="kemet"
+            theme="kemet",
         )
 
     def _adapt_layout(self, layout: UILayout, behavior: UserBehavior) -> UILayout:
         """Adapt layout based on user behavior"""
         # Sort components by usage frequency
         component_usage = {
-            c.id: behavior.most_used_components.get(c.id, 0)
-            for c in layout.components
+            c.id: behavior.most_used_components.get(c.id, 0) for c in layout.components
         }
 
         # Reorder components by usage (most used first)
-        layout.components.sort(
-            key=lambda c: component_usage.get(c.id, 0),
-            reverse=True
-        )
+        layout.components.sort(key=lambda c: component_usage.get(c.id, 0), reverse=True)
 
         # Update order values
         for i, component in enumerate(layout.components):
@@ -234,11 +319,11 @@ class GenerativeUIEngine:
         for component in sorted(layout.components, key=lambda c: c.order):
             html += f'  <div class="ngari-component ngari-{component.component_type}" '
             html += f'id="{component.id}" data-source="{component.data_source}">\n'
-            html += f'    <h3>{component.label}</h3>\n'
-            html += f'    <div class="component-content" data-properties=\'{json.dumps(component.properties)}\'></div>\n'
-            html += '  </div>\n'
+            html += f"    <h3>{component.label}</h3>\n"
+            html += f"    <div class=\"component-content\" data-properties='{json.dumps(component.properties)}'></div>\n"
+            html += "  </div>\n"
 
-        html += '</div>'
+        html += "</div>"
         return html
 
     def get_available_layouts(self) -> list[dict]:
@@ -249,7 +334,7 @@ class GenerativeUIEngine:
                 "context": layout.context,
                 "platform": layout.platform,
                 "components": len(layout.components),
-                "theme": layout.theme
+                "theme": layout.theme,
             }
             for layout in self.layouts.values()
         ]
@@ -270,8 +355,12 @@ class GenerativeUIEngine:
                 platform=data["platform"],
                 components=components,
                 theme=data.get("theme", "kemet"),
-                created_at=data.get("created_at", datetime.now(timezone.utc).isoformat()),
-                updated_at=data.get("updated_at", datetime.now(timezone.utc).isoformat())
+                created_at=data.get(
+                    "created_at", datetime.now(timezone.utc).isoformat()
+                ),
+                updated_at=data.get(
+                    "updated_at", datetime.now(timezone.utc).isoformat()
+                ),
             )
             self.layouts[layout.layout_id] = layout
             self._save_layout(layout)
