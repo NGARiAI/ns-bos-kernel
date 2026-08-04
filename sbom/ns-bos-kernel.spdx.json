@@ -3,2623 +3,1628 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "ns-bos-kernel",
+  "documentNamespace": "https://ngari.xyz/ns-bos-kernel/6cfc4062-1a6e-4814-8e3a-1be2e3b0cc25",
   "creationInfo": {
-    "created": "2026-07-30T19:21:49Z",
+    "created": "2026-08-04T19:18:52Z",
     "creators": [
-      "Tool: sbom.py",
+      "Tool: scripts/sbom.py",
       "Organization: Bison Venture Partners LLC dba NGARI"
     ]
   },
   "packages": [
     {
-      "SPDXID": "SPDXRef-acme",
-      "name": "acme",
-      "versionInfo": "3.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-aiofiles",
-      "name": "aiofiles",
-      "versionInfo": "24.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-aiohappyeyeballs",
-      "name": "aiohappyeyeballs",
-      "versionInfo": "2.4.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-aiohttp",
-      "name": "aiohttp",
-      "versionInfo": "3.10.11",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-aiohttp_socks",
-      "name": "aiohttp_socks",
-      "versionInfo": "0.11.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-aiosignal",
-      "name": "aiosignal",
-      "versionInfo": "1.3.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-annotated-doc",
-      "name": "annotated-doc",
-      "versionInfo": "0.0.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-annotated-types",
-      "name": "annotated-types",
-      "versionInfo": "0.7.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-anyio",
-      "name": "anyio",
-      "versionInfo": "4.5.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-apturl",
-      "name": "apturl",
-      "versionInfo": "0.5.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-async-timeout",
-      "name": "async-timeout",
-      "versionInfo": "4.0.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-asyncpg",
-      "name": "asyncpg",
-      "versionInfo": "0.30.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-attrs",
-      "name": "attrs",
-      "versionInfo": "25.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-azure-core",
-      "name": "azure-core",
-      "versionInfo": "1.33.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-azure-identity",
-      "name": "azure-identity",
-      "versionInfo": "1.15.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-azure-keyvault-secrets",
-      "name": "azure-keyvault-secrets",
-      "versionInfo": "4.8.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-bcrypt",
-      "name": "bcrypt",
-      "versionInfo": "3.1.7",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-beautifulsoup4",
+      "SPDXID": "SPDXRef-PACKAGE-beautifulsoup4",
       "name": "beautifulsoup4",
-      "versionInfo": "4.14.3",
+      "versionInfo": "4.15.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "288e3ca7d54b06f2ac191970bc275c1939cb46d450b255bf6718b04aa37ab4f7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d6f88de62e1d4e38ecb1077eb9724cd0eff29d2a08ca16a401e9b9e93f117cf9"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/beautifulsoup4@4.15.0"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-blinker",
-      "name": "blinker",
-      "versionInfo": "1.8.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Brlapi",
-      "name": "Brlapi",
-      "versionInfo": "0.7.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-brotli",
-      "name": "brotli",
-      "versionInfo": "1.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-cached-property",
-      "name": "cached-property",
-      "versionInfo": "1.5.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-certbot",
-      "name": "certbot",
-      "versionInfo": "3.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-certbot-dns-godaddy",
-      "name": "certbot-dns-godaddy",
-      "versionInfo": "2.8.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-certifi",
+      "SPDXID": "SPDXRef-PACKAGE-certifi",
       "name": "certifi",
-      "versionInfo": "2019.11.28",
+      "versionInfo": "2026.7.22",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/certifi@2026.7.22"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-cffi",
+      "SPDXID": "SPDXRef-PACKAGE-cffi",
       "name": "cffi",
-      "versionInfo": "1.17.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-chardet",
-      "name": "chardet",
-      "versionInfo": "3.0.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-charset-normalizer",
-      "name": "charset-normalizer",
-      "versionInfo": "3.4.7",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-click",
-      "name": "click",
-      "versionInfo": "8.1.8",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-cmake",
-      "name": "cmake",
-      "versionInfo": "4.3.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-colorama",
-      "name": "colorama",
-      "versionInfo": "0.4.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-ConfigArgParse",
-      "name": "ConfigArgParse",
-      "versionInfo": "1.7.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-configobj",
-      "name": "configobj",
-      "versionInfo": "5.0.9",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-cryptography",
-      "name": "cryptography",
-      "versionInfo": "46.0.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-cssselect2",
-      "name": "cssselect2",
-      "versionInfo": "0.7.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-cupshelpers",
-      "name": "cupshelpers",
-      "versionInfo": "1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-cycler",
-      "name": "cycler",
-      "versionInfo": "0.10.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-dataclasses-json",
-      "name": "dataclasses-json",
-      "versionInfo": "0.6.7",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-dbus-python",
-      "name": "dbus-python",
-      "versionInfo": "1.2.16",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-decorator",
-      "name": "decorator",
-      "versionInfo": "4.4.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-defer",
-      "name": "defer",
-      "versionInfo": "1.0.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-distlib",
-      "name": "distlib",
-      "versionInfo": "0.4.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-distro",
-      "name": "distro",
-      "versionInfo": "1.4.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-distro-info",
-      "name": "distro-info",
-      "versionInfo": "0.23+ubuntu1.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-dns-lexicon",
-      "name": "dns-lexicon",
-      "versionInfo": "3.18.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-dnspython",
-      "name": "dnspython",
-      "versionInfo": "2.6.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-docker",
-      "name": "docker",
-      "versionInfo": "4.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-docker-compose",
-      "name": "docker-compose",
-      "versionInfo": "1.25.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-dockerpty",
-      "name": "dockerpty",
-      "versionInfo": "0.4.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-docopt",
-      "name": "docopt",
-      "versionInfo": "0.6.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-duplicity",
-      "name": "duplicity",
-      "versionInfo": "0.8.12.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-ecdsa",
-      "name": "ecdsa",
-      "versionInfo": "0.19.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-entrypoints",
-      "name": "entrypoints",
-      "versionInfo": "0.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-et_xmlfile",
-      "name": "et_xmlfile",
-      "versionInfo": "2.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-eval_type_backport",
-      "name": "eval_type_backport",
-      "versionInfo": "0.4.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-exceptiongroup",
-      "name": "exceptiongroup",
-      "versionInfo": "1.3.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-fastapi",
-      "name": "fastapi",
-      "versionInfo": "0.109.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-fastapi-azure-auth",
-      "name": "fastapi-azure-auth",
-      "versionInfo": "5.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-fasteners",
-      "name": "fasteners",
-      "versionInfo": "0.14.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-filelock",
-      "name": "filelock",
-      "versionInfo": "3.16.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Flask",
-      "name": "Flask",
-      "versionInfo": "3.0.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-fonttools",
-      "name": "fonttools",
-      "versionInfo": "4.57.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-frozenlist",
-      "name": "frozenlist",
-      "versionInfo": "1.5.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-fsspec",
-      "name": "fsspec",
-      "versionInfo": "2025.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-future",
-      "name": "future",
-      "versionInfo": "0.18.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-gguf",
-      "name": "gguf",
-      "versionInfo": "0.18.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-google-api-core",
-      "name": "google-api-core",
-      "versionInfo": "2.29.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-google-api-python-client",
-      "name": "google-api-python-client",
-      "versionInfo": "2.193.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-google-auth",
-      "name": "google-auth",
-      "versionInfo": "2.49.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-google-auth-httplib2",
-      "name": "google-auth-httplib2",
-      "versionInfo": "0.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-google-auth-oauthlib",
-      "name": "google-auth-oauthlib",
-      "versionInfo": "1.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-googleapis-common-protos",
-      "name": "googleapis-common-protos",
-      "versionInfo": "1.73.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-graphsurgeon",
-      "name": "graphsurgeon",
-      "versionInfo": "0.4.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-greenlet",
-      "name": "greenlet",
-      "versionInfo": "3.1.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-h11",
-      "name": "h11",
-      "versionInfo": "0.16.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-h2",
-      "name": "h2",
-      "versionInfo": "4.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-hf-xet",
-      "name": "hf-xet",
-      "versionInfo": "1.5.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-hpack",
-      "name": "hpack",
-      "versionInfo": "4.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-html5lib",
-      "name": "html5lib",
-      "versionInfo": "1.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-httpcore",
-      "name": "httpcore",
-      "versionInfo": "1.0.9",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-httplib2",
-      "name": "httplib2",
-      "versionInfo": "0.31.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-httptools",
-      "name": "httptools",
-      "versionInfo": "0.6.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-httpx",
-      "name": "httpx",
-      "versionInfo": "0.28.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-huggingface_hub",
-      "name": "huggingface_hub",
-      "versionInfo": "0.36.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-hyperframe",
-      "name": "hyperframe",
-      "versionInfo": "6.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-idna",
-      "name": "idna",
-      "versionInfo": "2.8",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-importlib_metadata",
-      "name": "importlib_metadata",
-      "versionInfo": "8.5.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-importlib_resources",
-      "name": "importlib_resources",
-      "versionInfo": "6.4.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-iniconfig",
-      "name": "iniconfig",
-      "versionInfo": "2.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-isodate",
-      "name": "isodate",
-      "versionInfo": "0.7.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-itsdangerous",
-      "name": "itsdangerous",
-      "versionInfo": "2.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Jetson.GPIO",
-      "name": "Jetson.GPIO",
       "versionInfo": "2.1.1",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-jetson-stats",
-      "name": "jetson-stats",
-      "versionInfo": "4.3.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Jinja2",
-      "name": "Jinja2",
-      "versionInfo": "3.1.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-josepy",
-      "name": "josepy",
-      "versionInfo": "1.15.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-jsonpatch",
-      "name": "jsonpatch",
-      "versionInfo": "1.33",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-jsonpointer",
-      "name": "jsonpointer",
-      "versionInfo": "3.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-jsonschema",
-      "name": "jsonschema",
-      "versionInfo": "4.23.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-jsonschema-specifications",
-      "name": "jsonschema-specifications",
-      "versionInfo": "2023.12.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-keyring",
-      "name": "keyring",
-      "versionInfo": "18.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-kiwisolver",
-      "name": "kiwisolver",
-      "versionInfo": "1.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langchain",
-      "name": "langchain",
-      "versionInfo": "0.2.17",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langchain-community",
-      "name": "langchain-community",
-      "versionInfo": "0.2.19",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langchain-core",
-      "name": "langchain-core",
-      "versionInfo": "0.2.43",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langchain-ollama",
-      "name": "langchain-ollama",
-      "versionInfo": "0.1.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langchain-text-splitters",
-      "name": "langchain-text-splitters",
-      "versionInfo": "0.2.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langchainhub",
-      "name": "langchainhub",
-      "versionInfo": "0.1.21",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-langsmith",
-      "name": "langsmith",
-      "versionInfo": "0.1.147",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-language-selector",
-      "name": "language-selector",
-      "versionInfo": "0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-launchpadlib",
-      "name": "launchpadlib",
-      "versionInfo": "1.10.13",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-lazr.restfulclient",
-      "name": "lazr.restfulclient",
-      "versionInfo": "0.14.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-lazr.uri",
-      "name": "lazr.uri",
-      "versionInfo": "1.0.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-lockfile",
-      "name": "lockfile",
-      "versionInfo": "0.12.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-louis",
-      "name": "louis",
-      "versionInfo": "3.12.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-macaroonbakery",
-      "name": "macaroonbakery",
-      "versionInfo": "1.3.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Mako",
-      "name": "Mako",
-      "versionInfo": "1.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Markdown",
-      "name": "Markdown",
-      "versionInfo": "3.7",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-MarkupSafe",
-      "name": "MarkupSafe",
-      "versionInfo": "2.1.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-marshmallow",
-      "name": "marshmallow",
-      "versionInfo": "3.22.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-matplotlib",
-      "name": "matplotlib",
-      "versionInfo": "3.1.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-matrix-nio",
-      "name": "matrix-nio",
-      "versionInfo": "0.25.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-mock",
-      "name": "mock",
-      "versionInfo": "3.0.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-monotonic",
-      "name": "monotonic",
-      "versionInfo": "1.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-more-itertools",
-      "name": "more-itertools",
-      "versionInfo": "4.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-msal",
-      "name": "msal",
-      "versionInfo": "1.35.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-msal-extensions",
-      "name": "msal-extensions",
-      "versionInfo": "1.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-multidict",
-      "name": "multidict",
-      "versionInfo": "6.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-mypy_extensions",
-      "name": "mypy_extensions",
-      "versionInfo": "1.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-numpy",
-      "name": "numpy",
-      "versionInfo": "1.17.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-oauthlib",
-      "name": "oauthlib",
-      "versionInfo": "3.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-olefile",
-      "name": "olefile",
-      "versionInfo": "0.46",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-ollama",
-      "name": "ollama",
-      "versionInfo": "0.6.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-onboard",
-      "name": "onboard",
-      "versionInfo": "1.4.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-onnx-graphsurgeon",
-      "name": "onnx-graphsurgeon",
-      "versionInfo": "0.3.12",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-opencv-python-headless",
-      "name": "opencv-python-headless",
-      "versionInfo": "4.13.0.92",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-openpyxl",
-      "name": "openpyxl",
-      "versionInfo": "3.1.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-orjson",
-      "name": "orjson",
-      "versionInfo": "3.10.15",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-packaging",
-      "name": "packaging",
-      "versionInfo": "24.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pandas",
-      "name": "pandas",
-      "versionInfo": "0.25.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-paramiko",
-      "name": "paramiko",
-      "versionInfo": "2.6.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-parsedatetime",
-      "name": "parsedatetime",
-      "versionInfo": "2.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-passlib",
-      "name": "passlib",
-      "versionInfo": "1.7.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pbr",
-      "name": "pbr",
-      "versionInfo": "5.4.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pexpect",
-      "name": "pexpect",
-      "versionInfo": "4.6.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pillow",
-      "name": "pillow",
-      "versionInfo": "10.4.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pip",
-      "name": "pip",
-      "versionInfo": "25.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pkgutil_resolve_name",
-      "name": "pkgutil_resolve_name",
-      "versionInfo": "1.3.10",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-platformdirs",
-      "name": "platformdirs",
-      "versionInfo": "4.3.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-playwright",
-      "name": "playwright",
-      "versionInfo": "1.48.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pluggy",
-      "name": "pluggy",
-      "versionInfo": "1.5.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-propcache",
-      "name": "propcache",
-      "versionInfo": "0.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-proto-plus",
-      "name": "proto-plus",
-      "versionInfo": "1.27.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-protobuf",
-      "name": "protobuf",
-      "versionInfo": "5.29.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-psutil",
-      "name": "psutil",
-      "versionInfo": "5.5.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-psycopg2-binary",
-      "name": "psycopg2-binary",
-      "versionInfo": "2.9.9",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyasn1",
-      "name": "pyasn1",
-      "versionInfo": "0.6.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyasn1_modules",
-      "name": "pyasn1_modules",
-      "versionInfo": "0.4.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pycairo",
-      "name": "pycairo",
-      "versionInfo": "1.16.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pycparser",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "046bfc24911b37851ee1b51aab8bffe713d89c68c6a057b09484ce9fd5f69b4e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "06c72bb76605a4b0cd0aad6930b69d4baf7dd5d806cfc409b824191099700e66"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0beceaabe56af686895136a2de78db54ecd8e4046b236b8fd6d6cb61389e9bf2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "154852545011f779917b11c78db2358d095da62a9a172b78ad0a583ee5adc0d0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "194cffa889098ced9976c3fc6340305e43f6303657d298da55366907c05c22d6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "19ee6127ee34de7d83ce3d371ebc5ed91addbdcc39f9ab15ce4eb35a4e534971"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1a18a57b58cfb21fc28d72e876acf10eaed67a1ed96226f92af4df681d571c4c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1aa5645c30469b09530c4ebca77ebf8f17618293c58f8549cb1a543a50236e7d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1dea0e4d7d4f11f619fe8c1d76caf49e24405b4b5743c0e3be16a500ecd930c9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "208f941bb9d18e768138677f0a6d2ce01f590df56043dda1df1535ac57c88517"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "210019b6c7cf07f081b4c54635c8cf744377001350e29cc0f81c4377b4797735"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "246fa40ce8645a614ff682e0b70f37134e460eaf93a775e0cbe3cca585a67a80"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "25792eac27877609e7bb06d42ff88278a6624fff2ba9bbb523c09616b117e80f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "27350daa11d4f10c540e6e89dada4c54feb7256ad03e9a4dc075ebad7ba360d1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "28907ab9bfb6aa13184cfc17c6b8e1023c5ab6fd7076d8c20a35e59fe04f8f29"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2ae64be792b8966f2c69538199728b290e34726562896df1e5dc8ffd8d8188e8"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "31348097ff5bbe827ccc41795d4dd099d9f0625e7def00ee653c137a490c2a6c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3143d81e29e1e20a9ce10901ec369012947876596f75a222235965f2b7ae832e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3222ba5d678f80a030e6afbcc33dc1ae5cb45facabb61cee2c7016b8432fde48"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3311ed60d36f83378794e1009ac6258bafbf81f7888b4caa7b35a521e3f95813"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "334644fbac4eff73d985a17a91226df55d0f394160c4cfb880e084c8f7161cac"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "34e261f78cb6ceaaa36f42f2613f4380d94d9c759a9c73c769ee6e0247364632"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "363e05fa78e15116c3c32c210ee36884fd6b9afa6d440e47112c3bd511d64cb6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "398aff33cee2767e3e781d2554c54bd0dff386bb437581e0d8011fde1a942ec1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3d22a20b1fb1632cc72c22f95f7b0d2961c3e1c235f245ba4c606c4771035659"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "42a494cee34437f05546455144f2b5d9ac09b1face62bcfce597d2e521066688"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "42e2f76b9455f5a9a844f770bf3e200ed3da0e15f5df3db9c31fe80b04b3d004"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "42f6930c31dc7f50732c9ae793c2786c7b6b044195967bbdde40bb9be81c4cc0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "456a61fa52d579ebf9df2e9552ead5129855dbaff6c1e5a9b1bc408809bdc062"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "471cee653ae88de62096552e6d24ccb4a5adb8c8c9f10b5054d0122c15bf2779"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "49cbc70e6542d4ccccb936558d1064a8012541e78f821f955cff24e357776c94"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4a7c934f7360e8cd64fe9efadcbd10c7c6364f531e432b9a4bf5ccbc9e0e8b50"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4be96343e422f2dfcd12ab5c9f5aebe03f82f737c6bffeca6830b3875cb44aab"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4f42141fc14250de6dde5ee7ea4432be017252d91f19c5ad043c084cea629cac"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "507a24c282e0f42f8ed737cf048572cbf580468da5555764a8331735e9c736b6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "51b31d1c98274844cfd7838ce00bfc27c7423a4dc00fc0772fc3331c2cc90676"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "58acb8ab8e295e6c5ea12f888cbb13cf21511ef2a3303a23f4325c29d17fe5c1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5a59cc1c4442bc3d5c703bf720b51138d0bfc173618807c9ee2490a7541dd3d9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5bb4e7ea95dcd6a014a6fef62e62467d67d8e582326443f3d68e71d6320a9fcf"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5c58fe613dc5e5336357eff555824a314d8e43282600435c8d1cb6a7a2fedd13"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5e7cecbaadb83884793e05828cee59b210b24583b9c7425d0ba6a754fe22eb4e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "616f097f2fe415bc92a247f02e11f634e1f9e9a83d327e3c915c15089c87869e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "63bbfd5ded17c4840ac07cd8f1c21ba9d9708141f840b324f422f41b207e3973"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "64faea20f4e2613363a1a9b9c7dd73058f3ecd00133a511e72ad7c511658f527"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "661c298b4821edebead0c91edd2b00374d67ad7c5a1f7a91d4442633b79d6a72"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "68e62fe11f30d5ca8289242866f0a5291402d8529ca2178ab8afc5c9694ae890"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6a8dddef476fab96d066d578fc88526767b836ab5ab21754e1d5bf3879c31c7c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6e192623c49c94421616a5778fba35cf0d5a8d000650c1967ef4448ee5cdd990"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7225e4514edb64eb6740324353e0da0711954fd8d7da4576755b1c6e09b697cd"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "75f80557d1389eddbd0de2681f6a390a0c5338c31ddaa821381c203fc3fd50d9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "770de9db11e84213beec501cfcaa013b019820ca881e03344dea5844f7876d94"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7750c6449dff7864bb9bb27ddfb0267756189201a3afc911d82b3caacd70dfc3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7bde5e4cc5c10140859842b9d383af292b22639a4dffb725314baf45968cef80"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7ce713ace7c0e4520535b42b77eaa742c16dab813978064913e5a3cf82973b41"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7da0c5eff80f0197f3b3d1232ec5a682a9325f4ae9016a78f5f5ca35f9ced1f5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7dbb61fe3a7699468030f71bbe5f8a0e326a151daa91beb11a6fc1f980c55e1c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "811bd1e21d32de12efca32393a0ab3f5133b54fce9bd44b8bd77ab07da14bf6a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8ef53b2de9bcb9197d31854256575d59dbac0cba72ac627bb291ef5eceb74be4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "937c0052c05a31ca1daf18de3158eed4dbfcb9cc107adbea227728d647be701e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9d2055050ea716bd38b7f7f1579c275386646b4894c155a3e2f3cd62ed41b7c6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9f8d177621de5cb38ee3e731eda45d421db093ec0739f46a5594babda7987a98"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a2d7755bef5a12ed488f4ef1f1b69ee9191d7396083b755a5d2295f6edb4768b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a48d62ab9d6f4f98c983223a547af44be6ca3691074c31cecced6facd3ba2dc1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a4f00aa42f75d6e4595e8866e748cc1705adc0cddfeb2ca86d0d03993d63ba03"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a6e721d4b0e45d5b65e87534470e67b18dcd092c83f68fba09f152b9cbc061af"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a730a083190634c65cca36ba5f489531576ebd79bcd5c8e172130f6453127231"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a931079504ecc49efed7744c476a5c343a92fabf66dec2db95edb1b2fdc770e2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aa9511c62d14da7aacc9b4bf51f3f697a621e83b2d6919008243c3aad168eea3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ab36d55f9ed2d067327667c2fea18dda018eb628dd6347aa01dda6cf1f5d3836"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ad2c86c495b899d862ea0f4b42891b8713a3bd45dd4105c7fd51c2a72f39f3a5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aeae0e330c9f6acd681f647d46cefd30c29f93e3392882e792e82080c9691399"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b0431303acaea1089ad4b3e9ce4e6518193def1118d4073ca848635ee4ea2e96"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b5bdfd1c873d4e093aabc0ca84c4ca6dbc4f752afb5c86f146d9742580c9da2e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "baed1e86cc735622097354b9d1281406caf42ff42a886d29faa8e8d1630333be"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c1453022f490d2459a11819d83ad1d586e9ff65a12ac3e705ffebd46d3685dcf"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c26608d2222fb1e94487e4a387d85f13eb55d5ed725cb25a0c589ac4ee60e7bc"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c7659f22557c5a0bc4855cd635f55edec690cc008a40768527762cb9fb263455"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c8c69575568085ba0b1b10c0249d779a214aea6f6522e949a0fc9fb0fcb449d0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c8d2c9fd1f2d16f780d15127abb050d13d1a76c03a4bd87d7e4980e45e511e12"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ca82be1a1d406ecfe1d25dc16cb33488e5a16bf4438c9fb590484ea29d92478b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc572dace3f60ef98d7b12ff411d20f5362feb31a0439eab0085bbfd349982d7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d18e5ac0f2f03f4f518d3e23db0f0cad7faa1da8620e9c09461d443bbf6e6692"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d28630f5854ab07ab1fd4aba756de52326c82e6be15d414b12793f1975048b54"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d9c275eaacd24aa73f94ffd6de08fc3f932424d8b6c376f4bed7cde376fe7bc3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "da0e573f9f97159390c89d9f1a9e41908b66d408cc5b58d08cf3847d844c531b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dd31f52ea1086513bb9df30f8fcee9b8918323ae067a3d5b78bc826a000712be"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dddad92b554513a31f272570678ba307fb9f618f05e3d4a5eacafff9eae03e1d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "df423d40ee8654634421812bc3b196da3f9bd7d32929da813f8394c4348a5358"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "df913725b79db7bcf03448f36b7bf8815363417d5b58deecf9305e3e30f0f21a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e0bcb7e0f677f543555d2adff3bf19c05f66cdb4796e5ff602442ab2fe3c4ef7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e2d65b31f36619cda3999b78b2aa9632e76b78448e7a56fc4240824200e7c4fc"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e6e8cff14d6fb0be70a09c0bdc58096f501952d04624ebf867e0e56da2df8960"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f16c709686a78c727bbbf059f92b0bf41c6fc60deec706d2dc19f529175a6125"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f24fb43132a4c6b4cb4eb029492919b2db645be6808d738f244fd146c03c32cb"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f53e442b08449d42821fa4a4fba000095af9f62742a500f978a9f557ec44339a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f5cfbc5fe74540d335175b656c725d74d90e3730c626d92575eea35029d9afaa"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f81b3b8f3d4e343550fa4baa0e479bba9f2d29ce9c2e9b51d1ce1718d7442fcf"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f8ec5e643a9a937f64e1999eb9f75d072263751912dc5cd06d3c85f8f44be7c3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fb92203a88b3d3053034db775110081c49d28be6551923805e039924093761e4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fcd22650c908d7b7da162bbfaab594a1227a15d1643a98c68b122ac642fa2264"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/cffi@2.1.1"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-PACKAGE-charset-normalizer",
+      "name": "charset-normalizer",
+      "versionInfo": "3.4.9",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0327fcd59a935777d83410750c50600ee9571af2846f71ce40f25b13da1ef380"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "03d07803992c6c7bbc976327f34b18b6160327fc81cb82c9d504720ac0be3b62"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "04ce310cb89c15df659582aee80a0603788732a5e017d5bd5c81158106ce249c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0d861473f743244d349b50f850d10eb87aeb22bbdcc8e64f79273c94af5a8226"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0e94703ec9684807f20cfb5eed95c70f67f2a8f21ad620146d7b5a13677b93e5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0fa1aec2d32bcc03c8fa0f6f1712caad1adc38509f31142112e5c9daf5b9c833"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "16b65ea0f2465b6fb52aa22de5eca612aa964ddfec00a912e26f4656cbef890b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "16d10d789dd9bcca1173c95af82c58433122564b7bc39385124be735a35cbe99"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "19ac87f93086ce37b86e098888555c4b4bc48102279bae3350098c0ed664b501"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1d22856ffbe153a602df38e4a5464f0b748a54002e0d69ac6d2ad0a197cc99ec"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "21e764fd1e70b6a3e205a0e46f3051701f98a8cb3fad66eeb80e48bb502f8698"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "231ddcbb35e2ff8973e1365db41fe0572662893b99a05deb183b68ad4c0c8bd4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "253a4a220747e8b5faf57ec320c4f5efb0cef05f647420bf267143ec15dba10a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "280081916dc341820640489a66e4696049401ef1cf6dd672f672e70ad915aca3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2a441ea71902098ffe78c5abe6c494f44160b4af614ed16c3d9a3b1d17fd8ee2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "304b13570067b2547562e308af560b3963857b1fa90bd6afd978130130fe2d6a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "32286a2c8d167e897177b673176c1e3e00d4057caf5d2b64eef9a3666b03018e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "33bdcc2a32c0a0e861f60841a512c8acc658c87c2ac59d89e3a46dacf7d866e4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "375b83ed0aecfce76c16d198fbc21f3b11b337d68662bea0a995046682a11419"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3c09a49d6cde137258beb3d551994a2927fd35ad5cf96aed573f61bbd67c5f84"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3d92613ec25e43b05f042302531ec0f00b8445190e43325880cbd6ab7c2581da"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "40a126142a56b2dfc0aacbad1de8310cbf60da7656db0e6b16eebd48e3e93519"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "416c229f77e5ea25b3dfd4b582f8d73d7e43c22320302b9ab128a2d3a0b38efe"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "432786d3561e69aeeae6c7e8648964ce0ad05736120135601f87ac26b9c83381"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "43b9e366a31fdd1c87d0eb08f579b4a82b723ea54338f040d6b4e518a026ea29"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "440eede837960000d74978f0eba527be106b5b9aee0daf779d395276ed0b0614"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "45b0cc4e3556cd875e09102988d1ab8356c998b596c9fced84547c8138b487a0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "476743fe6dfe14a2da12e3ac79125dc84a3b2cf8094369a47a1529b0cd8549fe"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4773092f8019072343a7447203308b176e10199920eb02d6195e81bbb3274c29"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4b3dac63058cc36820b0dd072f89898604e2d39686fe05321729d00d8ac185a0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4d1c96a7a18b9690a4d46df09e3e3382406ae3213727cd1019ebade1c4a81917"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "51307f5c71007673a2bf8232ad973483d281e74cb99c8c5a990af1eefa6277d9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "51447e9aa2684679af07ca5021c3db526e0284347ebf4ffcec1154c3350cfe32"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "58150c9f9b9a552505912d182ccdf26f6396fb6094816ceebcbb20eecabaed94"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5b10cd92fc5c498b35a8635df6d5a100207f88b63a4dc1de7ef9a548e1e2cd63"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5e226f6218febc71f6c1fc2fafb91c226f75bdc1d8fb12d66823716e891608fd"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "609b3ba8fcc0fb5ab7af00719d0fb6ad0cb518e48e7712d12fd68f1327951198"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "60f44ade2cf573dad7a277e6f8ca9a51a21dda572b13bd7d8539bb3cd5dbedde"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "611057cc5d5c0afc743ba8be6bd828c17e0aaa8643f9d0a9b9bb7dea80eb8012"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6366a16e1a25018694d6a5d784d09b046edc9eac40ea2b54065c3052672516a1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "65a7ff3f705e57d392f7261b6d0550fe137c3019477431f1c355e0db0a7d3e15"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "673611bbd43f0810bec0b0f028ddeaaa501190339cac411f347ac76917c3ae7b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "67830fc78e67501f47bb950471b2dcb9b35b140084429318e862895a8e89c993"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "68ce9f4d6b26d5ccbf7fd4459bf75f74a0a146677ebba80597df60cbdb20e6f4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "68e5f26a1ad57ded6d1cfb85331d1c1a195314756471d97758c48498bb4dcdf5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "69b157c5d3292bcd443faca052f3096f637f1e074b98212a933c074ae23dc3b8"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "75286256590a6320cf106a0d28970d3560aad9ee09aa7b34fb40524792436d35"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "78841cccf1af7b40f6f716338d50c0902dbe88d9f800b3c973b7a9a0a693a642"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "78fa18e436a1a0e58dbd7e02fc4473f3f32cceb12df9dfca542d075961c307d2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "79580094b00d1789d1f93ea55bc43cb2f611910c72235b7657f3482ddcc1b22d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7b86a2b16095d250c6f58b3d9b2eee6f4147754344f3dab0922f7c9bf7d226c9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "83aed2c10721ddd90f68140685391b50811a880af20654c59af6b6c66c40513c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "84fd18bcc17526fc2b3c1af7d2b9217d32c9c04448c16ec693b9b4f1985c3d33"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "871ff67ea1aad4dfd91736464934d56b32dac49f9fbe16cddba36198a7b3a0db"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "898f0e9068ca27d37f8e83a5b962821df851532e6c4a7d615c1c033f9da6eedf"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8a79d9f4d8001473a30c163556b3c3bfebec837495a412dde78b51672f6134f9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8c041122946b7ba21bb32c45b1aa57b1be35527690aeb3c5c234521085632eee"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "90c44bc373b7687f6948b693cceaea1348ae0975d7474746559494468e3c1d84"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9104ed0bd76a429d46f9ec0dbc9b08ad1d2dcdf2b00a5a0daa1c145329b35b44"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "920079c3f7456fa213e0829ed2073aaa727fd39d889ead5b4f35d0de5460d04f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "93d59d504b230e83c7a843251681959a0b6a9cd76f6e146ce1b8a80eb8739af9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9b2aff1c7b3884512b9512c3eaadd9bab39fb45042ffaaa1dd08ff2b9f8109d9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9b8e0f3107e2200b76f6054de99016eac3ee6762713587b36baaa7e4bd2ae177"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9bb41182d93ea91f60b4bc8fbf4c820c69ef8a12ab2d917f3f1834f1acad07e8"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9cdef90ae47919cae358d8ab15797a800ed41da7aba5d72419fb510729e2ed4b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a1786910334ed46ab1dd73222f2cd1e05c2c3bb39f6dddb4f8b36fc382058a39"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a4cfde78a9f2880208d16a93b795726a3017d5977e08d1e162a7a31322479c41"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a4fbdde9dd4a9ce5fd52c2b3a347bb50cc89483ef783f1cb00d408c13f7a96c0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "aa99adc8f081b475a12843953db36831eaf83ec33eb46a90629ca6a5de45a616"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ac351b3b8014eead140e77e9717e2992c6bbe30b63bc3422422eb84865412e3d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ad41ba96094304aa090f5a30cb6e4fb3b3f1c264c523394b4c39bbacc4dc92ba"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b5314963fce9b0b12743891de876e724997864ee22aa496f903f426c7e2fa5b2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bcf74c1df76758a395bf0af608c04c82257523f55c9868b334f06270d0f2112b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bd47ba7fc3ca94896759ea0109775132d3e7ab921fbf54038e1bab2e46c313c9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c0323c9daef75ef2e5083624b4585018a0c9d5e3b40f607eed81a311270b934b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c1225416b463483160e4af85d5fc3a9690ccb53fd4b1865a6437825f5ede3209"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c1c948747b03be832dceed96ca815cef7360de9aa19d37c730f8e3f6101aca48"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c25fe15c70c59eb7c5ce8c06a1f3fa1da0ecc5ea1e7a5922c40fd2fa9b0d5046"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cc1b0fff8ead343dae06305f954eb8468ba0ec1a97881f42489d198e4ce3c632"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cd6280cf040f233bd7d3407b743b4b4c74f70e8e1c4199cb112a62c941c0772a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "cd6c3d4b783c556fa00bf540854e42f135e2f256abd29669fcd0da0f2dec79c2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d4d6fcde76f94f5cb9e43e9e9a61f16dacefd228cbbf6f1a09bd9b219a92f1a1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ddf4af30b417d9fe16481e9b81c27ab2a7cde1ff7ba3e85653b02db7d145dc7b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "df115d4d83168fdf2cae48ef1ff6d1cb4c466364e30861b37121de0f3bf1b990"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "df7276909358e5635ae203673ab7e509ddd224225a8d6b0790bf13eb2bde1cc5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e4fd89cc178bced6ad29cb3e6dd4aa63fa5017c3524dbd0b25998fb64a87cc8b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e9701d0049d92c16703a42771b98d560b95248949f23f8cf7b4eddd201814fb9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ee2f2a527e3c1a6e6411eb4209642e138b544a2d72fe5d0d76daf77b24063534"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f7fb7d750cfa0a070d2c24e831fd3481019a60dd317ea2b39acbcebc08b6ed81"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f840ed6d8ecba8255df8c42b87fadeda98ddfc6eeec05e2dc66e26d46dd6f58a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f86c6358749bd4fda175388691e3ba8c46e24c5347d0afd20f9b7edfc9faf07d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fa36ec09ef71d158186bc79e359ff5fdd6e7996fe8ab638f00d6b93139ba4fcf"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fe2c7201c642b7c308f1675355ad7ff7b66acfe3541625efe5a3ad38f29d6115"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/charset-normalizer@3.4.9"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-PACKAGE-cryptography",
+      "name": "cryptography",
+      "versionInfo": "50.0.0",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "031e2d5dd4bb9caa3ca9c82e5a197fd8ae680232cee62603d1a813f3f07e3d03"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "06a32a980526a6ab9a4b9bf8f7385800791e2bb960903cb6b530e4817509a3b7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "07479a1cb08219ab719147e742e76090c9c773321959bb94946fffdd397a6437"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "07949c449a1abcf60d1ee6e88956d89404c7df3c8258f46589e912988e551987"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "105110f43a471dbd0060b9c9516cb8a6a79233631a04cc2ba16f28323ac6e025"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "11b74db56cdbe3cdee6e3f6982ecb70334fa10dce99ed58bf7894aaaa3b2a037"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "12b9c6996425c76ea6c457ace4f3073e715b8c545add07cd1a8f3a4f90691269"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1489e263a8048bb8b6a8bac662eb2d402ea5d2b7b4699b72f385f1e2772db105"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "19736989797678c6af1e55cd49055cdbcb55d8f6b5583ac5335f933aba9101dc"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1b4a266766514614f8aa60416e71f2fc6e575d36e7bdc90f644fadb2f4b75b95"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2a8183b489dc1f7f80f135780fadc1108f14b31b8a40411c7a5b17425f65f28b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "37fdb0d0111f1e2ff07139dfb79f1b49531f8e213c46f1163dd7642979b58c47"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3f5735ffe4996d28b809371756219f5354864902a3b9e7c0b9ee87041209fc9c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "49e7d93abdbd2990caced757e5fade25302f719c3c8fb6e6fff2dde98999fc41"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5e34edd123674534acd70147f0ca331eaa2c74e6325fb2028c886aa26ba0b68c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "62598a8a57f815db4c6259a4e97d857dab56697e7de8e8ab02352ab74da1995d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "65c2c3add92b45fd0709db8594536aea39c2a67af0e27ffcf049c498501140b7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6ba6a53445bd3cfa809ef3ef5f1589aa6ba08784a1d962bf47d0940e871dab1c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6e7d61120573a7f2cd94cc095f9e81f6967c61ccdf194285aa143ecec8e0b708"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7cec5b856506da6defb290f30c9ee687d5f5e8cb0bd3f6459dde43b0b4fa40ef"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "80b63928fa35083b33966ce1efb70e5b9607181e49dcd1c22c8c005e319f667f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "82148ec5bddac30b51a5b3c1945075f896fa022cb93f8e4a01e9f6ee95292c5f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "828743d939e9629bc267b8e2d08d8bb67cd4319c771a33d4b18b22dd8fb7440a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8d89f3976b10b4ce31118de72329025f70d2c6ead14a8217c5514dd2c6d5a78f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8eb5e1172eb569ea8a872796576e6a67c276351728b6455d5beb01242b027c6a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "900131fafd8aead39ac7dd3a7e833be754c17a95cfd91221636949fe4eb0aa8a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "910d11e1a385c654bf738bf3e6b8e6ed5de0f5610fcae2be9e5b398d8081d20e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "910e1d2668e7de9648f2bcee30e180db2a6b15c30f887d7c4c93ddf96e3992e3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9aa87839c383bdbab6ef865787a1fb877af8dd03464c4400322726feaaadfc6d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a1b30560f2acc95aa8b2e06e716a13dbfc97314747b80d9707e307f77b40d6b3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a91296cb61e8df6f86d0c19cc4068228da256bf59bf86049fbd821084565327f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b42a28c1844fd9de8f3f7d540e36b66f3a9c83fceac7170ebc7a6a19edd9dcae"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bd1c592e4d5974f0d08d4888e432157adba757c66da0246918e43677fafa2d30"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c87f62a3d3b9888ed0fdde100ec06aa61ca9cd44bad9057d1dff9a516b5f5bb9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c99c003e088647b8a5b7c145d6f78c335f6348332b62e142d411c4b63d1460b9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ccdc4a71a4dabae05de219404f9f4abc38e3b58422177ff93d0da05967dafa07"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d24fead1d4d076e1bfb006dcec392074a3cd8d7b4fc8a595aa64073b2b7a96ba"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d58c3db7cd6eed54e6c06744db55456b65ebd7492ddeae9c1e93cfca7aa857d3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d764dcf130c428ef66786f866dd750f53182bc608813489915e9fc106bb0c82f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "df2a58a472f332225671c35b0a830208b86d004f82baa8530fa3782c85646533"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "e722f16708d854fe924790e051061f6704a472c3bac347b6fd88033ea8dd0dc5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ecfed7367f965a0328cfbdd70da860f15441f002f613185668c6e6ebf5a0ac11"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "eeac2acb5a20ed25e0ad6d1df9891a520b78b404266b6d11778f25d5d691a6c9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f59e38625469987d7ef6d495323c55e7db6c212eaf6112267e0d3b565a2e9c9f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f89831ef99dd7dd169ab06d63a831adb9e20a87aac6d380266bbda5823349169"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fd9192b7b70c573d7f214eb1ae35e00d359f6f5e4b27c7e21e30de1fc6204645"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/cryptography@50.0.0"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-PACKAGE-idna",
+      "name": "idna",
+      "versionInfo": "3.18",
+      "supplier": "NOASSERTION",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ffb385a7e039654cef1ab9ef32c6fafe283c0c0467bba1d9029738ce4a14a848"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/idna@3.18"
+        }
+      ]
+    },
+    {
+      "SPDXID": "SPDXRef-PACKAGE-pycparser",
       "name": "pycparser",
-      "versionInfo": "2.23",
+      "versionInfo": "3.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "600f49d217304a5902ac3c37e1281c9fe94e4d0489de643a9504c5cdfdfc6b29"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/pycparser@3.0"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-pycrypto",
-      "name": "pycrypto",
-      "versionInfo": "2.6.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pycryptodome",
-      "name": "pycryptodome",
-      "versionInfo": "3.23.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pycups",
-      "name": "pycups",
-      "versionInfo": "1.9.73",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pydantic",
-      "name": "pydantic",
-      "versionInfo": "2.10.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pydantic_core",
-      "name": "pydantic_core",
-      "versionInfo": "2.27.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pydantic-settings",
-      "name": "pydantic-settings",
-      "versionInfo": "2.8.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pydyf",
-      "name": "pydyf",
-      "versionInfo": "0.10.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyee",
-      "name": "pyee",
-      "versionInfo": "12.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-PyGObject",
-      "name": "PyGObject",
-      "versionInfo": "3.36.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-PyICU",
-      "name": "PyICU",
-      "versionInfo": "2.4.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-PyJWT",
-      "name": "PyJWT",
-      "versionInfo": "2.9.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pymacaroons",
-      "name": "pymacaroons",
-      "versionInfo": "0.13.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-PyNaCl",
-      "name": "PyNaCl",
-      "versionInfo": "1.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyOpenSSL",
-      "name": "pyOpenSSL",
-      "versionInfo": "26.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyotp",
-      "name": "pyotp",
-      "versionInfo": "2.9.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyparsing",
-      "name": "pyparsing",
-      "versionInfo": "3.1.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyphen",
-      "name": "pyphen",
-      "versionInfo": "0.16.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pypng",
-      "name": "pypng",
-      "versionInfo": "0.20220715.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyRFC3339",
-      "name": "pyRFC3339",
-      "versionInfo": "1.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyrsistent",
-      "name": "pyrsistent",
-      "versionInfo": "0.15.5",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pytesseract",
-      "name": "pytesseract",
-      "versionInfo": "0.3.13",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pytest",
-      "name": "pytest",
-      "versionInfo": "8.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-apt",
-      "name": "python-apt",
-      "versionInfo": "2.0.1+ubuntu0.20.4.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-dateutil",
-      "name": "python-dateutil",
-      "versionInfo": "2.9.0.post0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-dbusmock",
-      "name": "python-dbusmock",
-      "versionInfo": "0.19",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-debian",
-      "name": "python-debian",
-      "versionInfo": "0.1.36+ubuntu1.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-discovery",
-      "name": "python-discovery",
-      "versionInfo": "1.3.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-docx",
-      "name": "python-docx",
-      "versionInfo": "1.1.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-dotenv",
-      "name": "python-dotenv",
-      "versionInfo": "1.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-jose",
-      "name": "python-jose",
-      "versionInfo": "3.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-multipart",
-      "name": "python-multipart",
-      "versionInfo": "0.0.9",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-python-socks",
-      "name": "python-socks",
-      "versionInfo": "2.8.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pytz",
-      "name": "pytz",
-      "versionInfo": "2019.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyxattr",
-      "name": "pyxattr",
-      "versionInfo": "0.6.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-pyxdg",
-      "name": "pyxdg",
-      "versionInfo": "0.26",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-PyYAML",
-      "name": "PyYAML",
+      "SPDXID": "SPDXRef-PACKAGE-pyyaml",
+      "name": "pyyaml",
       "versionInfo": "6.0.3",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "00c4bdeba853cc34e7dd471f16b4114f4162dc03e6b7afcc2128711f0eca823c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0150219816b6a1fa26fb4699fb7daa9caf09eb1999f3b70fb6e786805e80375a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "02893d100e99e03eda1c8fd5c441d8c60103fd175728e23e431db1b589cf5ab3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "02ea2dfa234451bbb8772601d7b8e426c2bfa197136796224e50e35a78777956"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "0f29edc409a6392443abf94b9cf89ce99889a1dd5376d94316ae5145dfedd5d6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "10892704fc220243f5305762e276552a0395f7beb4dbf9b14ec8fd43b57f126c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "16249ee61e95f858e83976573de0f5b2893b3677ba71c9dd36b9cf8be9ac6d65"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1d37d57ad971609cf3c53ba6a7e365e40660e3be0e5175fa9f2365a379d6095a"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "1ebe39cb5fc479422b83de611d14e2c0d3bb2a18bbcb01f229ab3cfbd8fee7a0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "214ed4befebe12df36bcc8bc2b64b396ca31be9304b8f59e25c11cf94a4c033b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2283a07e2c21a2aa78d9c4442724ec1eb15f5e42a723b99cb3d822d48f5f7ad1"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "22ba7cfcad58ef3ecddc7ed1db3409af68d023b7f940da23c6c2a1890976eda6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "27c0abcb4a5dac13684a37f76e701e054692a9b2d3064b70f5e4eb54810553d7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "28c8d926f98f432f88adc23edf2e6d4921ac26fb084b028c733d01868d19007e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2e71d11abed7344e42a8849600193d15b6def118602c4c176f748e4583246007"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "34d5fcd24b8445fadc33f9cf348c1047101756fd760b4dacb5c3e99755703310"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "37503bfbfc9d2c40b344d06b2199cf0e96e97957ab1c1b546fd4f87e53e5d3e4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3c5677e12444c15717b902a5798264fa7909e41153cdf9ef7ad571b704a63dd9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "3ff07ec89bae51176c0549bc4c63aa6202991da2d9a6129d7aef7f1407d3f295"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "41715c910c881bc081f1e8872880d3c650acf13dfa8214bad49ed4cede7c34ea"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "418cf3f2111bc80e0933b2cd8cd04f286338bb88bdc7bc8e6dd775ebde60b5e0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "44edc647873928551a01e7a563d7452ccdebee747728c1080d881d68af7b997e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4a2e8cebe2ff6ab7d1050ecd59c25d4c8bd7e6f400f5f82b96557ac0abafd0ac"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4ad1906908f2f5ae4e5a8ddfce73c320c2a1429ec52eafd27138b7f1cbe341c9"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "501a031947e3a9025ed4405a168e6ef5ae3126c59f90ce0cd6f2bfc477be31b7"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5190d403f121660ce8d1d2c1bb2ef1bd05b5f68533fc5c2ea899bd15f4399b35"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5498cd1645aa724a7c71c8f378eb29ebe23da2fc0d7a08071d89469bf1d2defb"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5cf4e27da7e3fbed4d6c3d8e797387aaad68102272f8f9752883bc32d61cb87b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5e0b74767e5f8c593e8c9b5912019159ed0533c70051e9cce3e8b6aa699fcd69"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5ed875a24292240029e4483f9d4a4b8a1ae08843b9c54f43fcc11e404532a8a5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5fcd34e47f6e0b794d17de1b4ff496c00986e1c83f7ab2fb8fcfe9616ff7477b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "5fdec68f91a0c6739b380c83b951e2c72ac0197ace422360e6d5a959d8d97b2c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6344df0d5755a2c9a276d4473ae6b90647e216ab4757f8426893b5dd2ac3f369"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "64386e5e707d03a7e172c0701abfb7e10f0fb753ee1d773128192742712a98fd"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "652cb6edd41e718550aad172851962662ff2681490a8a711af6a4d288dd96824"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "66291b10affd76d76f54fad28e22e51719ef9ba22b29e1d7d03d6777a9174198"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "66e1674c3ef6f541c35191caae2d429b967b99e02040f5ba928632d9a7f0f065"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "6adc77889b628398debc7b65c073bcb99c4a0237b248cacaf3fe8a557563ef6c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "79005a0d97d5ddabfeeea4cf676af11e647e41d81c9a7722a193022accdb6b7c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7c6610def4f163542a622a73fb39f534f8c101d690126992300bf3207eab9764"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "7f047e29dcae44602496db43be01ad42fc6f1cc0d8cd6c83d342306c32270196"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8098f252adfa6c80ab48096053f512f2321f0b998f98150cea9bd23d83e1467b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "850774a7879607d3a6f50d36d04f00ee69e7fc816450e5f7e58d7f17f1ae5c00"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8d1fab6bb153a416f9aeb4b8763bc0f22a5586065f86f7664fc23339fc1c1fac"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8da9669d359f02c0b91ccc01cac4a67f16afec0dac22c2ad09f46bee0697eba8"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "8dc52c23056b9ddd46818a57b78404882310fb473d63f17b07d5c40421e47f8e"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9149cad251584d5fb4981be1ecde53a1ca46c891a79788c0df828d2f166bda28"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "93dda82c9c22deb0a405ea4dc5f2d0cda384168e466364dec6255b293923b2f3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "96b533f0e99f6579b3d4d4995707cf36df9100d67e0c8303a0c55b27b5f99bc5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9c57bb8c96f6d1808c030b1687b9b5fb476abaa47f0db9c0101f5e9f394e97f4"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9c7708761fccb9397fe64bbc0395abcae8c4bf7b0eac081e12b809bf47700d0b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9f3bfb4965eb874431221a3ff3fdcddc7e74e3b07799e0e84ca4a0f867d449bf"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a33284e20b78bd4a18c8c2282d549d10bc8408a2a7ff57653c0cf0b9be0afce5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "a80cb027f6b349846a3bf6d73b5e95e782175e52f22108cfa17876aaeff93702"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b30236e45cf30d2b8e7b3e85881719e98507abed1011bf463a8fa23e9c3e98a8"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b3bc83488de33889877a0f2543ade9f70c67d66d9ebb4ac959502e12de895788"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b865addae83924361678b652338317d1bd7e79b1f4596f96b96c77a5a34b34da"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "b8bb0864c5a28024fac8a632c443c87c5aa6f215c0b126c449ae1a150412f31d"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ba1cc08a7ccde2d2ec775841541641e4548226580ab850948cbfda66a1befcdc"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "bdb2c67c6c1390b63c6ff89f210c8fd09d9a1217a465701eac7316313c915e4c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c1ff362665ae507275af2853520967820d9124984e0f7466736aea23d8611fba"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c2514fceb77bc5e7a2f7adfaa1feb2fb311607c9cb518dbc378688ec73d8292f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c3355370a2c156cffb25e876646f149d5d68f5e0a3ce86a5084dd0b64a994917"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c458b6d084f9b935061bc36216e8a69a7e293a2f1e68bf956dcd9e6cbcd143f5"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d0eae10f8159e8fdad514efdc92d74fd8d682c933a6dd088030f3834bc8e6b26"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "d76623373421df22fb4cf8817020cbb7ef15c725b9d5e45f17e189bfc384190f"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ebc55a14a21cb14062aa4162f906cd962b28e2e9ea38f9b4391244cd8de4ae0b"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "eda16858a3cab07b80edaf74336ece1f986ba330fdb8ee0d6c0d68fe82bc96be"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "ee2922902c45ae8ccada2c5b501ab86c36525b883eff4255313a253a3160861c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "efd7b85f94a6f21e4932043973a7ba2613b059c4a000551892ac9f1d11f5baf3"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f7057c9a337546edc7973c0d3ba84ddcdf0daa14533c2065749c9075001090e6"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fa160448684b4e94d80416c0fa4aac48967a969efe22931448d853ada8baf926"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "fc09d0aa354569bc501d4e787133afc08552722d3ab34836a80547331bb5d4a0"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/pyyaml@6.0.3"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-qrcode",
-      "name": "qrcode",
-      "versionInfo": "7.4.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-redis",
-      "name": "redis",
-      "versionInfo": "5.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-referencing",
-      "name": "referencing",
-      "versionInfo": "0.35.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-regex",
-      "name": "regex",
-      "versionInfo": "2024.11.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-reportlab",
-      "name": "reportlab",
-      "versionInfo": "4.4.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-requests",
+      "SPDXID": "SPDXRef-PACKAGE-requests",
       "name": "requests",
-      "versionInfo": "2.32.4",
+      "versionInfo": "2.34.2",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "2a0d60c172f83ac6ab31e4554906c0f3b3588d37b5cb939b1c061f4907e278e0"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "f288924cae4e29463698d6d60bc6a4da69c89185ad1e0bcc4104f584e960b9ed"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/requests@2.34.2"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-requests-file",
-      "name": "requests-file",
-      "versionInfo": "3.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-requests-oauthlib",
-      "name": "requests-oauthlib",
-      "versionInfo": "2.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-requests-toolbelt",
-      "name": "requests-toolbelt",
-      "versionInfo": "1.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-requests-unixsocket",
-      "name": "requests-unixsocket",
-      "versionInfo": "0.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-rpds-py",
-      "name": "rpds-py",
-      "versionInfo": "0.20.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-rsa",
-      "name": "rsa",
-      "versionInfo": "4.9.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-safetensors",
-      "name": "safetensors",
-      "versionInfo": "0.5.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-scipy",
-      "name": "scipy",
-      "versionInfo": "1.3.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-SecretStorage",
-      "name": "SecretStorage",
-      "versionInfo": "2.3.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-sentencepiece",
-      "name": "sentencepiece",
-      "versionInfo": "0.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-setuptools",
-      "name": "setuptools",
-      "versionInfo": "45.2.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-simplejson",
-      "name": "simplejson",
-      "versionInfo": "3.16.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-six",
-      "name": "six",
-      "versionInfo": "1.14.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-smbus2",
-      "name": "smbus2",
-      "versionInfo": "0.6.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-sniffio",
-      "name": "sniffio",
-      "versionInfo": "1.3.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-soupsieve",
+      "SPDXID": "SPDXRef-PACKAGE-soupsieve",
       "name": "soupsieve",
-      "versionInfo": "2.7",
+      "versionInfo": "2.9.1",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "4f4477399246b7a0c720a88ca2454b11cd6bb9ae4c9d170140786e916776c14c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c33e6605bbc71dd628b00c632d58ae607c22bade247e52553928f83bbb75b4ba"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/soupsieve@2.9.1"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-SQLAlchemy",
-      "name": "SQLAlchemy",
-      "versionInfo": "2.0.25",
+      "SPDXID": "SPDXRef-PACKAGE-typing-extensions",
+      "name": "typing-extensions",
+      "versionInfo": "4.16.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/typing-extensions@4.16.0"
+        }
+      ]
     },
     {
-      "SPDXID": "SPDXRef-starlette",
-      "name": "starlette",
-      "versionInfo": "0.35.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-stripe",
-      "name": "stripe",
-      "versionInfo": "14.4.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-systemd-python",
-      "name": "systemd-python",
-      "versionInfo": "234",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tenacity",
-      "name": "tenacity",
-      "versionInfo": "8.2.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tensorrt",
-      "name": "tensorrt",
-      "versionInfo": "8.5.2.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-texttable",
-      "name": "texttable",
-      "versionInfo": "1.6.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tinycss2",
-      "name": "tinycss2",
-      "versionInfo": "1.4.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tldextract",
-      "name": "tldextract",
-      "versionInfo": "5.1.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tokenizers",
-      "name": "tokenizers",
-      "versionInfo": "0.20.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tomli",
-      "name": "tomli",
-      "versionInfo": "2.4.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-tqdm",
-      "name": "tqdm",
-      "versionInfo": "4.67.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-transformers",
-      "name": "transformers",
-      "versionInfo": "4.46.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-types-requests",
-      "name": "types-requests",
-      "versionInfo": "2.32.0.20241016",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-typing_extensions",
-      "name": "typing_extensions",
-      "versionInfo": "4.13.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-typing-inspect",
-      "name": "typing-inspect",
-      "versionInfo": "0.9.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-ubuntu-drivers-common",
-      "name": "ubuntu-drivers-common",
-      "versionInfo": "0.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-ubuntu-pro-client",
-      "name": "ubuntu-pro-client",
-      "versionInfo": "8001",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-uff",
-      "name": "uff",
-      "versionInfo": "0.6.9",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-unpaddedbase64",
-      "name": "unpaddedbase64",
-      "versionInfo": "2.1.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-uritemplate",
-      "name": "uritemplate",
-      "versionInfo": "4.1.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-urllib3",
+      "SPDXID": "SPDXRef-PACKAGE-urllib3",
       "name": "urllib3",
-      "versionInfo": "2.2.3",
+      "versionInfo": "2.7.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
       "licenseConcluded": "NOASSERTION",
       "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "copyrightText": "NOASSERTION",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c"
+        },
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897"
+        }
+      ],
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceType": "purl",
+          "referenceLocator": "pkg:pypi/urllib3@2.7.0"
+        }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-beautifulsoup4"
     },
     {
-      "SPDXID": "SPDXRef-urwid",
-      "name": "urwid",
-      "versionInfo": "2.0.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-certifi"
     },
     {
-      "SPDXID": "SPDXRef-uvicorn",
-      "name": "uvicorn",
-      "versionInfo": "0.27.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-cffi"
     },
     {
-      "SPDXID": "SPDXRef-uvloop",
-      "name": "uvloop",
-      "versionInfo": "0.22.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-charset-normalizer"
     },
     {
-      "SPDXID": "SPDXRef-v4l2",
-      "name": "v4l2",
-      "versionInfo": "0.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-cryptography"
     },
     {
-      "SPDXID": "SPDXRef-virtualenv",
-      "name": "virtualenv",
-      "versionInfo": "21.3.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-idna"
     },
     {
-      "SPDXID": "SPDXRef-wadllib",
-      "name": "wadllib",
-      "versionInfo": "1.3.3",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-pycparser"
     },
     {
-      "SPDXID": "SPDXRef-watchfiles",
-      "name": "watchfiles",
-      "versionInfo": "0.24.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-pyyaml"
     },
     {
-      "SPDXID": "SPDXRef-weasyprint",
-      "name": "weasyprint",
-      "versionInfo": "60.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-requests"
     },
     {
-      "SPDXID": "SPDXRef-webencodings",
-      "name": "webencodings",
-      "versionInfo": "0.5.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-soupsieve"
     },
     {
-      "SPDXID": "SPDXRef-websocket-client",
-      "name": "websocket-client",
-      "versionInfo": "0.53.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-typing-extensions"
     },
     {
-      "SPDXID": "SPDXRef-websockets",
-      "name": "websockets",
-      "versionInfo": "13.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-Werkzeug",
-      "name": "Werkzeug",
-      "versionInfo": "3.0.6",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-wheel",
-      "name": "wheel",
-      "versionInfo": "0.34.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-xkit",
-      "name": "xkit",
-      "versionInfo": "0.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-yarl",
-      "name": "yarl",
-      "versionInfo": "1.15.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-youtube-dl",
-      "name": "youtube-dl",
-      "versionInfo": "2020.3.24",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-zipp",
-      "name": "zipp",
-      "versionInfo": "3.20.2",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-zope.component",
-      "name": "zope.component",
-      "versionInfo": "4.3.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-zope.event",
-      "name": "zope.event",
-      "versionInfo": "4.4",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-zope.hookable",
-      "name": "zope.hookable",
-      "versionInfo": "5.0.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-zope.interface",
-      "name": "zope.interface",
-      "versionInfo": "4.7.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
-    },
-    {
-      "SPDXID": "SPDXRef-zopfli",
-      "name": "zopfli",
-      "versionInfo": "0.2.3.post1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION"
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-PACKAGE-urllib3"
     }
   ]
 }

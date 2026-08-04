@@ -1,0 +1,69 @@
+name: NS-BOS CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies (hash-pinned)
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r core/kernel/requirements.txt
+        pip install pytest pytest-cov
+
+    - name: Run tests
+      run: |
+        pytest tests/ -v --cov=core/kernel --cov=scripts
+
+    - name: Lint with ruff
+      run: |
+        pip install ruff==0.16.1
+        ruff check core/kernel/ scripts/ tests/
+
+    - name: Static analysis with bandit
+      run: |
+        pip install bandit
+        bandit -q -r core/kernel scripts -ll
+
+    - name: Vulnerability audit with pip-audit
+      run: |
+        pip install pip-audit
+        pip-audit -r core/kernel/requirements.txt
+
+    - name: Validate SBOM against pinned requirements
+      run: |
+        python scripts/sbom.py --verify-requirements
+        python scripts/sbom.py --output /tmp/sbom-ci.json
+        python -c "
+import json, sys
+sbom = json.load(open('/tmp/sbom-ci.json'))
+pins = {}
+for line in open('core/kernel/requirements.txt'):
+    line = line.strip()
+    if line.startswith('#') or not line:
+        continue
+    if '==' in line:
+        name, ver = line.split('==', 1)
+        pins[name.lower()] = ver
+assert len(sbom['packages']) >= len(pins), 'SBOM missing declared packages'
+for p in sbom['packages']:
+    assert p['checksums'], f'{p[\"name\"]} has no checksums'
+print(f'SBOM OK: {len(pins)} declared / {len(sbom[\"packages\"])} total packages, all checksummed')
+"
