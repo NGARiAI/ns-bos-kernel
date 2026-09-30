@@ -28,7 +28,7 @@ Thank you for your interest in contributing to the NGARi Sovereign Business Oper
    - Hardware-agnostic
 
 ### Pull Requests
-1. Fork the repository (`ngarixyz/ns-bos-kernel`)
+1. Fork the repository (`NGARiAI/ns-bos-kernel`)
 2. Create a feature branch (`git checkout -b feat/my-feature`)
 3. All contributions must pass:
    - Pre-commit hooks (gitleaks + ruff)
@@ -39,7 +39,7 @@ Thank you for your interest in contributing to the NGARi Sovereign Business Oper
 
 ## Development Setup
 ```bash
-git clone https://github.com/ngarixyz/ns-bos-kernel.git
+git clone https://github.com/NGARiAI/ns-bos-kernel.git
 cd ns-bos-kernel
 pip install -r core/kernel/requirements.txt
 pre-commit install

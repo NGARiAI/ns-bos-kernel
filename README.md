@@ -74,7 +74,7 @@ NGARI_DATA_DIR=~/.ngari/kernel python -m core.kernel
 
 ## Related Repositories
 
-- `ngarixyz/ns-bos-kernel` — This repo (kernel only, Apache 2.0)
+- `NGARiAI/ns-bos-kernel` — This repo (kernel only, Apache 2.0)
 
 ## License
 

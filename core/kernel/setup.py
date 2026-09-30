@@ -11,11 +11,11 @@ setup(
     description="NGARi Sovereign Business Operating System - Open Source Kernel",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ngarixyz/ns-bos",
+    url="https://github.com/NGARiAI/ns-bos-kernel",
     project_urls={
-        "Bug Tracker": "https://github.com/ngarixyz/ns-bos/issues",
+        "Bug Tracker": "https://github.com/NGARiAI/ns-bos-kernel/issues",
         "Documentation": "https://ngari.xyz/docs",
-        "Source Code": "https://github.com/ngarixyz/ns-bos",
+        "Source Code": "https://github.com/NGARiAI/ns-bos-kernel",
     },
     classifiers=[
         "Development Status :: 3 - Alpha",
