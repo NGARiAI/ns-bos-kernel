@@ -83,17 +83,15 @@ fi
 say "python:   $PY ($("$PY" -c 'import platform;print(platform.python_version())'))"
 
 # --- 3. which ref --------------------------------------------------------------------
+# Defaults to the branch, NOT to /releases/latest. The newest published RELEASE is v0.1.0,
+# which predates the first-run fixes (no __main__.py, and main() created its log handler
+# before the directory existed) — installing it fails. Pin a tag with --ref for a
+# reproducible install; see https://github.com/NGARiAI/ns-bos-kernel/releases
 if [ -z "$REF" ]; then
-  REF="$(curl -fsSL "https://api.github.com/repos/$REPO/releases/latest" 2>/dev/null \
-         | sed -n 's/.*"tag_name" *: *"\([^"]*\)".*/\1/p' | head -1)"
-  if [ -n "$REF" ]; then
-    say "release:  $REF (latest)"
-  else
-    REF="master"
-    say "release:  master (no published release found — using the branch)"
-  fi
+  REF="master"
+  say "ref:      master (current — pin a tag with --ref for reproducibility)"
 else
-  say "release:  $REF (pinned by you)"
+  say "ref:      $REF (pinned by you)"
 fi
 
 SRC="$PREFIX/src"
