@@ -36,13 +36,22 @@ License: Apache 2.0
 
 ## Quick Start
 
-```bash
-# Install dependencies
-pip install -r core/kernel/requirements.txt
+Requires **Linux** and **Python >= 3.10**. (Not 3.9: the kernel uses `str | None` unions at
+runtime in 35 places with no `from __future__ import annotations`, which raises `TypeError`
+below 3.10. Not macOS or Windows.)
 
-# Run the kernel
+```bash
+# One-shot installer — read it first, it is short: ./install.sh
+./install.sh
+
+# ...or by hand:
+python3 -m venv .venv && . .venv/bin/activate
+pip install -r core/kernel/requirements.txt
 NGARI_DATA_DIR=~/.ngari/kernel python -m core.kernel
 ```
+
+The kernel orchestrates inference — **it ships no model**. Point it at a runtime
+(Ollama, llama.cpp, vLLM) and weights you supply.
 
 ## Documentation
 

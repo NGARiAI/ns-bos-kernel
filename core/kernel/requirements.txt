@@ -1,6 +1,7 @@
 # NS-BOS Kernel runtime dependencies
 # Fully pinned with sha256 hashes (pip-compile --generate-hashes --strip-extras)
-# Python >=3.9 required (cryptography 50.0.0 drops 3.8)
+# Python >=3.10 required (the kernel uses PEP 604 `X | None` unions at
+# runtime; cryptography 50.0.0 additionally drops 3.8)
 # Regenerate: pip-compile --generate-hashes --strip-extras core/kernel/requirements.in -o core/kernel/requirements.txt
 
 #

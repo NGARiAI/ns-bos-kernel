@@ -183,19 +183,21 @@ class NSBOSKernel:
 
 def main():
     """Main entry point for NS-BOS Kernel"""
+    # Create the data/log directory BEFORE the FileHandler. `logging.FileHandler`
+    # does not create its parent directory, and `NSBOSKernel.__init__` (which does
+    # mkdir) is not reached until ~20 lines below — so on a fresh machine with no
+    # ~/.ngari/kernel/logs, the documented quick-start died with
+    # FileNotFoundError before the kernel ever started.
+    data_dir = Path(
+        os.environ.get("NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel"))
+    )
+    (data_dir / "logs").mkdir(parents=True, exist_ok=True)
+
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s [NSBOS] %(message)s",
         handlers=[
-            logging.FileHandler(
-                os.path.join(
-                    os.environ.get(
-                        "NGARI_DATA_DIR", str(Path.home() / ".ngari" / "kernel")
-                    ),
-                    "logs",
-                    "kernel.log",
-                )
-            ),
+            logging.FileHandler(os.path.join(str(data_dir), "logs", "kernel.log")),
             logging.StreamHandler(),
         ],
     )
