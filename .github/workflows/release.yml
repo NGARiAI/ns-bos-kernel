@@ -1,0 +1,134 @@
+name: Release
+
+# Pushing a tag such as v0.2.0 builds the release files from the tagged commit
+# and publishes them as a GitHub release with signed build provenance. The tag
+# must equal v plus the version in core/kernel/__init__.py and
+# core/kernel/setup.py, that version needs a CHANGELOG.md section, and the
+# commit must already be on the default branch. The same CI that gates pull
+# requests runs first, and the wheel built here must match, byte for byte, the
+# one CI built on another runner.
+
+on:
+  push:
+    tags: ["v[0-9]+.[0-9]+.[0-9]+*"]
+
+permissions: {}
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  verify:
+    name: verify tag
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Tag, version and CHANGELOG agree
+        env:
+          TAG: ${{ github.ref_name }}
+        run: python3 scripts/release.py check --tag "$TAG"
+      - name: The tagged commit is on the default branch
+        env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          if ! git merge-base --is-ancestor "$GITHUB_SHA" "origin/$DEFAULT_BRANCH"; then
+            echo "::error::$GITHUB_SHA is not on $DEFAULT_BRANCH; merge it before tagging"
+            exit 1
+          fi
+
+  ci:
+    name: ci
+    permissions:
+      contents: read
+    # zizmor prefers the $/ form, which actionlint 1.7.12 rejects. Move to it
+    # when actionlint accepts it.
+    uses: ./.github/workflows/ci.yml # zizmor: ignore[self-repository]
+
+  build:
+    name: build and attest
+    needs: [verify, ci]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+      id-token: write # Sigstore signs the provenance with this job's OIDC token
+      attestations: write # store the provenance attestation in this repository
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install the locked tools
+        run: python -m pip install --require-hashes -r core/kernel/requirements.txt -r core/kernel/requirements-dev.txt
+      - name: Build the release files
+        run: make build PYTHON=python
+      - name: Install the wheel in a clean venv and start ns-bos
+        run: make smoke PYTHON=python WHEEL="$(ls dist/*.whl)"
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: ci-dist
+          path: ${{ runner.temp }}/ci-dist
+      - name: The wheel matches the one CI built on another runner
+        env:
+          CI_DIST: ${{ runner.temp }}/ci-dist
+        run: |
+          set -euo pipefail
+          wheel="$(basename "$(ls dist/*.whl)")"
+          cmp "dist/$wheel" "$CI_DIST/$wheel"
+          sha256sum "dist/$wheel"
+      - name: Checksums
+        run: cat dist/SHA256SUMS
+      - uses: actions/attest-build-provenance@4d101475d8b20a2381f78447822ac1eab6504dd8 # v4.2.2
+        with:
+          subject-checksums: dist/SHA256SUMS
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+
+  publish:
+    name: publish release
+    needs: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write # create the release and upload its files
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-dist
+          path: dist
+      - name: The downloaded files match their checksums
+        run: cd dist && sha256sum -c SHA256SUMS
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ github.ref_name }}
+        run: |
+          set -euo pipefail
+          python3 scripts/release.py notes --tag "$TAG" > "$RUNNER_TEMP/notes.md"
+          flags=()
+          if [[ ! "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            flags+=(--prerelease)
+          fi
+          gh release create "$TAG" dist/* "${flags[@]}" \
+            --verify-tag --title "$TAG" --notes-file "$RUNNER_TEMP/notes.md"
