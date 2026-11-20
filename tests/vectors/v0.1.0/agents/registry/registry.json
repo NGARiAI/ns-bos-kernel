@@ -1,0 +1,24 @@
+{
+  "201bc3a0-786f-423b-aa1c-d6519c2caa8a": {
+    "config": {
+      "name": "CEO",
+      "agent_type": "strategic",
+      "version": "1.0.0",
+      "description": "v0.1.0 agent",
+      "max_memory_mb": 512,
+      "restart_on_failure": true,
+      "max_restarts": 5,
+      "environment": {}
+    },
+    "state": "initializing",
+    "memory": {
+      "note": "memory written by v0.1.0"
+    },
+    "tasks_completed": 0,
+    "tasks_failed": 0,
+    "uptime_seconds": 0,
+    "last_heartbeat": "2026-10-30T15:37:11.086922+00:00",
+    "started_at": "2026-10-30T15:37:11.086947+00:00",
+    "error_count": 0
+  }
+}

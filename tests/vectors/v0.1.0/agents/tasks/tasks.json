@@ -1,0 +1,9 @@
+{
+  "7ed7cff1-945c-4c43-9e25-600d3f1dfaa5": {
+    "task_id": "7ed7cff1-945c-4c43-9e25-600d3f1dfaa5",
+    "agent_id": "201bc3a0-786f-423b-aa1c-d6519c2caa8a",
+    "action": "report",
+    "payload": {
+      "q": "task payload written by v0.1.0"
+    },
+    "priority": 
