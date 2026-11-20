@@ -14,8 +14,8 @@ paths = [
 
 [[rules]]
 id = "ngari-hardcoded-path"
-description = "Hardcoded /home/garry user path"
-regex = '''/home/garry/'''
+description = "Hardcoded home directory path"
+regex = '''/home/[a-z_][a-z0-9_-]*/'''
 tags = ["ngari", "pii"]
 
 [[rules]]

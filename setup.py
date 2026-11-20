@@ -1,24 +1,9 @@
-#!/usr/bin/env python3
 """Root installer for the NS-BOS kernel.
 
-Why this file exists
---------------------
-The kernel package lives at ``core/kernel/`` and its historical packaging is
-executed from there. Because the repository root had no installer at all, the
-obvious first thing a contributor or participant tries --::
-
-    git clone https://github.com/NGARiAI/ns-bos-kernel.git
-    cd ns-bos-kernel
-    pip install .
-
-...failed with::
-
-    ERROR: Directory '.' is not installable. Neither 'setup.py' nor
-    'pyproject.toml' found.
-
-This shim delegates to the canonical packaging in ``core/kernel/`` so the root
-works too. It adds no metadata of its own: there is exactly one source of truth
-for the package name, version and dependencies.
+The kernel package and its packaging live in ``core/kernel/``. This shim makes
+``pip install .`` work from the repository root by running that packaging from
+its own directory. It adds no metadata of its own: there is exactly one source
+of truth for the package name, version and dependencies.
 """
 
 from __future__ import annotations

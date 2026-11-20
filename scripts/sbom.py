@@ -1,9 +1,9 @@
 """SPDX 2.3 SBOM generator for NS-BOS Kernel.
 
-Builds the SBOM from the *declared* runtime dependencies in
+Builds the SBOM from the runtime dependencies declared in
 ``core/kernel/requirements.txt`` (pinned with ``==`` versions and
-``--hash=sha256:`` checksums), so build/dev tooling (ruff, bandit,
-pip-audit, pip itself) never leaks into the package inventory.
+``--hash=sha256:`` checksums), so build and development tooling (ruff,
+bandit, pip-audit, pip itself) stays out of the package inventory.
 
 Usage:
     python scripts/sbom.py [--requirements PATH] [--output PATH]

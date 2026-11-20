@@ -1,6 +1,6 @@
 """Hermetic smoke tests for the NS-BOS kernel core modules.
 
-No network, no Ollama, no server dependencies — exercises the pure
+No network, no Ollama, no server dependencies: exercises the pure
 logic paths (registry round-trips, tool-call parsing, platform/HAL
 detection, sandbox result model).
 """

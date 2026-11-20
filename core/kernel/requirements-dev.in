@@ -1,0 +1,14 @@
+# Tooling for CI, `make ci` and the devcontainer. Never shipped and never
+# part of the SBOM. setuptools and wheel are here so release builds run with
+# --no-isolation against pinned, hashed build tools.
+bandit
+build
+pip-audit
+pre-commit
+pytest
+pytest-cov
+ruff==0.16.1
+setuptools
+twine
+wheel
+zizmor

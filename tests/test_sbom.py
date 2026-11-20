@@ -1,10 +1,7 @@
-"""SBOM integrity tests.
-
-The kernel's SBOM must (1) reflect only the *declared* runtime deps from
-requirements.txt, (2) carry sha256 checksums + purl refs for every package,
-and (3) match a fresh generation from the pinned requirements. CI runs the
-same checks; these tests keep the repository honest without a network.
-"""
+"""SBOM integrity: the committed SBOM lists only the runtime dependencies
+declared in requirements.txt, carries a sha256 checksum and a purl for every
+package, and matches a fresh generation from the pinned requirements. CI
+runs the same checks; these run without a network."""
 
 import json
 import subprocess
@@ -100,3 +97,32 @@ def test_sbom_contains_no_tooling():
         assert tool not in names, (
             f"build/dev tool {tool} leaked into SBOM runtime packages"
         )
+
+
+def _without_run_identity(doc: dict) -> dict:
+    doc = json.loads(json.dumps(doc))
+    doc.pop("documentNamespace")
+    doc["creationInfo"].pop("created")
+    return doc
+
+
+def test_committed_sbom_matches_fresh_generation(tmp_path):
+    fresh = tmp_path / "sbom.json"
+    out = subprocess.run(
+        [
+            sys.executable,
+            str(REPO_ROOT / "scripts" / "sbom.py"),
+            "--output",
+            str(fresh),
+        ],
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    assert out.returncode == 0, out.stderr
+    committed = json.loads(SBOM.read_text(encoding="utf-8"))
+    generated = json.loads(fresh.read_text(encoding="utf-8"))
+    assert _without_run_identity(committed) == _without_run_identity(generated), (
+        "sbom/ns-bos-kernel.spdx.json is out of date with requirements.txt; "
+        "regenerate it with: python scripts/sbom.py"
+    )

@@ -1,3 +1,8 @@
+# `pre-commit install` sets up both hooks: the checks below on every commit,
+# and the full `make check` (lint and tests) before every push.
+default_install_hook_types: [pre-commit, pre-push]
+default_stages: [pre-commit]
+
 repos:
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.18.2
@@ -13,7 +18,21 @@ repos:
     rev: v4.6.0
     hooks:
       - id: trailing-whitespace
+        exclude: ^tests/vectors/
+        stages: [pre-commit]
       - id: end-of-file-fixer
+        exclude: ^tests/vectors/
+        stages: [pre-commit]
       - id: check-yaml
       - id: check-added-large-files
         args: ["--maxkb=1024"]
+        stages: [pre-commit]
+  - repo: local
+    hooks:
+      - id: make-check
+        name: make check (lint and tests)
+        entry: make check
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-push]

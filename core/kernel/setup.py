@@ -29,10 +29,10 @@ setup(
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: System :: Distributed Computing",
     ],
-    # Package the `core.kernel` namespace from the REPO ROOT, not from this directory.
-    # An EXPLICIT list rather than find_*: setuptools runs with this directory as the build
-    # root, so a stale `build/` left behind by a previous install was itself discovered and
-    # shipped as `core.kernel.build.lib.*` — the build artefact fed back into the package.
+    # The `core.kernel` namespace is packaged from the repository root, two levels
+    # up. Packages are listed explicitly, not discovered with find_*: this directory
+    # is the build root, so discovery would also pick up a `build/` directory left
+    # by an earlier install and ship it as `core.kernel.build.lib.*`.
     package_dir={"": "../.."},
     packages=[
         "core",
@@ -50,7 +50,6 @@ setup(
         "cryptography==50.0.0",
         "requests==2.34.2",
         "pyyaml==6.0.3",
-        "beautifulsoup4==4.15.0",
     ],
     entry_points={
         "console_scripts": [
