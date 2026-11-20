@@ -120,6 +120,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 - `docs/FIPS.md`: every cryptographic primitive the kernel uses, which
   library or device provides it and its FIPS 140-3 status, kept current by
   a test. No FIPS compliance is claimed
+- `KNOWN_LIMITATIONS.md`: what the kernel does not do today, each item with
+  the page that gives the detail, checked against the code by a test
 
 ### Changed
 
@@ -285,12 +287,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [0.1.0] - 2026-08-23
 
+These notes first listed "RBAC at kernel level". v0.1.0 has no access
+control; operator roles are added after it (see Unreleased).
+
 ### Added
 
 - Initial public release (Apache-2.0)
 - Minimal auditable kernel for air-gapped autonomous edge AI agents:
-  inference orchestration (Ollama, llama.cpp, vLLM), RBAC at kernel level,
-  sovereign-by-default operation with zero cloud dependency
+  inference orchestration (Ollama, llama.cpp, vLLM), sovereign-by-default
+  operation with zero cloud dependency
 - Sandbox isolation: bubblewrap (bwrap) and seccomp modules
 - SPDX 2.3 Software Bill of Materials (`sbom/ns-bos-kernel.spdx.json`)
   with generation script (`scripts/sbom.py`)

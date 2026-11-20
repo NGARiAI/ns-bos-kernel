@@ -25,7 +25,7 @@ operator was issued.
    from OpenSC, the same way the TPM provider drives tpm2-tools. Signatures
    are verified with `cryptography`, which the kernel already pins.
 
-## What was verified on this machine
+## What was verified
 
 OpenSC 0.26.1 and SoftHSM 2.6.1 (Debian 13). Ubuntu 24.04 ships OpenSC
 0.25.0 and SoftHSM 2.6.1 as `opensc`, `opensc-pkcs11` and `softhsm2`.
@@ -271,7 +271,7 @@ PIN, so it proves the card is present, not that its holder is.
 - Certificate chains and revocation. The machines run air-gapped with no CRL
   or OCSP reachable, so trust is the pinned certificate. Removing a person
   means moving their certificate into `operators/retired/`.
-- Smart card readers on this development machine. Tests run against SoftHSM
+- A physical card and reader. Tests run against SoftHSM
   with a key and certificate imported into a token in the test's tmp
   directory. A real card needs `pcscd` and a reader, and is a hand test.
 - Several operators approving one command (two-person rule). The audit entry

@@ -1,7 +1,7 @@
 """
 NS-BOS Kernel - Network Synchronization
-Fleet communication protocol, digital twin sync, encrypted peer-to-peer mesh,
-and optional zero-knowledge cloud sync.
+Digital twin, fleet records and a hash-chained sync ledger, kept on this
+machine. Nothing is sent between machines.
 """
 
 import collections
@@ -222,9 +222,8 @@ def _sync_mode(value) -> "SyncMode":
 
 class NetworkSynchronization:
     """
-    Network synchronization layer for fleet management.
-    Handles digital twin sync, peer-to-peer communication,
-    and optional cloud sync.
+    The digital twin, the fleet file and the sync ledger of one machine.
+    No sync mode sends data to another machine.
     """
 
     def __init__(self, sync_dir: str | None = None):
