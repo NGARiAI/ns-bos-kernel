@@ -3,29 +3,30 @@
 # NS-BOS Kernel installer
 # =======================
 #
-# READ THIS BEFORE RUNNING IT. It is deliberately short and does only six things:
+# Short enough to read in full before running. It does six things:
 #
-#   1. refuses to run anywhere except Linux (the kernel targets Linux; it is not a
-#      macOS or Windows program and will not pretend otherwise),
+#   1. refuses to run anywhere except Linux (the kernel targets Linux; macOS and
+#      Windows are not supported),
 #   2. finds a Python >= 3.10 interpreter,
-#   3. reads the latest release tag from the GitHub API (or uses the tag/branch you pass),
+#   3. picks the ref to install: master by default, or the tag or branch given,
 #   4. git-clones that ref into $NSBOS_PREFIX/src,
 #   5. creates a virtualenv and installs the hash-pinned dependencies into it,
 #   6. smoke-tests the import and prints the command to start the kernel.
 #
-# What it does NOT do:
+# What it does not do:
 #   * no sudo, anywhere, for anything
-#   * no writes outside $NSBOS_PREFIX (default ~/.ngari/kernel)
+#   * no writes outside $NSBOS_PREFIX (default ~/.ngari/kernel), and only src/ and
+#     venv/ inside it; the kernel keeps its data and key there too once it runs
 #   * no `curl | sh` of any further script
-#   * no telemetry, no phone-home, no analytics. Nothing is reported about you.
+#   * no telemetry, no phone-home, no analytics. Nothing is reported.
 #   * it does not start the kernel, and it does not download any model
 #
-# There is no model in this repository. The kernel orchestrates inference — you point it
-# at a model runtime (Ollama, llama.cpp, vLLM) and weights you supply. See:
+# There is no model in this repository. The kernel orchestrates inference against a
+# model runtime (Ollama, llama.cpp, vLLM) and weights supplied by the operator. See:
 #   https://ngari.ai/kernel
 #
 # Usage:
-#   ./install.sh                     # latest release tag (falls back to master)
+#   ./install.sh                     # master
 #   ./install.sh --ref master        # a branch
 #   ./install.sh --ref v0.1.0        # a pinned tag (reproducible)
 #   ./install.sh --prefix /opt/nsbos # install somewhere else
@@ -44,7 +45,7 @@ while [ $# -gt 0 ]; do
   case "$1" in
     --ref)    REF="${2:-}"; shift 2 ;;
     --prefix) PREFIX="${2:-}"; shift 2 ;;
-    -h|--help) sed -n '2,40p' "$0"; exit 0 ;;
+    -h|--help) sed -n '2,33p' "$0"; exit 0 ;;
     *) die "unknown argument: $1" ;;
   esac
 done
@@ -65,9 +66,9 @@ for tool in git curl; do
 done
 
 # --- 2. Python >= 3.10 ---------------------------------------------------------------
-# 3.10 is a hard floor, not a preference: the kernel uses `str | None` unions at runtime
-# (35 of them, with no `from __future__ import annotations`), which raises TypeError on
-# 3.9 and below. An earlier release advertised >=3.9; that was wrong.
+# 3.10 is the minimum: the kernel's annotations use `X | None` unions, evaluated at
+# import time with no `from __future__ import annotations`, which raises TypeError
+# on 3.9 and below.
 PY=""
 for cand in python3.13 python3.12 python3.11 python3.10 python3; do
   if command -v "$cand" >/dev/null 2>&1; then
@@ -83,13 +84,13 @@ fi
 say "python:   $PY ($("$PY" -c 'import platform;print(platform.python_version())'))"
 
 # --- 3. which ref --------------------------------------------------------------------
-# Defaults to the branch, NOT to /releases/latest. The newest published RELEASE is v0.1.0,
-# which predates the first-run fixes (no __main__.py, and main() created its log handler
-# before the directory existed) — installing it fails. Pin a tag with --ref for a
-# reproducible install; see https://github.com/NGARiAI/ns-bos-kernel/releases
+# Defaults to the master branch, not to /releases/latest: the v0.1.0 release has no
+# core/kernel/__main__.py, so the start command printed at the end does not run on it.
+# A tag given with --ref makes the install reproducible; see
+# https://github.com/NGARiAI/ns-bos-kernel/releases
 if [ -z "$REF" ]; then
   REF="master"
-  say "ref:      master (current — pin a tag with --ref for reproducibility)"
+  say "ref:      master (current; pin a tag with --ref for reproducibility)"
 else
   say "ref:      $REF (pinned by you)"
 fi
@@ -123,14 +124,19 @@ say "deps:     installing hash-pinned requirements (this takes a minute)"
 
 cat <<EOF
 
-  Installed. The kernel was NOT started and no model was downloaded.
+  Installed. The kernel was not started and no model was downloaded.
 
   Next:
     cd $SRC
     NGARI_DATA_DIR=$PREFIX $VENV/bin/python -m core.kernel
 
-  There is no model in this repo — point the kernel at a runtime and weights you supply.
+  There is no model in this repo. Point the kernel at a runtime and weights you supply.
 
-  Uninstall:  rm -rf $PREFIX     (that is the only directory this script wrote)
+  Your data lives in $PREFIX too, once the kernel has run: the encryption
+  key is $PREFIX/sovereign/keys/master.key, and without it the encrypted
+  files cannot be read. Back it up somewhere other than this machine.
+
+  Uninstall:  rm -rf $PREFIX/src $PREFIX/venv
+              (all this script wrote; it leaves your data and key in place)
 
 EOF
