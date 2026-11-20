@@ -1,69 +1,179 @@
-name: NS-BOS CI
+name: CI
+
+# Every check runs through the Makefile, so `make ci` locally and this
+# workflow cannot drift apart. Require the `ci-ok` job in branch protection;
+# it fails unless every other job passed.
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [master, main, develop]
   pull_request:
-    branches: [ main ]
+    branches: [master, main, develop]
+  schedule:
+    # Daily, so a newly published advisory for a pinned dependency shows up
+    # as a red run even when nobody has pushed.
+    - cron: "17 6 * * *"
+  workflow_dispatch:
+  workflow_call:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    shell: bash
 
 jobs:
+  lint:
+    name: lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install the locked tools
+        run: python -m pip install --require-hashes -r core/kernel/requirements.txt -r core/kernel/requirements-dev.txt
+      - name: ruff
+        run: make lint PYTHON=python
+      - name: shellcheck
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends shellcheck
+          make lint-shell
+      - name: actionlint and zizmor
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: make lint-workflows PYTHON=python ZIZMOR_FLAGS=
+
   test:
-    runs-on: ubuntu-latest
+    name: test (py${{ matrix.python }})
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
-
+        python: ["3.10", "3.11", "3.12", "3.13"]
+    env:
+      # A missing or unusable bubblewrap fails the isolation tests instead of
+      # skipping them.
+      NGARI_REQUIRE_BWRAP: "1"
+      # The same for the tpm2 key provider tests and the software TPM.
+      NGARI_REQUIRE_TPM_SIM: "1"
+      # And for the PIV/CAC operator check on a SoftHSM token.
+      NGARI_REQUIRE_PKCS11_SIM: "1"
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install bubblewrap, tpm2-tools, a software TPM, SoftHSM and OpenSC; allow unprivileged user namespaces
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends bubblewrap tpm2-tools libtss2-tcti-libtpms0t64 libtpms0 softhsm2 opensc
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || echo "sysctl not present on this kernel"
+      - name: Install the locked dependencies
+        run: python -m pip install --require-hashes -r core/kernel/requirements.txt -r core/kernel/requirements-dev.txt
+      - name: Tests with coverage
+        run: make cov PYTHON=python
 
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
-      with:
-        python-version: ${{ matrix.python-version }}
+  test-arm64:
+    # Jetson and Raspberry Pi are aarch64. Seccomp syscall numbers and the HAL
+    # differ by architecture, so the suite runs there too. Arm runners are free
+    # on public repositories only, so the job skips itself on a private one.
+    name: test (py3.12, arm64)
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-24.04-arm
+    timeout-minutes: 20
+    env:
+      NGARI_REQUIRE_BWRAP: "1"
+      NGARI_REQUIRE_TPM_SIM: "1"
+      NGARI_REQUIRE_PKCS11_SIM: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install bubblewrap, tpm2-tools, a software TPM, SoftHSM and OpenSC; allow unprivileged user namespaces
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends bubblewrap tpm2-tools libtss2-tcti-libtpms0t64 libtpms0 softhsm2 opensc
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0 || echo "sysctl not present on this kernel"
+      - name: Install the locked dependencies
+        run: python -m pip install --require-hashes -r core/kernel/requirements.txt -r core/kernel/requirements-dev.txt
+      - name: Tests with coverage
+        run: make cov PYTHON=python
 
-    - name: Install dependencies (hash-pinned)
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r core/kernel/requirements.txt
-        pip install pytest pytest-cov
+  security:
+    name: security
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install the locked tools
+        run: python -m pip install --require-hashes -r core/kernel/requirements.txt -r core/kernel/requirements-dev.txt
+      - name: bandit
+        run: make bandit PYTHON=python
+      - name: Lock and SBOM check
+        run: make sbom-check PYTHON=python
+      - name: pip-audit
+        run: make audit PYTHON=python
 
-    - name: Run tests
-      run: |
-        pytest tests/ -v --cov=core/kernel --cov=scripts
+  build:
+    name: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: "3.12"
+      - name: Install the locked tools
+        run: python -m pip install --require-hashes -r core/kernel/requirements.txt -r core/kernel/requirements-dev.txt
+      - name: Check the wheel builds reproducibly
+        run: make repro PYTHON=python
+      - name: Build the release files
+        run: make build PYTHON=python
+      - name: Install the wheel in a clean venv and start ns-bos
+        run: make smoke PYTHON=python WHEEL="$(ls dist/*.whl)"
+      - name: Checksums
+        run: cat dist/SHA256SUMS
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ci-dist
+          path: dist/
+          if-no-files-found: error
+          retention-days: 14
 
-    - name: Lint with ruff
-      run: |
-        pip install ruff==0.16.1
-        ruff check core/kernel/ scripts/ tests/
-
-    - name: Static analysis with bandit
-      run: |
-        pip install bandit
-        bandit -q -r core/kernel scripts -ll
-
-    - name: Vulnerability audit with pip-audit
-      run: |
-        pip install pip-audit
-        pip-audit -r core/kernel/requirements.txt
-
-    - name: Validate SBOM against pinned requirements
-      run: |
-        python scripts/sbom.py --verify-requirements
-        python scripts/sbom.py --output /tmp/sbom-ci.json
-        python -c "
-import json, sys
-sbom = json.load(open('/tmp/sbom-ci.json'))
-pins = {}
-for line in open('core/kernel/requirements.txt'):
-    line = line.strip()
-    if line.startswith('#') or not line:
-        continue
-    if '==' in line:
-        name, ver = line.split('==', 1)
-        pins[name.lower()] = ver
-assert len(sbom['packages']) >= len(pins), 'SBOM missing declared packages'
-for p in sbom['packages']:
-    assert p['checksums'], f'{p[\"name\"]} has no checksums'
-print(f'SBOM OK: {len(pins)} declared / {len(sbom[\"packages\"])} total packages, all checksummed')
-"
+  ci-ok:
+    name: ci-ok
+    if: always()
+    needs: [lint, test, test-arm64, security, build]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Job results
+        env:
+          RESULTS: ${{ join(needs.*.result, ' ') }}
+        run: echo "$RESULTS"
+      - name: Fail unless every job succeeded
+        if: ${{ needs.lint.result != 'success' || needs.test.result != 'success' || needs.security.result != 'success' || needs.build.result != 'success' || (needs.test-arm64.result != 'success' && needs.test-arm64.result != 'skipped') }}
+        run: exit 1

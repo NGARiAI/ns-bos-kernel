@@ -1,0 +1,9 @@
+/.github/                       @rashadlee
+/.devcontainer/                 @rashadlee
+/core/kernel/sandbox/           @rashadlee
+/core/kernel/data_plane/        @rashadlee
+/core/kernel/requirements.in    @rashadlee
+/core/kernel/requirements.txt   @rashadlee
+/scripts/sbom.py                @rashadlee
+/SECURITY.md                    @rashadlee
+/THREAT_MODEL.md                @rashadlee
