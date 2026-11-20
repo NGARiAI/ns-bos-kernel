@@ -1,14 +1,17 @@
 """Sandbox tests for core/kernel/sandbox.
 
-Behavior verified on the AGX Orin edge node (aarch64) and designed to
-run anywhere:
+The tests run on any Linux host:
   - Pure-unit tests (seccomp profiles/BPF bytes) always run.
   - Namespace-isolation tests require bubblewrap + Linux and are skipped
-    otherwise (CI runners generally lack bwrap / user namespaces).
+    otherwise. Set NGARI_REQUIRE_BWRAP=1 (CI does) to turn a missing or
+    unusable bwrap into a failure, so a green run cannot mean "skipped".
 The sandbox itself runs code in a subprocess, so execution tests are
 hermetically contained (sandboxed python3, never the test process).
 """
 
+import os
+import shutil
+import socket
 import subprocess
 import sys
 from pathlib import Path
@@ -27,6 +30,7 @@ from core.kernel.sandbox.seccomp import (
     DANGEROUS_SYSCALLS,
     NETWORK_SYSCALLS,
     PROCESS_SYSCALLS,
+    SYSCALL_NUMBERS,
     _build_blocklist_filter,
     apply_seccomp,
     generate_bpf_bytes,
@@ -39,14 +43,15 @@ pytestmark = pytest.mark.skipif(
     reason="namespace sandbox requires Linux",
 )
 
-BWRAP_PRESENT = (
-    Path("/usr/bin/bwrap").exists()
-    or subprocess.run(["which", "bwrap"], capture_output=True, check=False).returncode
-    == 0
-)
+BWRAP_PRESENT = shutil.which("bwrap") is not None
+REQUIRE_BWRAP = os.environ.get("NGARI_REQUIRE_BWRAP") == "1"
 
+# With NGARI_REQUIRE_BWRAP=1 the marker never skips: a missing bwrap makes the
+# isolation tests fail instead of passing as "skipped".
 requires_bwrap = pytest.mark.skipif(
-    not BWRAP_PRESENT, reason="bubblewrap not installed — namespace tests skipped"
+    not BWRAP_PRESENT and not REQUIRE_BWRAP,
+    reason="bubblewrap not installed; namespace tests skipped "
+    "(set NGARI_REQUIRE_BWRAP=1 to fail instead)",
 )
 
 SANDBOX_TIMEOUT = 20
@@ -95,7 +100,7 @@ def test_bpf_bytes_generation_valid():
 def test_syscall_number_resolution():
     nrs = _resolve_seccomp_nrs("restricted")
     assert nrs and nrs == sorted(set(nrs))
-    assert 117 in nrs  # ptrace
+    assert SYSCALL_NUMBERS["ptrace"] in nrs
     assert _resolve_seccomp_nrs("") == []
     strict_nrs = _resolve_seccomp_nrs("strict")
     assert strict_nrs and len(strict_nrs) > len(nrs)
@@ -110,6 +115,24 @@ def test_blocked_modules_and_sanitize():
         and "_sanitized_open_(" in out
     )
     assert "eval(" not in out and "exec(" not in out
+
+
+def test_bwrap_usable_when_required():
+    if not REQUIRE_BWRAP:
+        pytest.skip("NGARI_REQUIRE_BWRAP is not set")
+    assert BWRAP_PRESENT, "NGARI_REQUIRE_BWRAP=1 but bwrap is not installed"
+    probe = subprocess.run(
+        ["bwrap", "--unshare-user", "--ro-bind", "/", "/", "true"],
+        capture_output=True,
+        text=True,
+        timeout=SANDBOX_TIMEOUT,
+        check=False,
+    )
+    assert probe.returncode == 0, (
+        "bwrap is installed but cannot create a user namespace "
+        "(on Ubuntu 24.04 set kernel.apparmor_restrict_unprivileged_userns=0): "
+        f"{probe.stderr.strip()}"
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -147,7 +170,8 @@ def test_eval_exec_open_neutralized(sandbox):
         "eval('__import__(\\'os\\').system(\\'echo pwned\\')'); exec('x=1'); open('x')"
     )
     r = sandbox.execute_python(code)
-    assert r.exit_code == 0, r.stderr
+    assert r.exit_code != 0
+    assert "PermissionError" in r.stderr
     assert "pwned" not in r.stdout
 
 
@@ -178,15 +202,57 @@ def test_filesystem_isolation(sandbox):
     assert r.exit_code == 0, r.stderr
     n_entries, etc = r.stdout.split()
     assert n_entries == "0"  # /tmp is an empty tmpfs inside the sandbox
-    assert etc == "True"  # read-only system paths are bound in
+    assert etc == "False"  # only two files from /etc are bound in
+
+
+@requires_bwrap
+def test_host_paths_stay_invisible(sandbox):
+    code = (
+        "import os\n"
+        "for p in ('/root', '/home', '/opt', '/mnt', '/var', '/run', '/etc'):\n"
+        "    print(p, sorted(os.listdir(p)) if os.path.isdir(p) else None)\n"
+        f"print('repo', os.path.exists({str(Path(__file__).resolve())!r}))\n"
+    )
+    r = sandbox.execute_python(code)
+    assert r.exit_code == 0, r.stderr
+    seen = dict(line.split(" ", 1) for line in r.stdout.strip().splitlines())
+    for empty in ("/root", "/home", "/mnt", "/var", "/run"):
+        assert seen[empty] == "[]", (empty, seen[empty])
+    assert seen["/opt"] == "None"
+    assert set(eval(seen["/etc"])) <= {"ld.so.cache", "localtime"}
+    assert seen["repo"] == "False"
+
+
+@requires_bwrap
+def test_the_interpreter_still_has_what_agent_code_needs(sandbox):
+    r = sandbox.execute_python(
+        "import json, math, datetime, decimal, hashlib, re, sqlite3, zlib, time\n"
+        "print(json.dumps({'ok': math.isqrt(49)}), time.strftime('%Y'))"
+    )
+    assert r.exit_code == 0, r.stderr
+    assert r.stdout.split()[0] == '{"ok":'
 
 
 @requires_bwrap
 def test_network_namespace_isolated(sandbox):
-    r = sandbox.execute_python(
-        "import socket; s = socket.socket(); print('socket-created')", seccomp_level=""
+    # A listener on the host's loopback must be unreachable from inside the
+    # sandbox. Creating a socket proves nothing: that works with or without
+    # a network namespace.
+    probe = (
+        "import socket\n"
+        "try:\n"
+        "    socket.create_connection(('127.0.0.1', {port}), timeout=3)\n"
+        "    print('reachable')\n"
+        "except OSError as e:\n"
+        "    print('isolated')\n"
     )
+    with socket.socket() as listener:
+        listener.bind(("127.0.0.1", 0))
+        listener.listen(1)
+        port = listener.getsockname()[1]
+        r = sandbox.execute_python(probe.format(port=port), seccomp_level="")
     assert r.exit_code == 0, r.stderr
+    assert r.stdout.strip() == "isolated", r.stdout
 
 
 @requires_bwrap
@@ -226,3 +292,21 @@ def test_get_sandbox_singleton():
     a = get_sandbox()
     b = get_sandbox()
     assert a is b
+
+
+@requires_bwrap
+def test_the_sandbox_keeps_the_host_time_zone(sandbox):
+    import time
+
+    r = sandbox.execute_python("import time; print(time.tzname[0])")
+    assert r.exit_code == 0, r.stderr
+    assert r.stdout.strip() == time.tzname[0]
+
+
+def test_get_sandbox_keeps_each_callers_timeout():
+    default = get_sandbox()
+    short = get_sandbox(timeout=5)
+    assert short.timeout == 5
+    assert default.timeout == 30
+    assert get_sandbox(timeout=5) is short
+    assert get_sandbox() is default
