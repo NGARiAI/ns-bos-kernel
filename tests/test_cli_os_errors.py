@@ -80,8 +80,11 @@ def _as_other_user(store):
         if shutil.which("setpriv") is None:
             pytest.skip("running as root without setpriv")
         return ["setpriv", "--reuid=65534", "--regid=65534", "--clear-groups"]
-    for path in (store, store / "keys", store / "audit"):
-        path.chmod(0o000)
+    # Children first: taking away the parent's execute bit first would make
+    # the children unreachable to this process too.
+    for path in (store / "keys", store / "audit", store):
+        if path.exists():
+            path.chmod(0o000)
     return []
 
 

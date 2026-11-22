@@ -197,12 +197,14 @@ guest never sees can lock the guest's key.
 ## Testing
 
 `tests/test_tpm.py`, `test_keys_cli.py`, `test_recovery.py` and
-`test_pcr_policy.py` run against an in-process software TPM (the `libtpms:`
-TCTI with a state file in the test's tmp directory), never a hardware chip.
-They skip when tpm2-tools or the TCTI are missing. `NGARI_REQUIRE_TPM_SIM=1`
-(set in CI) turns the skip into a failure. Every provider has a same-boot
-round trip test and a test that data written by v0.1.0
-(`tests/vectors/v0.1.0`) decrypts after the change.
+`test_pcr_policy.py` run against a software TPM (the `swtpm:` TCTI, with a
+state manufactured by `swtpm_setup` in the test's tmp directory), never a
+hardware chip. `swtpm_setup` allocates the sha256 PCR bank the PCR policy
+tests need and gives each state its own seed, so two fixtures are two
+different TPMs. They skip when tpm2-tools or the TCTI are missing.
+`NGARI_REQUIRE_TPM_SIM=1` (set in CI) turns the skip into a failure. Every
+provider has a same-boot round trip test and a test that data written by
+v0.1.0 (`tests/vectors/v0.1.0`) decrypts after the change.
 
 `tests/test_main_tpm.py` runs `python -m core.kernel` itself on the tpm2
 provider: two boots share one sealed key and its data. It exits with status 2

@@ -1,36 +1,94 @@
-"""Shared fixtures. The software TPM is a libtpms state file in tmp_path,
-never the hardware chip. NGARI_REQUIRE_TPM_SIM=1 turns a skip into a failure."""
+"""Shared fixtures. The software TPM is a swtpm instance in tmp_path, never the
+hardware chip. NGARI_REQUIRE_TPM_SIM=1 turns a skip into a failure.
+
+A raw libtpms state file comes up with no PCR banks, so a PCR policy cannot be
+tested on it, and two such states can share a seed, so they are not two
+distinct TPMs. The state is therefore manufactured with swtpm_setup, which
+allocates a sha256 bank and gives each state its own seed, and reached over a
+unix socket for as long as the test runs."""
 
 import os
 import shutil
+import signal
 import subprocess
+import time
 from pathlib import Path
 
 import pytest
 
 
-def _start_soft_tpm(directory: Path) -> str:
+def _start_soft_tpm(directory: Path):
+    """(tcti, stop) for a swtpm with a sha256 PCR bank, unique to directory."""
     directory.mkdir(parents=True, exist_ok=True)
-    tcti = f"libtpms:{directory / 'state'}"
     reason = None
-    if shutil.which("tpm2_startup") is None:
-        reason = "tpm2-tools not installed"
-    else:
-        env = {**os.environ, "TPM2TOOLS_TCTI": tcti, "TSS2_LOG": "all+NONE"}
-        run = subprocess.run(
-            ["tpm2_startup", "-c"],
-            cwd=directory,
-            env=env,
+    for tool in ("swtpm", "swtpm_setup"):
+        if shutil.which(tool) is None:
+            reason = f"{tool} not installed (packages swtpm and swtpm-tools)"
+            break
+    if reason is None:
+        setup = subprocess.run(
+            [
+                "swtpm_setup",
+                "--tpm2",
+                "--tpmstate",
+                str(directory),
+                "--pcr-banks",
+                "sha256",
+            ],
             capture_output=True,
             check=False,
         )
-        if run.returncode != 0:
-            reason = f"libtpms TCTI unusable: {run.stderr.decode(errors='replace')}"
+        if setup.returncode != 0:
+            reason = (
+                f"swtpm_setup failed: {setup.stderr.decode(errors='replace')[-300:]}"
+            )
     if reason:
         if os.environ.get("NGARI_REQUIRE_TPM_SIM") == "1":
             pytest.fail(f"software TPM required but {reason}")
         pytest.skip(reason)
-    return tcti
+
+    sock = directory / "sock"
+    pid_file = directory / "pid"
+    start = subprocess.run(
+        [
+            "swtpm",
+            "socket",
+            "--tpm2",
+            "--tpmstate",
+            f"dir={directory}",
+            "--ctrl",
+            f"type=unixio,path={sock}.ctrl",
+            "--server",
+            f"type=unixio,path={sock}",
+            "--flags",
+            "not-need-init,startup-clear",
+            "--daemon",
+            "--pid",
+            f"file={pid_file}",
+        ],
+        capture_output=True,
+        check=False,
+    )
+    if start.returncode != 0:
+        pytest.fail(
+            "swtpm did not start: " + start.stderr.decode(errors="replace")[-300:]
+        )
+
+    deadline = time.monotonic() + 10
+    while not sock.exists() and time.monotonic() < deadline:
+        time.sleep(0.05)
+    if not sock.exists():
+        pytest.fail(f"swtpm socket {sock} did not appear")
+
+    pid = int(pid_file.read_text().strip())
+
+    def stop():
+        try:
+            os.kill(pid, signal.SIGTERM)
+        except OSError:
+            pass
+
+    return f"swtpm:path={sock}", stop
 
 
 @pytest.fixture(autouse=True)
@@ -42,12 +100,16 @@ def air_gap_default(monkeypatch):
 
 @pytest.fixture
 def soft_tpm(tmp_path):
-    return _start_soft_tpm(tmp_path / "tpm-a")
+    tcti, stop = _start_soft_tpm(tmp_path / "tpm-a")
+    yield tcti
+    stop()
 
 
 @pytest.fixture
 def other_tpm(tmp_path):
-    return _start_soft_tpm(tmp_path / "tpm-b")
+    tcti, stop = _start_soft_tpm(tmp_path / "tpm-b")
+    yield tcti
+    stop()
 
 
 SOFTHSM_MODULE = "/usr/lib/softhsm/libsofthsm2.so"

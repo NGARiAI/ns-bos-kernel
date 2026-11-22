@@ -50,7 +50,7 @@ def _write_synced(path: Path, data: bytes) -> None:
     """Temporary file, fsync, rename. The caller syncs the directory once
     per batch instead of once per file."""
     tmp = _temp_name(path)
-    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)  # umask applies
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)  # owner only
     try:
         with os.fdopen(fd, "wb") as f:
             f.write(data)

@@ -78,8 +78,8 @@ def test_the_test_jobs_run_the_documented_pythons_and_runners():
 def test_the_test_jobs_install_and_require_what_the_document_says(job_id):
     job = _workflow("ci.yml")["jobs"][job_id]
     runs = " ".join(step.get("run", "") for step in job["steps"])
-    for package in ["bubblewrap", "tpm2-tools", "libtss2-tcti-libtpms0t64", "libtpms0",
-                    "softhsm2", "opensc"]:  # fmt: skip
+    for package in ["bubblewrap", "tpm2-tools", "libtss2-tcti-swtpm0", "swtpm",
+                    "swtpm-tools", "softhsm2", "opensc"]:  # fmt: skip
         assert re.search(rf"apt-get install [^\n]*\b{re.escape(package)}\b", runs), (
             package
         )

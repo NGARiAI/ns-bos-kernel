@@ -83,14 +83,14 @@ def test_threads_saving_one_file_do_not_collide(tmp_path, module):
 
 
 @pytest.mark.parametrize("module", MODULES)
-def test_the_umask_still_sets_the_mode(tmp_path, module):
+def test_stored_files_are_owner_only_whatever_the_umask(tmp_path, module):
     write_json = importlib.import_module(module)._write_json
-    old = os.umask(0o027)
+    old = os.umask(0o000)  # the most permissive umask must not loosen the mode
     try:
         write_json(tmp_path / "state.json", {})
     finally:
         os.umask(old)
-    assert (tmp_path / "state.json").stat().st_mode & 0o777 == 0o640
+    assert (tmp_path / "state.json").stat().st_mode & 0o777 == 0o600
 
 
 @pytest.mark.parametrize("module", MODULES)

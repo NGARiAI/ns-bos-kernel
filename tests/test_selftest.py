@@ -56,7 +56,8 @@ def test_every_step_passes_and_nothing_else_is_touched(
     out = capsys.readouterr()
     text = out.out + out.err
     reaching, *lines = text.splitlines()
-    assert reaching.startswith("Reaching the TPM (libtpms:")  # printed before any step
+    assert reaching.startswith("Reaching the TPM (")  # printed before any step
+    assert "swtpm:" in reaching or "libtpms:" in reaching  # a simulator, not a chip
     assert lines[0].startswith("TPM: IBM SWTPM, TPM 2.0 revision 1.64, firmware 0x")
     assert [
         re.match(r"ok   \d (.+?) {2,}", line).group(1).strip() for line in lines[1:7]

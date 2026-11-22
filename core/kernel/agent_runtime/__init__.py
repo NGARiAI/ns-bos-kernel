@@ -396,7 +396,7 @@ def _temp_name(path: Path) -> Path:
 
 def _write_durably(path: Path, data: bytes) -> None:
     tmp = _temp_name(path)
-    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)  # umask applies
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)  # owner only
     try:
         with os.fdopen(fd, "wb") as f:
             f.write(data)

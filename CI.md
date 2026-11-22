@@ -54,11 +54,13 @@ which Ubuntu 24.04 turns on by default. `NGARI_REQUIRE_BWRAP=1` makes a missing
 or unusable bubblewrap a failure; without it those tests skip. `make
 test-sandbox` sets it.
 
-The `tpm2` key provider tests run against an in-process software TPM
-(`libtpms:` TCTI, a state file under the test's tmp directory), never a
-hardware chip. The test job installs `tpm2-tools`, `libtss2-tcti-libtpms0t64`
-and `libtpms0`. `NGARI_REQUIRE_TPM_SIM=1` makes a missing simulator a failure;
-without it those tests skip.
+The `tpm2` key provider tests run against a software TPM (`swtpm:` TCTI,
+a state manufactured by `swtpm_setup` under the test's tmp directory), never
+a hardware chip. `swtpm_setup` allocates the sha256 PCR bank and gives each
+state its own seed, which a raw `libtpms:` state file does not. The test job
+installs `tpm2-tools`, `libtss2-tcti-swtpm0`, `swtpm` and `swtpm-tools`.
+`NGARI_REQUIRE_TPM_SIM=1` makes a missing simulator a failure; without it
+those tests skip.
 
 The PIV/CAC operator check tests use a SoftHSM token created in the test's
 tmp directory in place of a card. The test job installs `softhsm2` and

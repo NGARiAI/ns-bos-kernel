@@ -35,11 +35,15 @@ def _bundle(tmp_path, key):
 
 
 def _extend(tcti, pcr=16):
-    assert tcti.startswith("libtpms:"), "PCRs are only ever extended on a simulator"
+    assert tcti.startswith(("libtpms:", "swtpm:")), (
+        "PCRs are only ever extended on a simulator"
+    )
+    spec = tcti.partition(":")[2]
+    spec = spec.removeprefix("path=")
     env = {**os.environ, "TPM2TOOLS_TCTI": tcti, "TSS2_LOG": "all+NONE"}
     subprocess.run(
         ["tpm2_pcrextend", f"{pcr}:sha256=" + "11" * 32],
-        cwd=Path(tcti.partition(":")[2]).parent,
+        cwd=Path(spec).parent,
         env=env,
         capture_output=True,
         check=True,

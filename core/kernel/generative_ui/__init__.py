@@ -78,7 +78,7 @@ def _write_durably(path: Path, data: bytes) -> None:
     # Cut to 96 bytes, so the temporary file fits whenever path does.
     head = path.name.encode()[:96].decode("utf-8", "ignore")
     tmp = path.with_name(f".{head}.{os.getpid()}.{secrets.token_hex(4)}.tmp")
-    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)  # umask applies
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)  # owner only
     try:
         with os.fdopen(fd, "wb") as f:
             f.write(data)

@@ -119,7 +119,7 @@ def _write_json(path: Path, data, **dump_kwargs) -> None:
 
 def _write_durably(path: Path, data: bytes) -> None:
     tmp = path.with_name(f".{path.name}.{os.getpid()}.{secrets.token_hex(4)}.tmp")
-    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o666)  # umask applies
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)  # owner only
     try:
         with os.fdopen(fd, "wb") as f:
             f.write(data)

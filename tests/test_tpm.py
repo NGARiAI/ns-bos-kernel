@@ -34,11 +34,19 @@ def keys_dir(tmp_path):
     return path
 
 
+def _tcti_dir(tcti: str) -> Path:
+    """The directory a TCTI's state lives in: a libtpms state file or a swtpm
+    socket path (swtpm:path=...). The tools drop NVChip in cwd."""
+    spec = tcti.partition(":")[2]
+    spec = spec.removeprefix("path=")
+    return Path(spec).parent
+
+
 def _transient_handles(tcti: str) -> str:
     env = {**os.environ, "TPM2TOOLS_TCTI": tcti, "TSS2_LOG": "all+NONE"}
     run = subprocess.run(
         ["tpm2_getcap", "handles-transient"],
-        cwd=Path(tcti.partition(":")[2]).parent,  # the tools drop NVChip in cwd
+        cwd=_tcti_dir(tcti),
         env=env,
         capture_output=True,
         check=True,
