@@ -5,7 +5,22 @@ All notable changes to the NS-BOS Kernel are documented here.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [0.2.0] - 2026-11-22
+
+**Upgrade from v0.1.0.** v0.1.0 has two security defects. Its audit log was
+not a hash chain, so entries could be edited, removed, reordered or cut from
+the end without detection; and its seccomp filter used aarch64 system-call
+numbers on every architecture, so on x86_64 it blocked the wrong calls and
+let `ptrace`, `bpf` and `kexec` through. Both are fixed here, and the log now
+carries an HMAC under a key derived from the master key. After upgrading, run
+`python -m core.kernel audit adopt-legacy` once on each existing data
+directory to bring the log v0.1.0 wrote forward.
+
+Air-gap mode is now on by default. A LAN inference endpoint, a model pull, a
+sync mode other than `local_only`, and agent code on a machine without
+bubblewrap are refused unless `NGARI_AIR_GAP=0` is set deliberately. See
+"Changed" and "Security" below, and `KNOWN_LIMITATIONS.md` for what the
+kernel still does not do.
 
 ### Added
 

@@ -11,7 +11,7 @@ from pathlib import Path
 
 import pytest
 
-from core.kernel import KERNEL_ACTOR, NSBOSKernel, TaskPriority
+from core.kernel import KERNEL_ACTOR, VERSION, NSBOSKernel, TaskPriority
 from core.kernel.agent_runtime import AgentConfig, AgentRuntime
 from core.kernel.data_plane import audit_anchor, check_audit_chain
 
@@ -104,7 +104,7 @@ def test_start_and_stop_are_recorded_in_order(kernel):
     actions = [e["action"] for e in log]
     assert actions.index("kernel_started") < actions.index("agent_state_changed")
     started = log[actions.index("kernel_started")]
-    assert started["details"]["agents"] == 1 and started["resource"] == "0.1.0"
+    assert started["details"]["agents"] == 1 and started["resource"] == VERSION
     changed = log[actions.index("agent_state_changed")]
     assert changed["details"] == {"from": "initializing", "to": "running"}
     stopped = log[-1]

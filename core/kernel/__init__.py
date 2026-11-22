@@ -55,7 +55,7 @@ __all__ = [
 
 logger = logging.getLogger("ns_bos_kernel")
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 KERNEL_NAME = "NS-BOS"
 KERNEL_FULL_NAME = "NGARi Sovereign Business Operating System"
 LOG_FORMAT = "%(asctime)s [NSBOS] %(message)s"
