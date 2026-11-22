@@ -47,7 +47,7 @@ setup(
     ],
     python_requires=">=3.10",
     install_requires=[
-        "cryptography==50.0.0",
+        "cryptography==50.0.2",
         "requests==2.34.2",
         "pyyaml==6.0.3",
     ],
