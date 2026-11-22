@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="ns-bos",
-    version="0.1.0",
+    version="0.2.0",
     author="Bison Venture Partners LLC dba NGARI",
     author_email="support@ngari.ai",
     description="NGARi Sovereign Business Operating System - Open Source Kernel",
