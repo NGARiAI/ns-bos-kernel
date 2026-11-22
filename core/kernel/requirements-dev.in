@@ -7,7 +7,7 @@ pip-audit
 pre-commit
 pytest
 pytest-cov
-ruff==0.16.1
+ruff==0.17.6
 setuptools
 twine
 wheel
