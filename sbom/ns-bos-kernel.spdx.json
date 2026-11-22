@@ -3,9 +3,9 @@
   "dataLicense": "CC0-1.0",
   "SPDXID": "SPDXRef-DOCUMENT",
   "name": "ns-bos-kernel",
-  "documentNamespace": "https://ngari.xyz/ns-bos-kernel/6cfc4062-1a6e-4814-8e3a-1be2e3b0cc25",
+  "documentNamespace": "https://ngari.xyz/ns-bos-kernel/f7965391-f3a6-4130-8ad9-06279c92d2be",
   "creationInfo": {
-    "created": "2026-08-04T19:18:52Z",
+    "created": "2026-11-14T18:33:28Z",
     "creators": [
       "Tool: scripts/sbom.py",
       "Organization: Bison Venture Partners LLC dba NGARI"
@@ -13,37 +13,9 @@
   },
   "packages": [
     {
-      "SPDXID": "SPDXRef-PACKAGE-beautifulsoup4",
-      "name": "beautifulsoup4",
-      "versionInfo": "4.15.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "288e3ca7d54b06f2ac191970bc275c1939cb46d450b255bf6718b04aa37ab4f7"
-        },
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "d6f88de62e1d4e38ecb1077eb9724cd0eff29d2a08ca16a401e9b9e93f117cf9"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:pypi/beautifulsoup4@4.15.0"
-        }
-      ]
-    },
-    {
       "SPDXID": "SPDXRef-PACKAGE-certifi",
       "name": "certifi",
-      "versionInfo": "2026.7.22",
+      "versionInfo": "2026.10.23",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -53,18 +25,18 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
+          "checksumValue": "a9895e6e2758b371e0545e321a3a8fd1fcfd9829ada8824a936dfb16aaaf36cd"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "741e2c3b351ddf169a738da9f2c048608ff7f2c5cc02f1ebc6b118bb090d5d55"
+          "checksumValue": "e9b54de76e530bb6cf0ccd036787103acb58fd42ba930ea8bf948ddbaa2f61d1"
         }
       ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:pypi/certifi@2026.7.22"
+          "referenceLocator": "pkg:pypi/certifi@2026.10.23"
         }
       ]
     },
@@ -1481,65 +1453,9 @@
       ]
     },
     {
-      "SPDXID": "SPDXRef-PACKAGE-soupsieve",
-      "name": "soupsieve",
-      "versionInfo": "2.9.1",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "4f4477399246b7a0c720a88ca2454b11cd6bb9ae4c9d170140786e916776c14c"
-        },
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "c33e6605bbc71dd628b00c632d58ae607c22bade247e52553928f83bbb75b4ba"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:pypi/soupsieve@2.9.1"
-        }
-      ]
-    },
-    {
-      "SPDXID": "SPDXRef-PACKAGE-typing-extensions",
-      "name": "typing-extensions",
-      "versionInfo": "4.16.0",
-      "supplier": "NOASSERTION",
-      "downloadLocation": "NOASSERTION",
-      "filesAnalyzed": false,
-      "licenseConcluded": "NOASSERTION",
-      "licenseDeclared": "NOASSERTION",
-      "copyrightText": "NOASSERTION",
-      "checksums": [
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
-        },
-        {
-          "algorithm": "SHA256",
-          "checksumValue": "dc983d19a509c94dba722ee6abd33940f7c05a89e243c47e907eb4db6f1a43e5"
-        }
-      ],
-      "externalRefs": [
-        {
-          "referenceCategory": "PACKAGE-MANAGER",
-          "referenceType": "purl",
-          "referenceLocator": "pkg:pypi/typing-extensions@4.16.0"
-        }
-      ]
-    },
-    {
       "SPDXID": "SPDXRef-PACKAGE-urllib3",
       "name": "urllib3",
-      "versionInfo": "2.7.0",
+      "versionInfo": "2.8.0",
       "supplier": "NOASSERTION",
       "downloadLocation": "NOASSERTION",
       "filesAnalyzed": false,
@@ -1549,28 +1465,23 @@
       "checksums": [
         {
           "algorithm": "SHA256",
-          "checksumValue": "231e0ec3b63ceb14667c67be60f2f2c40a518cb38b03af60abc813da26505f4c"
+          "checksumValue": "0cf3cae568d36aa9576b28dfb35f11328f1cb974ca7647d9475ebb86c75ac6e3"
         },
         {
           "algorithm": "SHA256",
-          "checksumValue": "9fb4c81ebbb1ce9531cce37674bbc6f1360472bc18ca9a553ede278ef7276897"
+          "checksumValue": "63bf2ead4c879426ebf22ef2a781eeb4aa3b4ae798a0435506f8687fd5bb9b63"
         }
       ],
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
           "referenceType": "purl",
-          "referenceLocator": "pkg:pypi/urllib3@2.7.0"
+          "referenceLocator": "pkg:pypi/urllib3@2.8.0"
         }
       ]
     }
   ],
   "relationships": [
-    {
-      "spdxElementId": "SPDXRef-DOCUMENT",
-      "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-PACKAGE-beautifulsoup4"
-    },
     {
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
@@ -1610,16 +1521,6 @@
       "spdxElementId": "SPDXRef-DOCUMENT",
       "relationshipType": "DESCRIBES",
       "relatedSpdxElement": "SPDXRef-PACKAGE-requests"
-    },
-    {
-      "spdxElementId": "SPDXRef-DOCUMENT",
-      "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-PACKAGE-soupsieve"
-    },
-    {
-      "spdxElementId": "SPDXRef-DOCUMENT",
-      "relationshipType": "DESCRIBES",
-      "relatedSpdxElement": "SPDXRef-PACKAGE-typing-extensions"
     },
     {
       "spdxElementId": "SPDXRef-DOCUMENT",

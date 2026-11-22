@@ -1,0 +1,18 @@
+Throwaway test vector. The key protects nothing.
+
+master.key and greeting.enc were written by the v0.1.0 data plane
+(git show v0.1.0:core/kernel/data_plane/__init__.py). master.key is the
+44-byte Fernet key that release creates. greeting.enc is
+store_encrypted("greeting", ...) under that key.
+
+tests/test_keys.py checks that the data plane opens this deployment through
+every key provider. Do not regenerate these files: their value is that the
+v0.1.0 code made them.
+
+agents/ was written by the v0.1.0 agent runtime
+(git show v0.1.0:core/kernel/agent_runtime/__init__.py): an agent registered
+with memory, then saved, a message published on "orders", then a task created.
+v0.1.0 cannot serialize a task (TaskPriority is not JSON serializable), so
+tasks/tasks.json is the truncated file it writes: what a v0.1.0 deployment
+that created a task has on disk. tests/test_state_encryption.py loads this
+directory with agent state encryption on.

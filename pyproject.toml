@@ -1,9 +1,8 @@
-# Build backend declaration ONLY.
+# Build backend declaration only.
 #
-# Package metadata deliberately stays in core/kernel/setup.py — the repository's single
-# source of truth, per the root setup.py shim which delegates there. Repeating the name,
-# version or dependencies here would create a second source of truth that can drift,
-# which is the failure mode this repo already warns about elsewhere.
+# Package metadata stays in core/kernel/setup.py, the single source of truth;
+# the root setup.py delegates there. Repeating the name, version or
+# dependencies here would create a second copy that can drift.
 [build-system]
 requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"

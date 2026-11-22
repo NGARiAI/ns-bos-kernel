@@ -1,0 +1,5 @@
+# The oldest Python the kernel supports (python_requires in core/kernel/setup.py).
+# With it set, ruff rejects syntax newer than that, such as an f-string that
+# reuses its own quote inside the braces (3.12), which ruff otherwise accepts
+# and which would not even import on 3.10. The default rules are unchanged.
+target-version = "py310"

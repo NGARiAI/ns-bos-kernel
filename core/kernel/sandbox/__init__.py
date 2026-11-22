@@ -1,7 +1,7 @@
 """
-NS-BOS Kernel Sandbox — Secure code execution environment for AI agents.
+NS-BOS Kernel Sandbox: isolated execution of agent code.
 
-BwrapSandbox (primary) — Linux namespace isolation via bubblewrap:
+BwrapSandbox: Linux namespace isolation via bubblewrap:
 - User, PID, net, mount, IPC, UTS namespace isolation
 - Runs as nobody (uid 65534)
 - Read-only system filesystem, writable /tmp

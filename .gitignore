@@ -15,3 +15,8 @@ dist/
 build/
 .venv/
 venv/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+.tools/
