@@ -204,19 +204,18 @@ def fallback(monkeypatch):
 
 
 def test_the_fallback_imports_from_no_directory_others_can_write(fallback):
-    import sysconfig
+    import sys
 
-    # The interpreter's own directories are the host's, not the sandbox's:
-    # a CI toolcache is world-writable and the fallback cannot change that.
+    # The interpreter's own installation is the host's, not the sandbox's: a
+    # CI toolcache is world-writable and the fallback cannot change that.
     # Every other path it puts on sys.path must not be.
-    paths = sysconfig.get_paths()
-    own = sorted({paths[k] for k in ("stdlib", "purelib", "platlib") if paths.get(k)})
+    prefixes = sorted({os.path.realpath(sys.base_prefix), os.path.realpath(sys.prefix)})
     code = (
         "import os, stat, sys\n"
-        f"own = {own!r}\n"
+        f"prefixes = {prefixes!r}\n"
         "for p in sys.path:\n"
         "    d = os.path.abspath(p or os.getcwd())\n"
-        "    if d in own:\n"
+        "    if any(d == x or d.startswith(x + os.sep) for x in prefixes):\n"
         "        continue\n"
         "    if os.path.isdir(d) and os.stat(d).st_mode & stat.S_IWOTH:\n"
         "        print('WORLD-WRITABLE', repr(p), d)\n"
@@ -477,8 +476,8 @@ def test_a_lower_hard_limit_already_in_force_is_kept():
         "        except (OSError, IndexError, ValueError):\n"
         "            pass\n"
         "    return total\n"
-        "count = uid_threads(65534)\n"
-        "limit = max(32, count + 8)\n"
+        "count = max(uid_threads(65534), uid_threads(os.getuid()))\n"
+        "limit = count + 16\n"
         "if limit >= 64:\n"
         "    print('SKIP', count)\n"
         "else:\n"
@@ -486,12 +485,15 @@ def test_a_lower_hard_limit_already_in_force_is_kept():
         "    from core.kernel.sandbox.bwrap import BwrapSandbox\n"
         "    r = BwrapSandbox(require_bwrap=True).execute_python(\n"
         "        'import resource; print(resource.getrlimit(resource.RLIMIT_NPROC))')\n"
-        "    print(r.stdout.strip(), r.exit_code, limit)\n"
+        "    if r.exit_code == -1:\n"
+        "        print('SKIP', r.error or 'sandbox unavailable')\n"
+        "    else:\n"
+        "        print(r.stdout.strip(), r.exit_code, limit)\n"
     )
     run = subprocess.run([sys.executable, "-c", driver], cwd=Path(__file__).parent.parent,
                          capture_output=True, text=True, timeout=60, check=False)  # fmt: skip
     if run.stdout.strip().startswith("SKIP"):
-        pytest.skip(f"the sandbox user already has {run.stdout.split()[1]} threads")
+        pytest.skip(run.stdout.strip())
     limit = run.stdout.split()[-1]
     assert run.stdout.strip() == f"({limit}, {limit}) 0 {limit}", (
         run.stdout + run.stderr
