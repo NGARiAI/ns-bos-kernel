@@ -49,7 +49,7 @@ setup(
     install_requires=[
         "cryptography==50.0.0",
         "requests==2.34.2",
-        "pyyaml==6.0.3",
+        "pyyaml==6.0.4",
     ],
     entry_points={
         "console_scripts": [
